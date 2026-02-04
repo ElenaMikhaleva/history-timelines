@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Job Tracker</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .form-container {
+            padding: 24px;
+            width: 320px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input, select, textarea, button {
+            width: 100%;
+            margin-top: 6px;
+        }
+        button {
+            margin-top: 16px;
+            padding: 8px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="form-container">
+    <h1>Add Job Application</h1>
+
+    <form method="POST">
+        <label>Company</label><br>
+        <input name="company" required><br><br>
+
+        <label>Position</label><br>
+        <input  name="position" required><br><br>
+
+        <label>URL</label><br>
+        <input  name="url" required><br><br>
+
+        <label>Location</label><br>
+        <input  name="location" required><br><br>
+
+        <label>Status</label><br>
+        <select name="status">
+            <option>Applied</option>
+            <option>HR Interview</option>
+            <option>Tech Interview</option>
+            <option>Offer</option>
+            <option>Rejected</option>
+            <option>Silence</option>
+        </select><br><br>
+
+        <label>Notes</label><br>
+        <textarea name="notes"></textarea><br>
+
+        <button>Save</button>
+    </form>
+
+    {% if job %}
+        <h2>Submitted data</h2>
+        <p>
+            <b>Company</b>: {{ job.company }}<br>
+            <b>Position</b>: {{ job.position }}<br>
+            <b>URL</b>: {{ job.url }}<br>
+            <b>Location</b>: {{ job.location }}<br>
+            <b>Status</b>: {{ job.status }}<br>
+            <b>Notes</b>: {{ job.notes }}
+        </p>
+    {% endif %}
+</div>
+</body>
+</html>
