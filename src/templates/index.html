@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Timeline App</title>
+</head>
+<body>
+    <h1>All Timelines</h1>
+    <a href="{{ url_for('add_timeline') }}">Add New Timeline</a>
+    {% for t in timelines %}
+        <h2>{{ t.title }}</h2>
+        <p>{{ t.description }}</p>
+        <a href="{{ url_for('add_event', timeline_id=t.id) }}">Add Event</a>
+        <ul>
+        {% for e in t.events %}
+            <li>{{ e.date }}: {{ e.name }} — {{ e.notes }}</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No timelines yet!</p>
+    {% endfor %}
+</body>
+</html>

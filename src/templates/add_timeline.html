@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Timeline</title>
+</head>
+<body>
+    <h1>Add Timeline</h1>
+    <form method="POST">
+        <label>Title:</label><br>
+        <input type="text" name="title" required><br>
+        <label>Description:</label><br>
+        <textarea name="description"></textarea><br>
+        <button type="submit">Add Timeline</button>
+    </form>
+    <a href="{{ url_for('home') }}">Back to timelines</a>
+</body>
+</html>
