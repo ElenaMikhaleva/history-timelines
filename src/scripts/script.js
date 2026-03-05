@@ -1,6 +1,6 @@
 const timelineWrapper = document.querySelector(".timeline-wrapper");
 const timeline = document.querySelector(".timeline");
-const periods = document.querySelectorAll(".eon, .era, .period");
+const geoPeriods = document.querySelectorAll(".eon, .era, .geoPeriod");
 const markers = document.querySelectorAll(".marker");
 
 const timelineStart = -4567; // oldest year
@@ -18,13 +18,29 @@ function pxPerYear() {
 function updatePositions() {
     const ppx = pxPerYear();
 
-    periods.forEach(period => {
-        const start = parseInt(period.dataset.start);
-        const end = parseInt(period.dataset.end);
+    geoPeriods.forEach(geoPeriod => {
+        const start = parseInt(geoPeriod.dataset.start);
+        const end = parseInt(geoPeriod.dataset.end);
         const left = (start - viewStart) * ppx;
         const width = (end - start) * ppx;
-        period.style.left = left + "px";
-        period.style.width = width + "px";
+
+        geoPeriod.style.left = left + "px";
+        geoPeriod.style.width = width + "px";
+
+        // --- THE NEW LOGIC: CONDITIONAL TEXT ---
+        // Grab the full name from a data attribute or the inner content once
+        const fullName = geoPeriod.getAttribute('data-name') || geoPeriod.innerText;
+        if (!geoPeriod.getAttribute('data-name')) {
+            geoPeriod.setAttribute('data-name', fullName); // Store original name
+        }
+
+        // If block is narrower than 45px, hide text to keep it clean.
+        // Otherwise, show the name (CSS handles the partial word clipping).
+        if (width < 90) {
+            geoPeriod.innerText = "";
+        } else {
+            geoPeriod.innerText = fullName;
+        }
     });
 
     markers.forEach(marker => {
@@ -49,21 +65,35 @@ document.getElementById("zoomSlider").addEventListener("input", e => {
 timelineWrapper.addEventListener("wheel", e => {
     e.preventDefault(); // prevent page scroll
 
-    const zoomFactor = e.deltaY < 0 ? 1.1 : 0.9; // zoom in if scrolling up
-    const rect = timelineWrapper.getBoundingClientRect();
-    const mouseX = e.clientX - rect.left; // cursor position in pixels
-
     const range = viewEnd - viewStart;
-    const pxYear = pxPerYear(); // pixels per year
-    const mouseYear = viewStart + mouseX / pxYear; // convert pixel to year
+    const pxYear = pxPerYear();
 
-    const newRange = range / zoomFactor;
-    viewStart = mouseYear - (mouseYear - viewStart) / zoomFactor;
-    viewEnd = viewStart + newRange;
+    if (e.shiftKey) {
+        // --- Zoom ---
+        const zoomFactor = e.deltaY < 0 ? 1.1 : 0.9;
+        const rect = timelineWrapper.getBoundingClientRect();
+        const mouseX = e.clientX - rect.left; // cursor in pixels
+        const mouseYear = viewStart + mouseX / pxYear;
 
-    // Clamp to timeline start/end
-    if (viewStart < timelineStart) { viewStart = timelineStart; viewEnd = timelineStart + newRange; }
-    if (viewEnd > timelineEnd) { viewEnd = timelineEnd; viewStart = timelineEnd - newRange; }
+        const newRange = range / zoomFactor;
+        viewStart = mouseYear - (mouseYear - viewStart) / zoomFactor;
+        viewEnd = viewStart + newRange;
+
+        // Clamp
+        if (viewStart < timelineStart) { viewStart = timelineStart; viewEnd = timelineStart + newRange; }
+        if (viewEnd > timelineEnd) { viewEnd = timelineEnd; viewStart = timelineEnd - newRange; }
+
+    } else {
+        // --- Horizontal scroll ---
+        // Invert deltaY to scroll in the natural direction
+        const yearShift = -e.deltaY / pxYear; // scroll down → move timeline right
+        viewStart += yearShift;
+        viewEnd += yearShift;
+
+        // Clamp
+        if (viewStart < timelineStart) { viewStart = timelineStart; viewEnd = timelineStart + range; }
+        if (viewEnd > timelineEnd) { viewEnd = timelineEnd; viewStart = timelineEnd - range; }
+    }
 
     updatePositions();
 });

@@ -6,13 +6,29 @@ html, body {
 body {
     display: flex;
     flex-direction: column;
-    font-family: 'Inter', sans-serif;
-    background-color: #f5f5f5;
+    font-family: 'Lato', sans-serif;
+    margin: 0;
+    height: 100%;
+
+    /* A warmer, creamier 'Paper' base */
+    background-color: #f9f8f5;
+
+    /* THE SOFT WEAVE */
+    background-image:
+        radial-gradient(rgba(80, 75, 70, 0.04) 1px, transparent 1.5px),
+        radial-gradient(rgba(80, 75, 70, 0.04) 1px, transparent 1.5px);
+
+    background-size: 5px 5px; /* Slightly larger spacing softens the visual density */
+    background-position: 0 0, 2.5px 2.5px;
+
+    /* This adds a tiny bit of "grainy" softness to the whole background */
+    filter: contrast(95%) brightness(102%);
 }
 
 main {
     flex: 1;
     overflow: hidden;
+    z-index: 1; /* Ensures timeline stays above the texture layer if needed */
 }
 
 .timeline-wrapper {
@@ -29,42 +45,96 @@ main {
     min-width: 100%;
 }
 
-.eon, .era, .period {
+.eon, .era, .geoPeriod {
     position: absolute;
-    bottom: 100px;
-    color: white;
+    bottom: 0px;
+    color: rgba(0, 0, 0, 0.8);
     text-align: center;
     line-height: 25px;
-    font-weight: 600;
-    border-top-left-radius: 6px;
-    border-top-right-radius: 6px;
-    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.75rem;
+    font-weight: bold;
+
+    /* THE FIX: This creates a separate layer so the blend mode works */
+    isolation: isolate;
+
+    box-shadow: none;
+    border: none;
+    border-radius: 0;
+    overflow: hidden;
+    z-index: 2;
+
+    display: block;
+    justify-content: flex-start; /* Aligns text to the left */
+    align-items: flex-start;     /* Aligns text to the top */
+    text-align: left;
+
+    border-left: 1px solid rgba(0,0,0,0.1);
+
+    box-sizing: border-box;      /* Ensures padding stays INSIDE the width set by JS */
+    padding-top: 15px;
+    padding-left: 15px;          /* Clean syntax */
+    padding-right: 15px;
+
+    overflow: hidden;        /* Hides text that overflows the block width */
+    white-space: normal;      /* Allows wrapping onto new lines */
+    word-break: keep-all;    /* Only breaks lines at spaces between words */
+    overflow-wrap: normal;
+}
+
+/* THE PERMANENT TEXTURE LAYER */
+.eon::before, .era::before, .geoPeriod::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+
+    /* The Noise String */
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+
+    /* THE FIX: Force the texture to tile at a specific size (e.g., 200px)
+       instead of stretching to fit the height of the Eon. */
+    background-size: 200px 200px;
+    background-repeat: repeat;
+
+    mix-blend-mode: multiply;
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Simplify Hover: Just a tiny brightness shift, no complex filters */
+.eon:hover, .era:hover, .geoPeriod:hover {
+    filter: brightness(0.97);
 }
 
 .eon {
     height: 400px;
+    font-weight: 700;
+    font-size: 1.5rem;
 }
 
 .era {
     height: 300px;
+    font-size: 1.3rem;
 }
 
-.period {
+.geoPeriod {
     height: 200px;
+    font-size: 1.1rem;
 }
 
 .timeline-line {
     position: absolute;
-    bottom: 100px;
-    width: 100%;
-    height: 2px;
-    background: black;
+    bottom: 0;
+    height: 1px;
+    background: rgba(0,0,0,0.1);
 }
 
 .marker {
     position: absolute;
-    top: 130px;
-    text-align: center;
+    bottom: 5px; /* Just above the bottom line */
+    top: auto;   /* Remove the top: 130px */
 }
 
 .tick {
