@@ -45,7 +45,7 @@ main {
     min-width: 100%;
 }
 
-.eon, .era, .geoPeriod {
+.supereon, .eon, .era, .geoPeriod, .geoEpoch {
     position: absolute;
     bottom: 0px;
     color: rgba(0, 0, 0, 0.8);
@@ -84,7 +84,7 @@ main {
 }
 
 /* THE PERMANENT TEXTURE LAYER */
-.eon::before, .era::before, .geoPeriod::before {
+.supereon::before, .eon::before, .era::before, .geoPeriod::before, .geoEpoch::before {
     content: "";
     position: absolute;
     top: 0; left: 0;
@@ -104,8 +104,14 @@ main {
 }
 
 /* Simplify Hover: Just a tiny brightness shift, no complex filters */
-.eon:hover, .era:hover, .geoPeriod:hover {
+.supereon:hover, .eon:hover, .era:hover, .geoPeriod:hover, .geoEpoch:hover {
     filter: brightness(0.97);
+}
+
+.supereon {
+    height: 500px;
+    font-weight: 700;
+    font-size: 1.7rem;
 }
 
 .eon {
@@ -122,6 +128,11 @@ main {
 .geoPeriod {
     height: 200px;
     font-size: 1.1rem;
+}
+
+.geoEpoch {
+    height: 100px;
+    font-size: 1rem;
 }
 
 .timeline-line {

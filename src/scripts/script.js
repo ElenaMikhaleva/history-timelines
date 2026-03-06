@@ -1,6 +1,6 @@
 const timelineWrapper = document.querySelector(".timeline-wrapper");
 const timeline = document.querySelector(".timeline");
-const geoPeriods = document.querySelectorAll(".eon, .era, .geoPeriod");
+const geoPeriods = document.querySelectorAll(".supereon, .eon, .era, .geoPeriod, .geoEpoch");
 const markers = document.querySelectorAll(".marker");
 
 const timelineStart = -4567; // oldest year
@@ -41,6 +41,15 @@ function updatePositions() {
         } else {
             geoPeriod.innerText = fullName;
         }
+
+        // Inside your updatePositions() loop:
+if (width < 30) {
+    geoPeriod.style.paddingLeft = "0px";
+    geoPeriod.style.paddingRight = "0px";
+} else {
+    geoPeriod.style.paddingLeft = "15px";
+    geoPeriod.style.paddingRight = "15px";
+}
     });
 
     markers.forEach(marker => {
