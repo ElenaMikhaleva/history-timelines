@@ -6,22 +6,14 @@ html, body {
 body {
     display: flex;
     flex-direction: column;
+
     font-family: 'Lato', sans-serif;
-    margin: 0;
-    height: 100%;
-
-    /* A warmer, creamier 'Paper' base */
     background-color: #f9f8f5;
-
-    /* THE SOFT WEAVE */
     background-image:
         radial-gradient(rgba(80, 75, 70, 0.04) 1px, transparent 1.5px),
         radial-gradient(rgba(80, 75, 70, 0.04) 1px, transparent 1.5px);
-
-    background-size: 5px 5px; /* Slightly larger spacing softens the visual density */
+    background-size: 7px 5px;
     background-position: 0 0, 2.5px 2.5px;
-
-    /* This adds a tiny bit of "grainy" softness to the whole background */
     filter: contrast(95%) brightness(102%);
 }
 
