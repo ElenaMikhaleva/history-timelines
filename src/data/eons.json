@@ -1,0 +1,34 @@
+[
+    {
+    "id": "hadean",
+    "name": "Hadean",
+    "period-type": "eon",
+    "start": 4567,
+    "end": 4031,
+    "description": ""
+    },
+    {
+    "id": "archean",
+    "name": "Archean",
+    "period-type": "eon",
+    "start": 4031,
+    "end": 2500,
+    "description": ""
+    },
+    {
+    "id": "proterozoic",
+    "name": "Proterozoic",
+    "period-type": "eon",
+    "start": 2500,
+    "end": 538,
+    "description": ""
+    },
+    {
+    "id": "phanerozoic",
+    "name": "Phanerozoic",
+    "period-type": "eon",
+    "start": 538,
+    "end": 2026,
+    "description": ""
+    }
+]
