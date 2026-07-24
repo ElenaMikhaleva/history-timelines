@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1be67b9a-5fc8-4d97-bbd8-6590e66db18f" name="Changes" comment="restructure">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-    </list>
+    <list default="true" id="1be67b9a-5fc8-4d97-bbd8-6590e66db18f" name="Changes" comment="corrected index.html" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -190,7 +187,31 @@
       <option name="project" value="LOCAL" />
       <updated>1784881496258</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="corrected index.html">
+      <option name="closed" value="true" />
+      <created>1784881768670</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1784881768670</updated>
+    </task>
+    <task id="LOCAL-00011" summary="corrected index.html">
+      <option name="closed" value="true" />
+      <created>1784881869553</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1784881869553</updated>
+    </task>
+    <task id="LOCAL-00012" summary="corrected index.html">
+      <option name="closed" value="true" />
+      <created>1784882059218</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1784882059218</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -199,8 +220,8 @@
     <MESSAGE value="Edited timeline of epochs" />
     <MESSAGE value="Corrected CSS" />
     <MESSAGE value="added index.html" />
-    <MESSAGE value="corrected index.html" />
     <MESSAGE value="restructure" />
-    <option name="LAST_COMMIT_MESSAGE" value="restructure" />
+    <MESSAGE value="corrected index.html" />
+    <option name="LAST_COMMIT_MESSAGE" value="corrected index.html" />
   </component>
 </project>
