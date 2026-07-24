@@ -1,0 +1,56 @@
+[
+    {
+    "name": "Paleozoic",
+    "type": "Era",
+    "tags": [
+            { "name": "Phanerozoic Eon", "url": "eons.html#phanerozoic" }
+        ],
+    "start": 538,
+    "end": 252,
+    "color": "#B9CD76",
+    "description": [],
+    "children": [
+            { "name": "Cambrian Period", "url": "" },
+            { "name": "Ordovician Period", "url": "" },
+            { "name": "Silurian Period", "url": "" },
+            { "name": "Devonian Period", "url": "" },
+            { "name": "Carboniferous Period", "url": "" },
+            { "name": "Permian Period", "url": "" }
+        ],
+    "image": "https://cdn.mos.cms.futurecdn.net/oGEbGv95Yivcc4VLfqiqiT.jpg"
+    },
+    {
+    "name": "Mesozoic",
+    "type": "Era",
+    "tags": [
+            { "name": "Phanerozoic Eon", "url": "eons.html#phanerozoic" }
+        ],
+    "start": 252,
+    "end": 66,
+    "color": "#CDD37C",
+    "description": [],
+    "children": [
+            { "name": "Triassic Period", "url": "" },
+            { "name": "Jurassic Period", "url": "" },
+            { "name": "Cretaceous Period", "url": "" }
+        ],
+    "image": ""
+    },
+    {
+    "name": "Cenozoic",
+    "type": "Era",
+    "tags": [
+            { "name": "Phanerozoic Eon", "url": "eons.html#phanerozoic" }
+        ],
+    "start": 66,
+    "end": 0,
+    "color": "#E0D982",
+    "description": [],
+    "children": [
+            { "name": "Paleogene Period", "url": "" },
+            { "name": "Neogene Period", "url": "" },
+            { "name": "Quaternary Period", "url": "" }
+        ],
+    "image": ""
+    }
+]

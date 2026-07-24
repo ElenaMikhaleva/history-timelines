@@ -1,34 +1,60 @@
 [
     {
-    "id": "hadean",
     "name": "Hadean",
-    "period-type": "eon",
+    "type": "Eon",
+    "tags": [
+            { "name": "Precambrian Supereon", "url": "supereons.html" }
+        ],
     "start": 4567,
     "end": 4031,
-    "description": ""
+    "color": "#dcdcdc",
+    "description": [],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Hadean.png/1920px-Hadean.png?_=20161017085859"
     },
     {
-    "id": "archean",
     "name": "Archean",
-    "period-type": "eon",
+    "type": "Eon",
+    "tags": [
+            { "name": "Precambrian Supereon", "url": "supereons.html" }
+        ],
     "start": 4031,
     "end": 2500,
-    "description": ""
+    "color": "#ccefff",
+    "description": [
+        "Atmosphere contained methane, ammonia, and other gases that most life on Earth today would not be able to breathe;",
+        "Rocks and the continents began to form at the beginning of this period;",
+        "The first living organisms — bacteria — appeared."
+        ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Archean.png/960px-Archean.png"
     },
     {
-    "id": "proterozoic",
     "name": "Proterozoic",
-    "period-type": "eon",
+    "type": "Eon",
+    "tags": [
+            { "name": "Precambrian Supereon", "url": "supereons.html" }
+        ],
     "start": 2500,
     "end": 538,
-    "description": ""
+    "color": "#c0e8df",
+    "description": [
+        "The continents began to stabilize and build up, though they looked quite different than they do today;",
+        "Bacteria, fungi, simple plants, and complex organisms, including the first animals, evolved;",
+        "The atmosphere became enriched in oxygen."
+        ],
+    "image": "https://www.meteorologiaenred.com/wp-content/uploads/2020/01/Fauna-de-Ediacara.jpg"
     },
     {
-    "id": "phanerozoic",
     "name": "Phanerozoic",
-    "period-type": "eon",
+    "type": "Eon",
     "start": 538,
-    "end": 2026,
-    "description": ""
+    "end": 0,
+    "color": "#dbeaa7",
+    "description": [],
+    "children": [
+            { "name": "Paleozoic Era", "url": "phanerozoic.html#paleozoic" },
+            { "name": "Mesozoic Era", "url": "phanerozoic.html#mesozoic" },
+            { "name": "Cenozoic Era", "url": "phanerozoic.html#cenozoic" }
+        ],
+    "image": "https://pmfias.b-cdn.net/wp-content/uploads/2019/09/paraceratherium.jpeg"
     }
 ]
