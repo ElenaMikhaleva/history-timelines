@@ -11,6 +11,11 @@ body {
     filter: contrast(95%) brightness(102%);
 }
 
+container {
+    width: min(90%, 1000px);
+    margin: 0 auto;
+}
+
 h1 {
     text-align: center;
     margin-top: 40px;
