@@ -15,7 +15,8 @@ body {
 .container {
     width: min(90%, 1000px);
     margin: 0 auto;
-    text-align: center;
+    display: inline-block;
+    padding: 30px;
 }
 
 h1, h2, h3 {
@@ -80,6 +81,16 @@ h1 {
     font-size: 1.4em;
 }
 
+.title-link {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.2s ease;
+}
+
+.title-link:hover {
+    color: var(--period-color, #333);
+}
+
 .period {
     display: flex;
     align-items: stretch;
@@ -93,6 +104,13 @@ h1 {
 .period-text {
     flex: 1;
     padding: 30px 35px;
+}
+
+.etymology {
+    font-size: 0.85em;
+    color: #555;
+    margin-top: -5px;
+    margin-bottom: 12px;
 }
 
 .children-row {
@@ -143,7 +161,7 @@ h1 {
 
 .image-wrapper {
     position: relative;
-    width: 220px;
+    width: 270px;
     overflow: hidden;
     flex-shrink: 0;
     isolation: isolate;

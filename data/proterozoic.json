@@ -1,0 +1,44 @@
+[
+  {
+    "name": "Paleoproterozoic",
+    "type": "Era",
+    "tags": [
+      {
+        "name": "Proterozoic Eon", "url": "eons.html#proterozoic"
+      }
+    ],
+    "start": 2500,
+    "end": 1600,
+    "color": "#79BDAF",
+    "description": [],
+    "children": []
+  },
+  {
+    "name": "Mesoproterozoic",
+    "type": "Era",
+    "tags": [
+      {
+        "name": "Proterozoic Eon", "url": "eons.html#proterozoic"
+      }
+    ],
+    "start": 1600,
+    "end": 1000,
+    "color": "#85D3C2",
+    "description": [],
+    "children": []
+  },
+  {
+    "name": "Neoproterozoic",
+    "type": "Era",
+    "tags": [
+      {
+        "name": "Proterozoic Eon", "url": "eons.html#proterozoic"
+      }
+    ],
+    "start": 1000,
+    "end": 538,
+    "color": "#97D9CC",
+    "description": [],
+    "children": []
+  }
+]

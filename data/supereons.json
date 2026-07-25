@@ -3,8 +3,11 @@
     "name": "Precambrian",
     "type": "Supereon",
     "start": 4567,
+    "starta": "formation of Earth",
     "end": 538,
+    "enda": "",
     "color": "#cccccc",
+    "etymology": "",
     "description": [],
     "children": [
             { "name": "Hadean Eon", "url": "eons.html#hadean" },

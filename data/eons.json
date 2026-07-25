@@ -1,60 +1,91 @@
 [
     {
-    "name": "Hadean",
-    "type": "Eon",
-    "tags": [
-            { "name": "Precambrian Supereon", "url": "supereons.html" }
-        ],
-    "start": 4567,
-    "end": 4031,
-    "color": "#dcdcdc",
-    "description": [],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Hadean.png/1920px-Hadean.png?_=20161017085859"
+        "name": "Hadean",
+        "type": "Eon",
+        "tags": [
+                { "name": "Precambrian Supereon", "url": "supereons.html" }
+            ],
+        "etymology": "Greek Hades (hell)",
+        "start": 4567,
+        "starta": "formation of Earth",
+        "end": 4031,
+        "enda": "solid rocks appear",
+        "color": "#dcdcdc",
+        "description": ["Earth’s surface was unstable, the mantle brought molten rock to the surface;"],
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Hadean.png/1920px-Hadean.png?_=20161017085859"
     },
+
     {
-    "name": "Archean",
-    "type": "Eon",
-    "tags": [
-            { "name": "Precambrian Supereon", "url": "supereons.html" }
-        ],
-    "start": 4031,
-    "end": 2500,
-    "color": "#ccefff",
-    "description": [
-        "Atmosphere contained methane, ammonia, and other gases that most life on Earth today would not be able to breathe;",
-        "Rocks and the continents began to form at the beginning of this period;",
-        "The first living organisms — bacteria — appeared."
-        ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Archean.png/960px-Archean.png"
+        "name": "Archean",
+        "type": "Eon",
+        "tags": [
+                { "name": "Precambrian Supereon", "url": "supereons.html" }
+            ],
+        "start": 4031,
+        "starta": "solid rocks appear",
+        "end": 2500,
+        "color": "#ccefff",
+        "etymology": "Greek arkhē (origin)",
+        "url": "archean.html",
+        "description": [
+            "Atmosphere contained methane, ammonia, and other gases that most life on Earth today would not be able to breathe;",
+            "Rocks and the continents began to form at the beginning of this period;",
+            "Primitive atmosphere and oceans emerge;",
+            "The first living organisms — bacteria — appeared."
+            ],
+        "children": [
+                { "name": "Eoarchean Era", "url": "archean.html#eoarchean" },
+                { "name": "Paleoarchean Era", "url": "archean.html#paleoarchean" },
+                { "name": "Mesoarchean Era", "url": "archean.html#mesoarchean" },
+                { "name": "Neoarchean Era", "url": "archean.html#neoarchean" }
+            ],
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Archean.png/960px-Archean.png",
+        "imagePosition": "45%"
     },
+
     {
-    "name": "Proterozoic",
-    "type": "Eon",
-    "tags": [
-            { "name": "Precambrian Supereon", "url": "supereons.html" }
-        ],
-    "start": 2500,
-    "end": 538,
-    "color": "#c0e8df",
-    "description": [
-        "The continents began to stabilize and build up, though they looked quite different than they do today;",
-        "Bacteria, fungi, simple plants, and complex organisms, including the first animals, evolved;",
-        "The atmosphere became enriched in oxygen."
-        ],
-    "image": "https://www.meteorologiaenred.com/wp-content/uploads/2020/01/Fauna-de-Ediacara.jpg"
+        "name": "Proterozoic",
+        "type": "Eon",
+        "tags": [
+                { "name": "Precambrian Supereon", "url": "supereons.html" }
+            ],
+        "start": 2500,
+        "end": 538,
+        "etymology": "Greek protero- (former) and ζωή - zōḗ (life)",
+        "url": "proterozoic.html",
+        "color": "#c0e8df",
+        "description": [
+            "The continents began to stabilize and build up, though they looked quite different than they do today;",
+            "Bacteria, fungi, simple plants, and complex organisms, including the first animals, evolved;",
+            "The atmosphere became enriched in oxygen."
+            ],
+        "children": [
+                { "name": "Paleproterozoic Era", "url": "proterozoic.html#paleoprotarozoic" },
+                { "name": "Mesoproterozoic Era", "url": "proterozoic.html#mesoproterozoic" },
+                { "name": "Neoproterozoic Era", "url": "proterozoic.html#neoproterozoic" }
+            ],
+        "image": "https://www.meteorologiaenred.com/wp-content/uploads/2020/01/Fauna-de-Ediacara.jpg",
+        "imagePosition": "40%"
     },
+
     {
-    "name": "Phanerozoic",
-    "type": "Eon",
-    "start": 538,
-    "end": 0,
-    "color": "#dbeaa7",
-    "description": [],
-    "children": [
-            { "name": "Paleozoic Era", "url": "phanerozoic.html#paleozoic" },
-            { "name": "Mesozoic Era", "url": "phanerozoic.html#mesozoic" },
-            { "name": "Cenozoic Era", "url": "phanerozoic.html#cenozoic" }
+        "name": "Phanerozoic",
+        "type": "Eon",
+        "start": 538,
+        "end": 0,
+        "etymology": "Greek φανερός - phanerós  (visible) and ζωή - zōḗ (life)",
+        "color": "#dbeaa7",
+        "url": "phanerozoic.html",
+        "description": [
+            "Named so because it was believed that life began in the Cambrian, due to the lack of Precambrian fossil record back then.",
+            "Plants able to carry out the photosynthetic process and thus release free oxygen into the atmosphere developed."
         ],
-    "image": "https://pmfias.b-cdn.net/wp-content/uploads/2019/09/paraceratherium.jpeg"
+        "children": [
+                { "name": "Paleozoic Era", "url": "phanerozoic.html#paleozoic" },
+                { "name": "Mesozoic Era", "url": "phanerozoic.html#mesozoic" },
+                { "name": "Cenozoic Era", "url": "phanerozoic.html#cenozoic" }
+            ],
+        "image": "https://pmfias.b-cdn.net/wp-content/uploads/2019/09/paraceratherium.jpeg",
+        "imagePosition": "left"
     }
 ]

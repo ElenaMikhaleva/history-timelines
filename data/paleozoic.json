@@ -1,0 +1,86 @@
+[
+    {
+        "name": "Cambrian",
+        "type": "Period",
+        "tags": [
+                { "name": "Paleozoic Era" }
+            ],
+        "start": 538,
+        "end": 486,
+        "color": "#879E3F",
+        "description": [
+            "Climate is generally mild;",
+            "Plants and animals live only in the oceans."
+        ],
+        "image": "https://media.springernature.com/full/springer-static/image/art%3A10.1038%2F530268a/MediaObjects/41586_2016_Article_BF530268a_Figa_HTML.jpg"
+    },
+
+    {
+        "name": "Ordovician",
+        "type": "Period",
+        "tags": [
+                { "name": "Paleozoic Era" }
+            ],
+        "start": 486,
+        "end": 443,
+        "color": "#8EA642",
+        "description": []
+    },
+
+    {
+        "name": "Silurian",
+        "type": "Period",
+        "tags": [
+                { "name": "Paleozoic Era" }
+            ],
+        "start": 443,
+        "end": 419,
+        "color": "#95AE45",
+        "description": []
+    },
+
+    {
+        "name": "Devonian",
+        "type": "Period",
+        "tags": [
+                { "name": "Paleozoic Era" }
+            ],
+        "start": 419,
+        "end": 358,
+        "color": "#9DB749",
+        "description": []
+    },
+
+    {
+        "name": "Carboniferous",
+        "type": "Period",
+        "tags": [
+                { "name": "Paleozoic Era" }
+            ],
+        "start": 358,
+        "end": 298,
+        "color": "#A4BF4C",
+        "description": [
+            "Huge swamps developed in many areas during the late Carboniferous period, and the great coal deposits of the eastern United States formed."
+        ],
+        "image": "https://i.natgeofe.com/n/ee7b951c-cf0a-44c4-b8ba-bf5c4d20009c/870.jpg"
+    },
+
+    {
+        "name": "Permian",
+        "type": "Period",
+        "tags": [
+                { "name": "Paleozoic Era" }
+            ],
+        "start": 298,
+        "end": 252,
+        "color": "#ACC55C",
+        "description": [
+            "The northern continents were dry and warm while ice sheets covered most of the southern continents.",
+            "All of the continents had come together to form one giant continent that geologists call Pangaea;",
+            "As the continents moved and collided, several mountain chains, including the Appalachians and the Urals, formed."
+        ],
+        "image": "https://mediasvc.eurekalert.org/Api/v1/Multimedia/58a1ab75-efa5-4e20-9274-e38fd7564030/Rendition/low-res/Content/Public",
+        "imagePosition": "bottom"
+    }
+]

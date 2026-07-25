@@ -1,24 +1,28 @@
 [
     {
-    "name": "Paleozoic",
-    "type": "Era",
-    "tags": [
-            { "name": "Phanerozoic Eon", "url": "eons.html#phanerozoic" }
-        ],
-    "start": 538,
-    "end": 252,
-    "color": "#B9CD76",
-    "description": [],
-    "children": [
-            { "name": "Cambrian Period", "url": "" },
-            { "name": "Ordovician Period", "url": "" },
-            { "name": "Silurian Period", "url": "" },
-            { "name": "Devonian Period", "url": "" },
-            { "name": "Carboniferous Period", "url": "" },
-            { "name": "Permian Period", "url": "" }
-        ],
-    "image": "https://cdn.mos.cms.futurecdn.net/oGEbGv95Yivcc4VLfqiqiT.jpg"
+      "name": "Paleozoic",
+      "type": "Era",
+      "tags": [
+              { "name": "Phanerozoic Eon", "url": "eons.html#phanerozoic" }
+          ],
+      "start": 538,
+      "end": 252,
+      "url": "paleozoic.html",
+      "color": "#B9CD76",
+      "description": [
+        "The continents began to move around during the Paleozoic, and by the end of the era all of the continents had come together to form one giant continent that geologists call Pangaea."
+      ],
+      "children": [
+              { "name": "Cambrian Period", "url": "" },
+              { "name": "Ordovician Period", "url": "" },
+              { "name": "Silurian Period", "url": "" },
+              { "name": "Devonian Period", "url": "" },
+              { "name": "Carboniferous Period", "url": "" },
+              { "name": "Permian Period", "url": "" }
+          ],
+      "image": "https://cdn.mos.cms.futurecdn.net/oGEbGv95Yivcc4VLfqiqiT.jpg"
     },
+
     {
     "name": "Mesozoic",
     "type": "Era",
@@ -34,7 +38,7 @@
             { "name": "Jurassic Period", "url": "" },
             { "name": "Cretaceous Period", "url": "" }
         ],
-    "image": ""
+    "image": "https://cdn.mos.cms.futurecdn.net/bKSM5jah7qgqj26K8iLAoh.jpg"
     },
     {
     "name": "Cenozoic",
@@ -51,6 +55,6 @@
             { "name": "Neogene Period", "url": "" },
             { "name": "Quaternary Period", "url": "" }
         ],
-    "image": ""
+    "image": "https://cdn.mos.cms.futurecdn.net/3uoBmAaELRzNbvZyZ3c3Qc.jpg"
     }
 ]
