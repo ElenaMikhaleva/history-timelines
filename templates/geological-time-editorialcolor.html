@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Geological Time — Editorial</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F6F5EF;
+    --ink:#161512;
+    --ink-soft:#6B6558;
+    --rule:#DEDACD;
+    --hadean:#C1502E;
+    --archean:#4C7A52;
+    --proterozoic:#C99A2E;
+    --phanerozoic:#2F6690;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Serif 4',serif;
+    line-height:1.6;
+    font-size:17px;
+  }
+  .masthead{
+    max-width:760px;
+    margin:0 auto;
+    padding:56px 28px 20px;
+    border-bottom:1px solid var(--ink);
+  }
+  .kicker{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:34px;
+  }
+  .kicker .left{display:flex; align-items:center; gap:8px;}
+  .kicker .dot{width:8px; height:8px; border-radius:2px; background:var(--hadean);}
+  h1{
+    font-weight:600;
+    font-size:clamp(38px,6vw,58px);
+    line-height:1.04;
+    margin:0 0 18px;
+    max-width:9.5em;
+  }
+  .dek{
+    font-style:italic;
+    color:var(--ink-soft);
+    font-size:19px;
+    max-width:34em;
+    margin:0 0 28px;
+  }
+  .byline{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11.5px;
+    color:var(--ink-soft);
+    padding-bottom:24px;
+  }
+
+  .wrap{max-width:760px; margin:0 auto; padding:0 28px; position:relative;}
+  .article{padding:48px 0 100px; position:relative;}
+
+  /* margin axis */
+  .axis{
+    position:absolute;
+    left:-64px;
+    top:48px;
+    bottom:100px;
+    width:1px;
+    background:var(--rule);
+    display:none;
+  }
+  .axis .tick{position:absolute; left:-4px; display:flex; align-items:center; gap:6px;}
+  .axis .tick::before{content:""; width:9px; height:2px; background:var(--accent, var(--ink-soft));}
+  .axis .tick span{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10px;
+    color:var(--ink-soft);
+    white-space:nowrap;
+    transform:translateX(-100%) translateX(-10px);
+  }
+  @media(min-width:980px){.axis{display:block;}}
+
+  section.entry{
+    padding:36px 0 36px 20px;
+    border-bottom:1px solid var(--rule);
+    border-left:3px solid var(--accent, var(--rule));
+  }
+  section.entry:first-child{padding-top:0;}
+  section.entry:last-child{border-bottom:none;}
+
+  .entry-num{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11.5px;
+    color:var(--accent, var(--ink-soft));
+    letter-spacing:0.06em;
+    margin-bottom:10px;
+    font-weight:600;
+  }
+  .entry-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    flex-wrap:wrap;
+    gap:10px 20px;
+    margin-bottom:4px;
+  }
+  h2{font-size:29px; font-weight:600; margin:0;}
+  .entry-range{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:13px;
+    color:var(--accent, var(--ink-soft));
+    white-space:nowrap;
+    border:1px solid var(--accent, var(--ink-soft));
+    border-radius:999px;
+    padding:3px 12px;
+  }
+  .entry-etym{
+    font-style:italic;
+    color:var(--ink-soft);
+    font-size:14.5px;
+    margin:6px 0 18px;
+  }
+
+  .dropcap::first-letter{
+    font-size:3.6em;
+    line-height:0.78;
+    float:left;
+    padding:4px 8px 0 0;
+    font-weight:600;
+    color:var(--accent, var(--ink));
+  }
+
+  .entry p{margin:0 0 14px;}
+  .entry ul{margin:0 0 14px; padding-left:20px;}
+  .entry li{margin-bottom:6px;}
+
+  .figure{margin:22px 0;}
+  .figure .frame-img{
+    border:1px solid var(--ink);
+    aspect-ratio:16/9;
+    background:repeating-linear-gradient(45deg, #F1ECDE, #F1ECDE 10px, #FBF9F3 10px, #FBF9F3 20px);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    color:var(--ink-soft);
+  }
+  .figure figcaption{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    color:var(--ink-soft);
+    margin-top:8px;
+    letter-spacing:0.02em;
+  }
+
+  .pull{
+    font-size:22px;
+    font-style:italic;
+    color:var(--accent, var(--ink));
+    border-top:1px solid var(--accent, var(--ink));
+    border-bottom:1px solid var(--accent, var(--ink));
+    padding:18px 0;
+    margin:26px 0;
+    max-width:26em;
+  }
+
+  .subgrid{
+    margin-top:24px;
+    display:grid;
+    grid-template-columns:1fr;
+    gap:0;
+  }
+  .subentry{
+    display:grid;
+    grid-template-columns:160px 1fr;
+    gap:18px;
+    padding:16px 0 16px 14px;
+    border-top:1px solid var(--rule);
+    border-left:2px solid var(--phanerozoic);
+  }
+  .subentry:nth-child(1){opacity:0.55;}
+  .subentry:nth-child(2){opacity:0.78;}
+  .subentry:nth-child(3){opacity:1;}
+  .subentry:first-child{border-top:1px solid var(--ink);}
+  .sub-meta{font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--phanerozoic);}
+  .sub-meta strong{display:block; font-family:'Source Serif 4',serif; font-size:16px; font-weight:600; color:var(--ink); margin-bottom:4px;}
+  .sub-body p{margin:0 0 8px; font-size:15px;}
+  .sub-body ul{margin:0; padding-left:18px; font-size:13.5px; color:var(--ink-soft);}
+
+  footer{
+    max-width:760px;
+    margin:0 auto;
+    padding:24px 28px 80px;
+    border-top:1px solid var(--ink);
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    color:var(--ink-soft);
+    display:flex;
+    justify-content:space-between;
+  }
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <div class="kicker"><span class="left"><span class="dot"></span>History · Paleontology</span><span>Vol. I, No. 1</span></div>
+  <h1>A Field Guide to Geological Time</h1>
+  <p class="dek">4,567 million years, condensed into four eons — and the last, thin sliver where anything visible happened at all.</p>
+</div>
+
+<div class="wrap">
+  <div class="article">
+    <div class="axis">
+      <div class="tick" style="top:0"><span>4567 Ma</span></div>
+      <div class="tick" style="top:11.7%; --accent:var(--hadean)"><span>4031 Ma</span></div>
+      <div class="tick" style="top:45.3%; --accent:var(--archean)"><span>2500 Ma</span></div>
+      <div class="tick" style="top:88.3%; --accent:var(--proterozoic)"><span>538 Ma</span></div>
+      <div class="tick" style="top:100%; --accent:var(--phanerozoic)"><span>Today</span></div>
+    </div>
+
+    <section class="entry" style="--accent:var(--hadean)">
+      <div class="entry-num">§ 01</div>
+      <div class="entry-head"><h2>Hadean</h2><span class="entry-range">4567 – 4031 Ma</span></div>
+      <p class="entry-etym">from Greek <em>Hádēs</em>, the underworld</p>
+      <p class="dropcap">Earth had just formed, and its surface bore little resemblance to the one we know. It was unstable, resurfaced continually as the mantle forced molten rock upward. This eon ends the moment solid rock first appears in the record — everything before it is inferred, not observed.</p>
+      <figure class="figure">
+        <div class="frame-img">Add image</div>
+        <figcaption>FIG. 1 — Reconstruction of the Hadean surface</figcaption>
+      </figure>
+    </section>
+
+    <section class="entry" style="--accent:var(--archean)">
+      <div class="entry-num">§ 02</div>
+      <div class="entry-head"><h2>Archean</h2><span class="entry-range">4031 – 2500 Ma</span></div>
+      <p class="entry-etym">from Greek <em>arkhḗ</em>, origin</p>
+      <p>The atmosphere was mostly methane and ammonia — unbreathable by nearly everything alive today. Rock and the first continents began forming at the start of this eon, and a primitive atmosphere and early oceans took shape.</p>
+      <div class="pull">Then, for the first time: life. The first bacteria appeared.</div>
+      <figure class="figure">
+        <div class="frame-img">Add image</div>
+        <figcaption>FIG. 2 — Stromatolite formations, Archean seas</figcaption>
+      </figure>
+    </section>
+
+    <section class="entry" style="--accent:var(--proterozoic)">
+      <div class="entry-num">§ 03</div>
+      <div class="entry-head"><h2>Proterozoic</h2><span class="entry-range">2500 – 538 Ma</span></div>
+      <p class="entry-etym">from Greek <em>próteros</em> ('former') + <em>zōḗ</em> ('life')</p>
+      <ul>
+        <li>Continents stabilized and grew, though unrecognizable against today's map</li>
+        <li>Bacteria, fungi, simple plants, and the first animals evolved</li>
+        <li>Oxygen accumulated in the atmosphere for the first time</li>
+      </ul>
+      <figure class="figure">
+        <div class="frame-img">Add image</div>
+        <figcaption>FIG. 3 — Ediacaran-type fossil fauna</figcaption>
+      </figure>
+    </section>
+
+    <section class="entry" style="--accent:var(--phanerozoic)">
+      <div class="entry-num">§ 04</div>
+      <div class="entry-head"><h2>Phanerozoic</h2><span class="entry-range">538 – 0 Ma</span></div>
+      <p class="entry-etym">from Greek <em>phanerós</em> ('visible') + <em>zōḗ</em> ('life') — named before the Precambrian fossil record was understood, when life seemed to begin here</p>
+      <p class="dropcap">Photosynthetic plants appeared, releasing free oxygen at scale for the first time, and setting up nearly everything that follows. Just 538 million of the eon's 4,567 million years — under twelve percent of the whole record — but every eon before it produced no visible fossil at all.</p>
+
+      <div class="subgrid">
+        <div class="subentry">
+          <div class="sub-meta"><strong>Paleozoic</strong>538 – 252 Ma</div>
+          <div class="sub-body">
+            <p>Continents drifted and eventually collided into one supercontinent, Pangaea.</p>
+            <ul><li>Cambrian</li><li>Ordovician</li><li>Silurian</li><li>Devonian</li><li>Carboniferous</li><li>Permian</li></ul>
+          </div>
+        </div>
+        <div class="subentry">
+          <div class="sub-meta"><strong>Mesozoic</strong>252 – 66 Ma</div>
+          <div class="sub-body">
+            <p>The age of reptiles. Pangaea broke apart as dinosaurs rose to dominate land, sea, and air — until an asteroid impact ended the era.</p>
+            <ul><li>Triassic</li><li>Jurassic</li><li>Cretaceous</li></ul>
+          </div>
+        </div>
+        <div class="subentry">
+          <div class="sub-meta"><strong>Cenozoic</strong>66 – 0 Ma</div>
+          <div class="sub-body">
+            <p>The age of mammals. In its final, brief stretch, one species — humans — began writing all of this down.</p>
+            <ul><li>Paleogene</li><li>Neogene</li><li>Quaternary</li></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<footer>
+  <span>History · Geological Time</span>
+  <span>Margin axis drawn to scale, top to bottom</span>
+</footer>
+
+</body>
+</html>

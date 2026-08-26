@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Geological Time — Riso</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#F3ECDD;
+    --ink:#2B2A23;
+    --ink-soft:#6B6656;
+    --sky:#4E85B2;
+    --rust:#D97848;
+    --olive:#93A45C;
+    --lava:#C4472A;
+    --amber:#C68A3E;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Work Sans',sans-serif;
+    line-height:1.6;
+  }
+
+  svg{display:block;}
+
+  /* shared grain filter, applied via overlay divs */
+  .grain{
+    position:absolute; inset:0;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    mix-blend-mode:multiply;
+    opacity:0.5;
+    pointer-events:none;
+  }
+
+  .frame{max-width:1180px; margin:0 auto; padding:0 24px 100px;}
+
+  /* ---------- Hero bar ---------- */
+  .topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:26px 0;
+    flex-wrap:wrap;
+    gap:14px;
+  }
+  .brand{display:flex; align-items:center; gap:12px;}
+  .brand-mark{
+    width:38px; height:38px;
+    background:var(--ink);
+    border-radius:10px;
+    display:flex; align-items:center; justify-content:center;
+    color:var(--cream); font-size:16px; font-weight:700;
+  }
+  .brand-text{font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:20px;}
+  .topbar-tag{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:500;
+    font-size:13px;
+    color:var(--ink-soft);
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+  }
+
+  .hero{padding:20px 0 44px;}
+  h1{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;
+    font-size:clamp(38px,6vw,60px);
+    line-height:1.02;
+    margin:0 0 16px;
+    max-width:11em;
+  }
+  .hero-lede{max-width:520px; font-size:16.5px; color:var(--ink-soft);}
+
+  /* ---------- Scene banner ---------- */
+  .scene{
+    position:relative;
+    border-radius:20px;
+    overflow:hidden;
+    aspect-ratio:16/8;
+    margin-bottom:0;
+  }
+  .scene svg{width:100%; height:100%;}
+
+  /* ---------- Eon block ---------- */
+  .eon{margin-bottom:56px;}
+  .eon-card{
+    background:var(--cream);
+    border-radius:0 0 18px 18px;
+    padding:26px 30px 32px;
+    margin-top:-6px;
+    position:relative;
+  }
+  .eon-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    flex-wrap:wrap;
+    gap:10px 18px;
+    margin-bottom:6px;
+  }
+  .eon-name{font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:27px; margin:0;}
+  .eon-range{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:500;
+    font-size:13px;
+    color:var(--ink);
+    background:var(--paper-chip,#fff);
+    border:2px solid var(--ink);
+    border-radius:999px;
+    padding:4px 13px;
+    white-space:nowrap;
+  }
+  .eon-etym{font-size:13px; color:var(--ink-soft); margin:4px 0 16px; font-style:italic;}
+  .eon-text p{margin:0 0 10px; font-size:15.5px; max-width:62ch;}
+  .eon-text ul{margin:0; padding-left:20px; font-size:15px;}
+  .eon-text li{margin-bottom:6px;}
+
+  /* ---------- Era grid ---------- */
+  .era-block{margin-top:24px;}
+  .era-block-label{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;
+    font-size:12px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:12px;
+  }
+  .era-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:14px;}
+  .era-card{
+    border:2px solid var(--ink);
+    border-radius:14px;
+    padding:16px;
+    background:#fff;
+  }
+  .era-card h4{font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:17px; margin:0 0 4px;}
+  .era-card .range{font-size:11.5px; color:var(--ink-soft); display:block; margin-bottom:8px; font-weight:500;}
+  .era-card p{font-size:13px; margin:0 0 8px;}
+  .era-card ul{font-size:12px; margin:0; padding-left:16px; color:var(--ink-soft);}
+  .era-card li{margin-bottom:3px;}
+
+  footer{
+    text-align:center;
+    color:var(--ink-soft);
+    font-family:'Space Grotesk',sans-serif;
+    font-size:12px;
+    padding-top:16px;
+    border-top:2px solid var(--ink);
+  }
+
+  @media(max-width:760px){
+    .era-grid{grid-template-columns:1fr;}
+    .scene{aspect-ratio:4/5;}
+  }
+</style>
+</head>
+<body>
+<div class="frame">
+
+  <div class="topbar">
+    <div class="brand">
+      <div class="brand-mark">Ma</div>
+      <div class="brand-text">Geological Time</div>
+    </div>
+    <div class="topbar-tag">History · Paleontology</div>
+  </div>
+
+  <div class="hero">
+    <h1>4,567 million years, four eons</h1>
+    <p class="hero-lede">A molten, unrecognizable start — and the thin, final stretch that finally looks like a place you could stand.</p>
+  </div>
+
+  <!-- HADEAN -->
+  <div class="eon">
+    <div class="scene" style="background:var(--lava)">
+      <svg viewBox="0 0 1400 700" preserveAspectRatio="xMidYMax slice">
+        <rect width="1400" height="700" fill="#C4472A"/>
+        <circle cx="1180" cy="150" r="120" fill="#F0A24A"/>
+        <path d="M0,520 L180,300 L340,480 L520,260 L700,470 L900,290 L1080,500 L1250,340 L1400,480 L1400,700 L0,700 Z" fill="#8E2E1C"/>
+        <path d="M0,600 L220,470 L460,590 L680,430 L920,610 L1160,460 L1400,580 L1400,700 L0,700 Z" fill="#6E2015"/>
+        <path d="M120,470 L150,300 L180,470 Z" fill="#F0A24A" opacity="0.85"/>
+        <path d="M640,440 L670,250 L700,440 Z" fill="#F0A24A" opacity="0.85"/>
+        <path d="M1000,480 L1030,320 L1060,480 Z" fill="#F0A24A" opacity="0.85"/>
+      </svg>
+      <div class="grain"></div>
+    </div>
+    <div class="eon-card">
+      <div class="eon-head">
+        <h3 class="eon-name">Hadean</h3>
+        <span class="eon-range">4567 – 4031 Ma</span>
+      </div>
+      <p class="eon-etym">from Greek Hádēs, the underworld</p>
+      <div class="eon-text">
+        <p>Earth had just formed, and its surface was nothing like the one we know — unstable, and resurfaced constantly as the mantle pushed molten rock up from below. This eon ends the moment solid rock first appears in the record.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ARCHEAN -->
+  <div class="eon">
+    <div class="scene" style="background:var(--amber)">
+      <svg viewBox="0 0 1400 700" preserveAspectRatio="xMidYMax slice">
+        <rect width="1400" height="700" fill="#C68A3E"/>
+        <circle cx="220" cy="140" r="100" fill="#F3ECDD" opacity="0.85"/>
+        <path d="M0,430 C250,380 350,460 600,410 C850,360 1000,440 1400,400 L1400,700 L0,700 Z" fill="#4E85A0"/>
+        <path d="M0,540 C300,500 500,560 750,520 C1000,480 1200,540 1400,510 L1400,700 L0,700 Z" fill="#3B6A81"/>
+        <ellipse cx="260" cy="560" rx="34" ry="16" fill="#93A45C"/>
+        <ellipse cx="340" cy="580" rx="26" ry="12" fill="#93A45C"/>
+        <ellipse cx="720" cy="555" rx="40" ry="18" fill="#93A45C"/>
+        <ellipse cx="1020" cy="575" rx="30" ry="14" fill="#93A45C"/>
+        <ellipse cx="1120" cy="550" rx="22" ry="10" fill="#93A45C"/>
+      </svg>
+      <div class="grain"></div>
+    </div>
+    <div class="eon-card">
+      <div class="eon-head">
+        <h3 class="eon-name">Archean</h3>
+        <span class="eon-range">4031 – 2500 Ma</span>
+      </div>
+      <p class="eon-etym">from Greek arkhḗ, origin</p>
+      <div class="eon-text">
+        <ul>
+          <li>The atmosphere was mostly methane and ammonia — unbreathable by nearly everything alive today</li>
+          <li>Rock and the first continents began forming at the start of this eon</li>
+          <li>A primitive atmosphere and early oceans took shape</li>
+          <li>Life itself appeared — the first bacteria, in mounds like the ones on the shoreline above</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROTEROZOIC -->
+  <div class="eon">
+    <div class="scene" style="background:var(--sky)">
+      <svg viewBox="0 0 1400 700" preserveAspectRatio="xMidYMax slice">
+        <rect width="1400" height="700" fill="#4E85B2"/>
+        <path d="M120,180 C160,150 230,150 250,185 C300,170 340,205 320,235 C360,245 350,280 300,280 L140,280 C90,280 80,240 120,230 C80,220 90,185 120,180 Z" fill="#F3ECDD" opacity="0.9"/>
+        <path d="M980,120 C1030,90 1110,95 1130,135 C1190,120 1230,160 1200,195 C1250,205 1235,245 1180,245 L1000,245 C940,245 930,195 980,185 C930,175 940,130 980,120 Z" fill="#F3ECDD" opacity="0.9"/>
+        <path d="M0,460 C220,420 380,470 600,430 C820,390 980,440 1400,410 L1400,700 L0,700 Z" fill="#5B7553"/>
+        <path d="M0,560 C260,520 480,570 720,530 C960,490 1160,540 1400,510 L1400,700 L0,700 Z" fill="#43593D"/>
+        <circle cx="300" cy="600" r="8" fill="#C68A3E"/>
+        <circle cx="340" cy="615" r="6" fill="#C68A3E"/>
+        <circle cx="800" cy="585" r="8" fill="#C68A3E"/>
+        <circle cx="850" cy="605" r="5" fill="#C68A3E"/>
+        <circle cx="1100" cy="595" r="7" fill="#C68A3E"/>
+      </svg>
+      <div class="grain"></div>
+    </div>
+    <div class="eon-card">
+      <div class="eon-head">
+        <h3 class="eon-name">Proterozoic</h3>
+        <span class="eon-range">2500 – 538 Ma</span>
+      </div>
+      <p class="eon-etym">from Greek próteros ('former') + zōḗ ('life')</p>
+      <div class="eon-text">
+        <ul>
+          <li>Continents stabilized and grew, though nothing like today's map</li>
+          <li>Bacteria, fungi, simple plants, and the first animals evolved</li>
+          <li>Oxygen built up in the atmosphere for the first time — the sky starts to look like a sky</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHANEROZOIC -->
+  <div class="eon">
+    <div class="scene" style="background:var(--sky)">
+      <svg viewBox="0 0 1400 700" preserveAspectRatio="xMidYMax slice">
+        <rect width="1400" height="700" fill="#4E85B2"/>
+        <path d="M100,160 C150,120 250,120 280,165 C350,140 410,190 375,230 C430,240 415,285 350,285 L120,285 C50,285 40,235 90,220 C40,210 55,165 100,160 Z" fill="#F3ECDD"/>
+        <path d="M900,90 C960,55 1070,60 1100,110 C1180,90 1235,140 1195,185 C1260,195 1240,245 1170,245 L920,245 C845,245 830,180 890,165 C830,150 845,100 900,90 Z" fill="#F3ECDD"/>
+        <path d="M0,470 C250,430 400,480 650,440 C900,400 1050,450 1400,415 L1400,700 L0,700 Z" fill="#93A45C"/>
+        <path d="M0,555 C260,520 500,565 740,525 C980,485 1180,530 1400,505 L1400,700 L0,700 Z" fill="#D97848"/>
+        <g>
+          <ellipse cx="220" cy="560" rx="90" ry="55" fill="#4E85B2"/>
+          <rect x="205" y="600" width="14" height="90" fill="#4E85B2"/>
+        </g>
+        <path d="M0,650 C300,625 600,660 900,635 C1100,620 1250,640 1400,625 L1400,700 L0,700 Z" fill="#6B7A46"/>
+      </svg>
+      <div class="grain"></div>
+    </div>
+    <div class="eon-card">
+      <div class="eon-head">
+        <h3 class="eon-name">Phanerozoic</h3>
+        <span class="eon-range">538 – 0 Ma</span>
+      </div>
+      <p class="eon-etym">from Greek phanerós ('visible') + zōḗ ('life')</p>
+      <div class="eon-text">
+        <p>Plants capable of photosynthesis appeared, releasing free oxygen into the atmosphere at scale — and the world finally starts to look like somewhere. Just the last 12% of Earth's history, and everything visible happens here.</p>
+      </div>
+
+      <div class="era-block">
+        <div class="era-block-label">Three eras within the Phanerozoic</div>
+        <div class="era-grid">
+          <div class="era-card">
+            <h4>Paleozoic</h4>
+            <span class="range">538 – 252 Ma</span>
+            <p>Continents drifted and collided into one supercontinent, Pangaea.</p>
+            <ul><li>Cambrian</li><li>Ordovician</li><li>Silurian</li><li>Devonian</li><li>Carboniferous</li><li>Permian</li></ul>
+          </div>
+          <div class="era-card">
+            <h4>Mesozoic</h4>
+            <span class="range">252 – 66 Ma</span>
+            <p>The age of reptiles, until an asteroid impact ended the era.</p>
+            <ul><li>Triassic</li><li>Jurassic</li><li>Cretaceous</li></ul>
+          </div>
+          <div class="era-card">
+            <h4>Cenozoic</h4>
+            <span class="range">66 – 0 Ma</span>
+            <p>The age of mammals — and, at the very end, us.</p>
+            <ul><li>Paleogene</li><li>Neogene</li><li>Quaternary</li></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>Geological Time · History &amp; Paleontology</footer>
+</div>
+/* That's a distinct look — this is a riso print / screenprint poster aesthetic: flat color blocks (no gradients), visible grain/halftone texture, a tight 4-color muted palette (dusty sky blue, warm cream, burnt orange, olive green), rounded-but-bold sans typography, and hand-illustrated landscape shapes rather than photos */
+
+</body>
+</html>
