@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Motion</title>
+  <style>
+    :root {
+      --bg: #faf7f2;
+      --card-bg: #ffffff;
+      --text-main: #23211e;
+      --text-muted: #6e6a64;
+      --border-dashed: #dcd4c7;
+
+      --blue-accent: #3a68b8;
+      --blue-bg: #f0f4fa;
+
+      --red-accent: #d94e4e;
+      --red-bg: #fdf2f2;
+
+      --green-accent: #2e8b57;
+      --green-bg: #f0f7f3;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.6;
+      padding: 60px 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .wiki-container {
+      max-width: 680px;
+      width: 100%;
+    }
+
+    .top-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 2px dashed var(--border-dashed);
+    }
+
+    .tag-stamp {
+      background: #e8e2d7;
+      padding: 2px 8px;
+      border-radius: 4px;
+      color: var(--text-main);
+    }
+
+    h1 {
+      font-size: 2.4rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    .lead-box {
+      background: var(--card-bg);
+      border: 2px solid var(--text-main);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 4px 4px 0px var(--text-main);
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--text-main);
+      margin-bottom: 40px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .section-num {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--text-muted);
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .section-desc {
+      font-size: 0.98rem;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+    }
+
+    .cards-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 2px dashed var(--border-dashed);
+      border-radius: 16px;
+      padding: 20px 24px;
+      transition: all 0.2s ease;
+    }
+
+    .card:hover {
+      border-style: solid;
+      border-color: var(--text-main);
+      transform: translateY(-2px);
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .index-code {
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+    }
+
+    .color-pill {
+      font-size: 0.7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+
+    .pill-blue {
+      background-color: var(--blue-bg);
+      color: var(--blue-accent);
+      border: 1px solid var(--blue-accent);
+    }
+
+    .pill-red {
+      background-color: var(--red-bg);
+      color: var(--red-accent);
+      border: 1px solid var(--red-accent);
+    }
+
+    .pill-green {
+      background-color: var(--green-bg);
+      color: var(--green-accent);
+      border: 1px solid var(--green-accent);
+    }
+
+    .card-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .card-desc {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    code {
+      font-family: monospace;
+      font-weight: 700;
+      background: #f0ebe1;
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: var(--text-main);
+    }
+  </style>
+</head>
+<body>
+
+  <main class="wiki-container">
+    <div class="top-meta">
+      <span>(01) WIKI INDEX</span>
+      <span class="tag-stamp">KINEMATICS & DYNAMICS</span>
+    </div>
+
+    <h1>Motion & Vector Diagram Conventions</h1>
+
+    <div class="lead-box">
+      Motion describes the continuous change in an object's position over time relative to a specific reference frame. Understanding kinematics and dynamics requires a firm grasp of scalar and vector quantities, mathematical equations, and standard diagram conventions.
+    </div>
+
+    <div class="section-header">
+      <span class="section-num">(01)</span>
+      <h2>Fundamental Quantities</h2>
+    </div>
+
+    <p class="section-desc">
+      When drawing vector diagrams, color conventions help maintain visual clarity between displacement, velocity, force, and energy vectors. Distinguish rates of change from interactions.
+    </p>
+
+    <div class="cards-stack">
+      <div class="card">
+        <div class="card-top">
+          <span class="index-code">(01.A) POS & VEL</span>
+          <span class="color-pill pill-blue">Blue</span>
+        </div>
+        <div class="card-title">Displacement (<i>x</i>) & Velocity (<i>v</i>)</div>
+        <p class="card-desc">Change in position and the rate of change of position over time.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <span class="index-code">(01.B) ACC & FORCE</span>
+          <span class="color-pill pill-red">Red</span>
+        </div>
+        <div class="card-title">Acceleration (<i>a</i>) & Force (<i>F</i>)</div>
+        <p class="card-desc">Rate of change of velocity and the interaction causing mass to accelerate.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <span class="index-code">(01.C) MOM & ENERGY</span>
+          <span class="color-pill pill-green">Green</span>
+        </div>
+        <div class="card-title">Momentum (<i>p</i>) & Energy (<i>E</i>)</div>
+        <p class="card-desc">Product of mass and velocity (<code>p = mv</code>) and the capacity to do work.</p>
+      </div>
+    </div>
+  </main>
+
+</body>
+</html>
