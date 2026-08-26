@@ -5,12 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1be67b9a-5fc8-4d97-bbd8-6590e66db18f" name="Changes" comment="experimented with design">
+      <change afterPath="$PROJECT_DIR$/templates/greek-history.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/timeline-old.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/archean.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/eons.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/paleozoic.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/phanerozoic.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/proterozoic.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/supereons.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/timeline-list.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles/styles-old.css" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/styles/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/eons.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/eons.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/archean.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/eons.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/geological-time.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/geological-time.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/timeline-old.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/paleozoic.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/phanerozoic.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/proterozoic.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/supereons.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/test.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/test2.html" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -291,7 +306,15 @@
       <option name="project" value="LOCAL" />
       <updated>1787751065929</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="experimented with design">
+      <option name="closed" value="true" />
+      <created>1787759318314</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1787759318314</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

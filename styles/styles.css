@@ -40,24 +40,33 @@ h1, h2, h3 {
     font-family: 'Fraunces';
 }
 
+.highlight-marker {
+  background: linear-gradient(
+    100deg,
+    transparent 1%,
+    color-mix(in srgb, var(--topic-primary, #ffeb3b) 90%, transparent) 2.5%,
+    color-mix(in srgb, var(--topic-primary, #ffeb3b) 70%, transparent) 96%,
+    transparent 99%
+  );
+  background-size: 100% 60%;
+  background-repeat: no-repeat;
+  background-position: 0 85%;
+  padding: 0 4px;
+}
+
 .period {
     display: flex;
     align-items: stretch;
     gap: 30px;
-    padding: 10px;
-    border: 1px solid #e5e5e5;
-    border-radius: 2px;
+    padding: 15px;
+    border: 2px solid var(--topic-secondary);
+    border-radius: 12px;
     background-color: white;
 }
 
 .period-text {
     flex: 1;
-    padding: 15px 25px;
-}
-
-.icon {
-    font-size: 28px;
-    color: var(--topic-secondary);
+    padding-left: 25px;
 }
 
 .period-name {
@@ -76,19 +85,20 @@ h1, h2, h3 {
     content: "";
     position: absolute;
     inset: 0;
-    background-color: var(--period-color); /* Pulls the color from your JS inline style */
-    mix-blend-mode: color; /* Blends the hue into the image below it */
-    opacity: 0.4; /* Adjust this value (0 to 1) to make the tint stronger or weaker */
+    background-color: grey;
+    mix-blend-mode: color;
+    opacity: 0.2;
     z-index: 1;
     pointer-events: none;
 }
 
 .image-wrapper {
     position: relative;
-    width: 270px;
+    width: 250px;
     overflow: hidden;
     flex-shrink: 0;
     isolation: isolate;
+    border-radius: 4px;
 }
 
 .image-wrapper::after {
@@ -111,9 +121,15 @@ h1, h2, h3 {
 }
 
 /* Paleontology Theme (Mint & Coral) */
-[data-topic="paleontology"]
-.top-meta {
+[data-topic="paleontology"] {
   --topic-primary: #ff8c5b;
   --topic-secondary: #7fd1ae;
+  --topic-text: #1e3b30;
+}
+
+/* History Theme () */
+[data-topic="history"] {
+  --topic-primary: #c1554d;
+  --topic-secondary: #f9b80d;
   --topic-text: #1e3b30;
 }
