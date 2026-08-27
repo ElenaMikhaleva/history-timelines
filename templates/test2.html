@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Geological Chronology // Archival Atlas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #F3ECDD;
+      --ink: #2B2A23;
+      --rule: #D9D3C3;
+      --card-bg: #FAF6ED;
+      --sky: #4E85B2;
+      --olive: #93A45C;
+      --rust: #D97848;
+      --amber: #C68A3E;
+      --slate: #3D5A73;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--paper);
+      color: var(--ink);
+      font-family: 'Source Serif 4', Georgia, serif;
+      line-height: 1.65;
+      padding: 0 0 60px 0;
+      position: relative;
+      min-height: 100vh;
+    }
+
+    /* SVG Grain Overlay */
+    .grain-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      mix-blend-mode: multiply;
+      opacity: 0.15;
+      z-index: 999;
+    }
+
+    /* Hero Masthead */
+    .masthead {
+      position: relative;
+      background-color: var(--ink);
+      color: var(--paper);
+      padding: 0 0 40px 0;
+      overflow: hidden;
+      margin-bottom: 50px;
+    }
+
+    .hero-strata {
+      width: 100%;
+      height: 140px;
+      display: block;
+    }
+
+    .masthead-content {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 20px 24px 0 24px;
+    }
+
+    .meta-bar {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--amber);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(217, 211, 195, 0.2);
+      padding-bottom: 8px;
+    }
+
+    h1.hero-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      color: #FFF;
+      margin-bottom: 12px;
+    }
+
+    .hero-subtitle {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.95rem;
+      color: var(--rule);
+      opacity: 0.85;
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .lead-text {
+      font-size: 1.15rem;
+      color: var(--ink);
+      margin-bottom: 40px;
+      border-left: 3px solid var(--rust);
+      padding-left: 18px;
+    }
+
+    /* Micro Scale Axis */
+    .scale-axis {
+      display: flex;
+      justify-content: space-between;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--slate);
+      border-top: 2px solid var(--ink);
+      border-bottom: 1px solid var(--rule);
+      padding: 6px 0;
+      margin-bottom: 35px;
+      text-transform: uppercase;
+    }
+
+    /* Timeline & Era Layout */
+    .timeline-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      position: relative;
+    }
+
+    .era-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--rule);
+      border-left: 6px solid var(--accent, var(--slate));
+      padding: 24px 28px;
+      box-shadow: 6px 6px 0px var(--ink);
+      position: relative;
+      transition: transform 0.15s ease;
+    }
+
+    .era-card:hover {
+      transform: translateY(-2px);
+    }
+
+    .era-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .era-title-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .diamond-marker {
+      width: 10px;
+      height: 10px;
+      background-color: var(--accent, var(--slate));
+      transform: rotate(45deg);
+      display: inline-block;
+    }
+
+    .era-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .time-badge {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.8rem;
+      font-weight: 600;
+      background-color: var(--ink);
+      color: var(--paper);
+      padding: 3px 10px;
+      border-radius: 2px;
+    }
+
+    .etymology {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.82rem;
+      color: var(--slate);
+      margin-bottom: 14px;
+    }
+
+    .era-desc {
+      font-size: 0.98rem;
+      color: var(--ink);
+      margin-bottom: 16px;
+    }
+
+    .feature-bullets {
+      list-style: none;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px dashed var(--rule);
+    }
+
+    .feature-bullets li {
+      font-size: 0.9rem;
+      position: relative;
+      padding-left: 18px;
+      margin-bottom: 6px;
+    }
+
+    .feature-bullets li::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      color: var(--accent, var(--slate));
+      font-weight: bold;
+    }
+
+    /* Figure Placeholder */
+    .fig-box {
+      margin-top: 16px;
+      height: 100px;
+      background: linear-gradient(135deg, rgba(43,42,35,0.05) 25%, transparent 25%),
+                  linear-gradient(225deg, rgba(43,42,35,0.05) 25%, transparent 25%),
+                  linear-gradient(45deg, rgba(43,42,35,0.05) 25%, transparent 25%),
+                  linear-gradient(315deg, rgba(43,42,35,0.05) 25%, var(--rule) 25%);
+      background-position: 10px 0, 10px 0, 0 0, 0 0;
+      background-size: 20px 20px;
+      border: 1px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .fig-caption {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--ink);
+      background: var(--paper);
+      padding: 4px 12px;
+      border: 1px solid var(--ink);
+    }
+
+    /* Footer Strata */
+    footer {
+      margin-top: 70px;
+      background-color: var(--ink);
+      color: var(--paper);
+      padding-top: 30px;
+    }
+
+    .footer-strata {
+      width: 100%;
+      height: 80px;
+      display: block;
+    }
+
+    .footer-content {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 20px 24px 40px 24px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.8rem;
+      display: flex;
+      justify-content: space-between;
+      color: var(--rule);
+      border-top: 1px solid rgba(217, 211, 195, 0.2);
+    }
+
+    @media (max-width: 600px) {
+      h1.hero-title { font-size: 2.1rem; }
+      .era-card { padding: 18px 20px; }
+      .footer-content { flex-direction: column; gap: 10px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Noise Texture -->
+  <svg class="grain-overlay" width="100%" height="100%">
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+    <rect width="100%" height="100%" filter="url(#grain)"/>
+  </svg>
+
+  <!-- Hero Masthead -->
+  <header class="masthead">
+    <svg class="hero-strata" viewBox="0 0 1200 140" preserveAspectRatio="none">
+      <path d="M0,0 L1200,0 L1200,100 Q900,140 600,90 Q300,40 0,110 Z" fill="#3D5A73" />
+      <path d="M0,0 L1200,0 L1200,75 Q850,110 550,70 Q250,30 0,85 Z" fill="#4E85B2" />
+      <path d="M0,0 L1200,0 L1200,50 Q800,80 500,45 Q200,15 0,55 Z" fill="#93A45C" />
+      <path d="M0,0 L1200,0 L1200,30 Q750,50 450,25 Q150,5 0,30 Z" fill="#D97848" />
+    </svg>
+
+    <div class="masthead-content">
+      <div class="meta-bar">
+        <span>PLATE 04 // PALEONTOLOGY ATLAS</span>
+        <span>CHRONO-STRATA</span>
+      </div>
+      <h1 class="hero-title">Geological Time Scale</h1>
+      <p class="hero-subtitle">A survey of deep time eons, terrestrial formation, and evolutionary milestones.</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <p class="lead-text">
+      Earth's deep history is partitioned into eons defined by fundamental geochemical transformations, oceanic formation, and major evolutionary transitions across deep time.
+    </p>
+
+    <!-- Scale Axis Marker -->
+    <div class="scale-axis">
+      <span>4567 Ma — Origin</span>
+      <span>◆ Scale 1:1,000,000 Yrs</span>
+      <span>Present Day — 0 Ma</span>
+    </div>
+
+    <div class="timeline-grid">
+
+      <!-- Hadean -->
+      <article class="era-card" style="--accent: var(--rust);">
+        <div class="era-header">
+          <div class="era-title-group">
+            <span class="diamond-marker"></span>
+            <h2 class="era-name">Hadean Eon</h2>
+          </div>
+          <span class="time-badge">4567 – 4031 Ma</span>
+        </div>
+        <p class="etymology">ETMY: Greek <i>Hades</i> (underworld) + <i>aiōn</i> (life force)</p>
+        <p class="era-desc">Characterized by the initial accretion of terrestrial mass, severe planetary bombardment, mantle differentiation, and early ocean condensation.</p>
+      </article>
+
+      <!-- Archean -->
+      <article class="era-card" style="--accent: var(--amber);">
+        <div class="era-header">
+          <div class="era-title-group">
+            <span class="diamond-marker"></span>
+            <h2 class="era-name">Archean Eon</h2>
+          </div>
+          <span class="time-badge">4031 – 2500 Ma</span>
+        </div>
+        <p class="etymology">ETMY: Greek <i>arkhē</i> (origin) + <i>aiōn</i> (life force)</p>
+        <p class="era-desc">Cooling crust allows stable continental cratons to form alongside primitive anaerobic life forms.</p>
+        <ul class="feature-bullets">
+          <li>Atmosphere dominated by methane, ammonia, and heavy greenhouse gases</li>
+          <li>Emergence of initial prokaryotic microfossils and stromatolite reefs</li>
+          <li>Stabilization of early oceanic basins and volcanic arc systems</li>
+        </ul>
+      </article>
+
+      <!-- Proterozoic -->
+      <article class="era-card" style="--accent: var(--olive);">
+        <div class="era-header">
+          <div class="era-title-group">
+            <span class="diamond-marker"></span>
+            <h2 class="era-name">Proterozoic Eon</h2>
+          </div>
+          <span class="time-badge">2500 – 538 Ma</span>
+        </div>
+        <p class="etymology">ETMY: Greek <i>protero-</i> (former) + <i>zōḗ</i> (life)</p>
+        <p class="era-desc">Massive oxygenation of atmospheric reservoirs triggers oxygenation events, global glaciations, and complex eukaryotic evolution.</p>
+        <div class="fig-box">
+          <span class="fig-caption">FIG 01. EDIACARAN FAUNA MORPHOLOGY</span>
+        </div>
+      </article>
+
+      <!-- Phanerozoic -->
+      <article class="era-card" style="--accent: var(--sky);">
+        <div class="era-header">
+          <div class="era-title-group">
+            <span class="diamond-marker"></span>
+            <h2 class="era-name">Phanerozoic Eon</h2>
+          </div>
+          <span class="time-badge">538 – 0 Ma</span>
+        </div>
+        <p class="etymology">ETMY: Greek <i>phanerós</i> (visible) + <i>zōḗ</i> (life)</p>
+        <p class="era-desc">Rapid diversification of complex multicellular life across Paleozoic, Mesozoic, and Cenozoic eras, marked by hard-shelled fossils and terrestrial ecosystems.</p>
+      </article>
+
+    </div>
+  </main>
+
+  <!-- Footer Strata -->
+  <footer>
+    <svg class="footer-strata" viewBox="0 0 1200 80" preserveAspectRatio="none">
+      <path d="M0,80 L1200,80 L1200,20 Q800,60 400,20 L0,50 Z" fill="#D97848" />
+      <path d="M0,80 L1200,80 L1200,40 Q700,70 300,30 L0,60 Z" fill="#3D5A73" />
+    </svg>
+    <div class="footer-content">
+      <span>CARTOGRAPHIC ARCHIVE // SPEC #0842</span>
+      <span>RETRO-MODERN EDITORIAL DESIGN SYSTEM</span>
+    </div>
+  </footer>
+
+</body>
+</html>

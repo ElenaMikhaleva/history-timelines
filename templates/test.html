@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Geological Time — Editorial & Graphic Hybrid</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,600;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper: #F3ECDD;
+    --paper-card: #FAF6ED;
+    --ink: #2B2A23;
+    --ink-soft: #6B6656;
+    --rule: #D9D3C3;
+
+    /* Eon Accents */
+    --lava: #C4472A;
+    --amber: #C68A3E;
+    --olive: #889854;
+    --sky: #4E85B2;
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Serif 4', serif;
+    font-size:16.5px;
+    line-height:1.65;
+  }
+  svg{display:block;}
+  a{color:inherit; text-decoration:none;}
+  a:hover{text-decoration:underline;}
+
+  /* Texture Overlay */
+  .grain{
+    position:absolute; inset:0;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.45 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    mix-blend-mode:multiply;
+    opacity:0.5;
+    pointer-events:none;
+  }
+
+  /* ============ MASTHEAD ============ */
+  .masthead{position:relative; min-height:480px; overflow:hidden; background:var(--sky);}
+  .masthead svg{position:absolute; inset:0; width:100%; height:100%;}
+
+  .site-nav{
+    position:relative; z-index:2;
+    max-width:960px; margin:0 auto;
+    display:flex; justify-space-between; align-items:center;
+    padding:26px 24px 0;
+    font-family:'Space Grotesk', sans-serif;
+  }
+  .brand{display:flex; align-items:center; gap:10px;}
+  .brand-mark{
+    width:34px; height:34px; background:var(--ink); border-radius:8px;
+    display:flex; align-items:center; justify-content:center;
+    color:var(--paper); font-weight:700; font-size:13px;
+  }
+  .brand-text{font-weight:700; font-size:18px; color:var(--ink);}
+  .site-links{display:flex; gap:20px; font-size:13.5px; font-weight:500;}
+
+  .masthead-content{
+    position:relative; z-index:2;
+    max-width:960px; margin:0 auto; padding:60px 24px 48px;
+  }
+  .kicker{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--ink); opacity:0.8; margin-bottom:20px;
+    display:flex; gap:16px;
+  }
+  .masthead-content h1{
+    font-family:'Space Grotesk', sans-serif; font-weight:700;
+    font-size:clamp(38px, 5.5vw, 62px); line-height:1.02;
+    margin:0 0 16px; max-width:11em; color:var(--ink);
+  }
+  .dek{
+    font-style:italic; font-size:19px; color:var(--ink);
+    opacity:0.9; max-width:32em; margin:0 0 20px;
+  }
+  .byline{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px; opacity:0.75;
+  }
+
+  /* ============ MAIN CONTENT & TIMELINE AXIS ============ */
+  .wrap{max-width:960px; margin:0 auto; padding:0 24px; position:relative;}
+  .article{padding:60px 0 80px; position:relative;}
+
+  /* Scaled Margin Axis */
+  .axis{
+    position:absolute; left:-48px; top:60px; bottom:80px; width:1px;
+    background:var(--rule); display:none;
+  }
+  .axis .tick{position:absolute; left:-4px; display:flex; align-items:center;}
+  .axis .tick::before{content:""; width:8px; height:1px; background:var(--ink-soft);}
+  .axis .tick span{
+    font-family:'IBM Plex Mono', monospace; font-size:10px; color:var(--ink-soft);
+    white-space:nowrap; transform:translateX(-100%) translateX(-8px);
+  }
+  @media(min-width:1080px){.axis{display:block;}}
+
+  /* Eon Entry Cards */
+  section.entry{
+    position:relative; margin-bottom:40px;
+    background:var(--paper-card);
+    border-left:6px solid var(--accent, var(--ink));
+    border-radius:4px 12px 12px 4px;
+    padding:32px 36px;
+    box-shadow:0 6px 18px rgba(43,42,35,0.05);
+  }
+
+  .entry-num{
+    font-family:'IBM Plex Mono', monospace; font-size:11.5px;
+    color:var(--accent, var(--ink-soft)); letter-spacing:0.06em;
+    font-weight:600; margin-bottom:6px;
+  }
+  .entry-head{
+    display:flex; justify-content:space-between; align-items:baseline;
+    flex-wrap:wrap; gap:8px 16px; margin-bottom:4px;
+  }
+  h2{font-family:'Space Grotesk', sans-serif; font-size:30px; font-weight:700; margin:0;}
+  .entry-range{
+    font-family:'IBM Plex Mono', monospace; font-size:13px;
+    color:var(--accent, var(--ink-soft)); font-weight:600;
+  }
+  .entry-etym{
+    font-style:italic; color:var(--ink-soft); font-size:13.5px; margin:2px 0 18px;
+  }
+
+  .dropcap::first-letter{
+    font-family:'Space Grotesk', sans-serif; font-size:3.5em; line-height:0.8;
+    float:left; padding:4px 10px 0 0; font-weight:700; color:var(--accent, var(--ink));
+  }
+
+  .entry p{margin:0 0 14px;}
+  .entry ul{margin:0 0 14px; padding-left:20px;}
+  .entry li{margin-bottom:6px;}
+
+  /* Editorial Figure Frame */
+  .figure{margin:24px 0 16px;}
+  .figure .frame-img{
+    border:1px solid var(--ink); aspect-ratio:21/9;
+    background:repeating-linear-gradient(45deg, #EBE5D6, #EBE5D6 10px, var(--paper-card) 10px, var(--paper-card) 20px);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--ink-soft);
+  }
+  .figure figcaption{
+    font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--ink-soft);
+    margin-top:8px; letter-spacing:0.02em;
+  }
+
+  /* Editorial Pullquote */
+  .pull{
+    font-size:21px; font-style:italic; color:var(--accent, var(--ink));
+    border-top:1px solid var(--ink); border-bottom:1px solid var(--ink);
+    padding:16px 0; margin:24px 0; max-width:28em; line-height:1.4;
+  }
+
+  /* Era Subgrid */
+  .era-block{margin-top:28px; padding-top:20px; border-top:1px dashed var(--rule);}
+  .era-block-label{
+    font-family:'IBM Plex Mono', monospace; font-size:11px; font-weight:600;
+    letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:14px;
+  }
+  .era-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:14px;}
+  .era-card{
+    background:#fff; border:1px solid var(--rule); border-radius:8px; padding:16px;
+  }
+  .era-card h4{font-family:'Space Grotesk', sans-serif; font-size:16px; font-weight:700; margin:0 0 2px;}
+  .era-card .range{font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--accent, var(--ink-soft)); display:block; margin-bottom:8px;}
+  .era-card p{font-size:13px; margin:0 0 8px; line-height:1.4;}
+  .era-card ul{font-size:12px; color:var(--ink-soft); margin:0; padding-left:14px;}
+  .era-card li{margin-bottom:2px;}
+
+  /* ============ FOOTER ============ */
+  .site-footer{position:relative; height:200px; overflow:hidden; background:var(--olive);}
+  .site-footer svg{position:absolute; inset:0; width:100%; height:100%;}
+  .footer-content{
+    position:relative; z-index:2; max-width:960px; margin:0 auto; height:100%;
+    padding:0 24px; display:flex; align-items:center; justify-content:space-between;
+    font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--ink);
+  }
+
+  @media(max-width:768px){
+    .era-grid{grid-template-columns:1fr;}
+    .site-links{display:none;}
+    .masthead{min-height:auto;}
+    section.entry{padding:24px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <svg viewBox="0 0 1400 900" preserveAspectRatio="xMidYMax slice">
+    <rect width="1400" height="900" fill="#4E85B2"/>
+    <path d="M100,220 C150,175 260,175 295,225 C365,195 430,250 390,295 C450,305 435,355 365,355 L120,355 C45,355 35,300 90,285 C35,270 55,220 100,220 Z" fill="#F3ECDD"/>
+    <path d="M950,140 C1015,100 1130,105 1165,160 C1250,140 1310,195 1265,245 C1335,255 1315,310 1240,310 L975,310 C895,310 880,240 945,225 C880,210 895,150 950,140 Z" fill="#F3ECDD"/>
+    <path d="M0,600 C260,555 460,610 700,570 C940,530 1120,585 1400,545 L1400,900 L0,900 Z" fill="#93A45C"/>
+    <path d="M0,700 C280,665 540,715 800,675 C1040,635 1220,685 1400,660 L1400,900 L0,900 Z" fill="#D97848"/>
+    <g>
+      <ellipse cx="270" cy="700" rx="95" ry="58" fill="#4E85B2"/>
+      <rect x="255" y="742" width="14" height="92" fill="#4E85B2"/>
+    </g>
+    <path d="M0,800 C300,775 620,810 920,790 C1120,775 1270,790 1400,780 L1400,900 L0,900 Z" fill="#6B7A46"/>
+  </svg>
+  <div class="grain"></div>
+
+  <nav class="site-nav">
+    <div class="brand">
+      <div class="brand-mark">Ht</div>
+      <div class="brand-text">History Timelines</div>
+    </div>
+    <div class="site-links">
+      <a href="#">Timelines</a>
+      <a href="#">About</a>
+      <a href="#">GitHub</a>
+    </div>
+  </nav>
+
+  <div class="masthead-content">
+    <div class="kicker"><span>History · Paleontology</span><span>Vol. I, No. 1</span></div>
+    <h1>A Field Guide to Geological Time</h1>
+    <p class="dek">4,567 million years, condensed into four eons — and the last, thin sliver where anything visible happened at all.</p>
+    <div class="byline">By History Timelines · Published 2026</div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="article">
+
+    <!-- Scaled Editorial Axis -->
+    <div class="axis">
+      <div class="tick" style="top:0%"><span>4567 Ma</span></div>
+      <div class="tick" style="top:11.7%"><span>4031 Ma</span></div>
+      <div class="tick" style="top:45.3%"><span>2500 Ma</span></div>
+      <div class="tick" style="top:88.3%"><span>538 Ma</span></div>
+      <div class="tick" style="top:100%"><span>Today</span></div>
+    </div>
+
+    <!-- HADEAN -->
+    <section class="entry" style="--accent:var(--lava)">
+      <div class="entry-num">§ 01</div>
+      <div class="entry-head">
+        <h2>Hadean</h2>
+        <span class="entry-range">4567 – 4031 Ma</span>
+      </div>
+      <p class="entry-etym">from Greek <em>Hádēs</em>, the underworld</p>
+      <p class="dropcap">Earth had just formed, and its surface bore little resemblance to the one we know. It was unstable, resurfaced continually as the mantle forced molten rock upward. This eon ends the moment solid rock first appears in the record — everything before it is inferred, not observed.</p>
+      <figure class="figure">
+        <div class="frame-img">FIG. 1 — Reconstruction of the Hadean surface</div>
+        <figcaption>FIG. 1 — Volcanic mantle activity and crustal formation</figcaption>
+      </figure>
+    </section>
+
+    <!-- ARCHEAN -->
+    <section class="entry" style="--accent:var(--amber)">
+      <div class="entry-num">§ 02</div>
+      <div class="entry-head">
+        <h2>Archean</h2>
+        <span class="entry-range">4031 – 2500 Ma</span>
+      </div>
+      <p class="entry-etym">from Greek <em>arkhḗ</em>, origin</p>
+      <p>The atmosphere was mostly methane and ammonia — unbreathable by nearly everything alive today. Rock and the first continents began forming at the start of this eon, while a primitive atmosphere and early oceans took shape.</p>
+      <div class="pull">Then, for the first time: life. The first single-celled bacteria appeared.</div>
+      <figure class="figure">
+        <div class="frame-img">FIG. 2 — Stromatolite formations, Archean seas</div>
+        <figcaption>FIG. 2 — Early biological structures in shallow marine environments</figcaption>
+      </figure>
+    </section>
+
+    <!-- PROTEROZOIC -->
+    <section class="entry" style="--accent:var(--olive)">
+      <div class="entry-num">§ 03</div>
+      <div class="entry-head">
+        <h2>Proterozoic</h2>
+        <span class="entry-range">2500 – 538 Ma</span>
+      </div>
+      <p class="entry-etym">from Greek <em>próteros</em> ('former') + <em>zōḗ</em> ('life')</p>
+      <ul>
+        <li>Continents stabilized and grew, though unrecognizable against today's map.</li>
+        <li>Bacteria, fungi, simple plants, and the first complex animals evolved.</li>
+        <li>Oxygen accumulated in the atmosphere for the first time.</li>
+      </ul>
+      <figure class="figure">
+        <div class="frame-img">FIG. 3 — Ediacaran-type fossil fauna</div>
+        <figcaption>FIG. 3 — Soft-bodied organisms from the late Proterozoic</figcaption>
+      </figure>
+    </section>
+
+    <!-- PHANEROZOIC -->
+    <section class="entry" style="--accent:var(--sky)">
+      <div class="entry-num">§ 04</div>
+      <div class="entry-head">
+        <h2>Phanerozoic</h2>
+        <span class="entry-range">538 – 0 Ma</span>
+      </div>
+      <p class="entry-etym">from Greek <em>phanerós</em> ('visible') + <em>zōḗ</em> ('life')</p>
+      <p class="dropcap">Photosynthetic plants appeared, releasing free oxygen at scale for the first time, and setting up nearly everything that follows. Just 538 million of the eon's 4,567 million years — under twelve percent of the whole record — but every visible organism in the fossil record belongs to this era.</p>
+
+      <div class="era-block">
+        <div class="era-block-label">Three eras within the Phanerozoic</div>
+        <div class="era-grid">
+          <div class="era-card">
+            <h4>Paleozoic</h4>
+            <span class="range">538 – 252 Ma</span>
+            <p>Continents drifted and collided into one supercontinent, Pangaea.</p>
+            <ul><li>Cambrian</li><li>Ordovician</li><li>Silurian</li><li>Devonian</li><li>Carboniferous</li><li>Permian</li></ul>
+          </div>
+          <div class="era-card">
+            <h4>Mesozoic</h4>
+            <span class="range">252 – 66 Ma</span>
+            <p>The age of reptiles until an asteroid impact ended the era.</p>
+            <ul><li>Triassic</li><li>Jurassic</li><li>Cretaceous</li></ul>
+          </div>
+          <div class="era-card">
+            <h4>Cenozoic</h4>
+            <span class="range">66 – 0 Ma</span>
+            <p>The age of mammals — and, at the very end, us.</p>
+            <ul><li>Paleogene</li><li>Neogene</li><li>Quaternary</li></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<footer class="site-footer">
+  <svg viewBox="0 0 1400 260" preserveAspectRatio="xMidYMax slice">
+    <rect width="1400" height="260" fill="#93A45C"/>
+    <path d="M0,90 C260,60 540,105 800,75 C1040,48 1220,90 1400,70 L1400,260 L0,260 Z" fill="#D97848"/>
+    <path d="M0,150 C300,125 620,165 920,140 C1120,122 1270,140 1400,128 L1400,260 L0,260 Z" fill="#6B7A46"/>
+  </svg>
+  <div class="grain"></div>
+  <div class="footer-content">
+    <span>History Timelines · 2026</span>
+    <span>Margin axis drawn to proportional scale</span>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Field Guide to Geological Time — Editorial Edition</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,600;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400;1,8..60,600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper: #FBF9F3;
+    --paper-card: #FAF6ED;
+    --ink: #141311;
+    --ink-soft: #6B6558;
+    --rule: #D9D3C3;
+
+    /* Historical & Eon Palette */
+    --lava: #C4472A;
+    --amber: #C68A3E;
+    --olive: #889854;
+    --sky: #4E85B2;
+    --slate: #3D5A73;
+    --terracotta: #AE4C2B;
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 17px;
+    line-height: 1.68;
+    position: relative;
+  }
+  svg{display:block;}
+  a{color:inherit; text-decoration:none;}
+  a:hover{text-decoration:underline;}
+
+  /* Tactile Paper Grain Overlay */
+  .grain{
+    position:absolute; inset:0;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.4 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    mix-blend-mode:multiply;
+    opacity:0.45;
+    pointer-events:none;
+  }
+
+  /* ============ EDITORIAL MASTHEAD ============ */
+  .masthead-graphic {
+    position: relative;
+    height: 380px;
+    overflow: hidden;
+    background: var(--sky);
+  }
+  .masthead-graphic svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+  .site-nav {
+    position: relative; z-index: 2;
+    max-width: 1040px; margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 26px 28px 0;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+  }
+  .brand { display: flex; align-items: center; gap: 10px; }
+  .brand-mark {
+    width: 32px; height: 32px; background: var(--ink); border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--paper); font-weight: 600; font-size: 13px;
+  }
+  .brand-text { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 18px; color: var(--ink); }
+  .site-links { display: flex; gap: 20px; font-weight: 500; }
+
+  .masthead-editorial {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 44px 28px 24px;
+    border-bottom: 2px solid var(--ink);
+  }
+  .kicker {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--ink-soft);
+    display: flex; justify-content: space-between; margin-bottom: 24px;
+  }
+  h1 {
+    font-family: 'Source Serif 4', serif;
+    font-weight: 600;
+    font-size: clamp(38px, 5.5vw, 56px);
+    line-height: 1.05;
+    margin: 0 0 16px;
+    letter-spacing: -0.01em;
+  }
+  .dek {
+    font-style: italic;
+    color: var(--ink-soft);
+    font-size: 20px;
+    max-width: 34em;
+    line-height: 1.45;
+    margin: 0 0 24px;
+  }
+  .byline {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11.5px;
+    color: var(--ink-soft);
+    padding-bottom: 8px;
+  }
+
+  /* ============ MAIN EDITORIAL LAYOUT & MARGIN AXIS ============ */
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 28px; position: relative; }
+
+  .layout-grid {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 40px;
+    padding: 48px 0 100px;
+    position: relative;
+  }
+
+  /* Scaled Margin Timeline Axis */
+  .axis {
+    position: absolute;
+    left: -54px; top: 48px; bottom: 100px; width: 1px;
+    background: var(--rule);
+    display: none;
+  }
+  .axis .tick { position: absolute; left: -4px; display: flex; align-items: center; }
+  .axis .tick::before { content: ""; width: 8px; height: 1px; background: var(--ink-soft); }
+  .axis .tick span {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px; color: var(--ink-soft);
+    white-space: nowrap; transform: translateX(-100%) translateX(-8px);
+  }
+  @media(min-width: 1120px){ .axis { display: block; } }
+
+  /* Proportional Rail Tracker */
+  .rail { position: sticky; top: 32px; }
+  .rail-track {
+    display: flex; flex-direction: column; height: 460px;
+    border-radius: 8px; overflow: hidden;
+    border: 1px solid var(--ink);
+    box-shadow: 4px 4px 0 var(--ink);
+  }
+  .rail-seg { display: flex; align-items: flex-start; justify-content: center; padding-top: 8px; }
+  .rail-seg span {
+    font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 9px;
+    color: rgba(255,255,255,0.95); writing-mode: vertical-rl; transform: rotate(180deg);
+    white-space: nowrap; letter-spacing: 0.08em;
+  }
+  .rail-caption { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--ink-soft); text-align: center; margin-top: 10px; }
+
+  /* Article Content */
+  .article { position: relative; }
+
+  section.entry {
+    padding: 36px 0 44px;
+    border-bottom: 1px solid var(--rule);
+  }
+  section.entry:first-child { padding-top: 0; }
+  section.entry:last-child { border-bottom: none; }
+
+  .entry-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--accent, var(--terracotta));
+    letter-spacing: 0.08em; font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .entry-head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    flex-wrap: wrap; gap: 8px 20px; margin-bottom: 4px;
+  }
+  h2 { font-family: 'Source Serif 4', serif; font-size: 32px; font-weight: 600; margin: 0; }
+  .entry-range {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px; color: var(--ink-soft); white-space: nowrap;
+  }
+  .entry-etym {
+    font-style: italic; color: var(--ink-soft); font-size: 14.5px; margin: 4px 0 20px;
+  }
+
+  .dropcap::first-letter {
+    font-size: 3.8em;
+    line-height: 0.76;
+    float: left;
+    padding: 4px 10px 0 0;
+    font-weight: 600;
+    color: var(--accent, var(--indigo));
+  }
+
+  .entry p { margin: 0 0 16px; }
+  .entry ul { margin: 0 0 16px; padding-left: 20px; }
+  .entry li { margin-bottom: 6px; }
+
+  /* Editorial Figure Frame */
+  .figure { margin: 26px 0 20px; }
+  .figure .frame-img {
+    border: 1px solid var(--ink); aspect-ratio: 21/9;
+    background: repeating-linear-gradient(45deg, #F1ECDE, #F1ECDE 10px, var(--paper) 10px, var(--paper) 20px);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--ink-soft);
+  }
+  .figure figcaption {
+    font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--ink-soft);
+    margin-top: 8px; letter-spacing: 0.02em;
+  }
+
+  /* Pullquotes */
+  .pull {
+    font-size: 22px; font-style: italic; color: var(--accent, var(--terracotta));
+    border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink);
+    padding: 18px 0; margin: 28px 0; max-width: 28em; line-height: 1.4;
+  }
+
+  /* Sub-block Timeline Scale with Event Markers */
+  .sub-block { margin-top: 28px; padding-top: 56px; border-top: 1px dashed var(--rule); position: relative; }
+  .sub-block-label {
+    font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 14px;
+  }
+  .sub-scale { position: relative; display: flex; height: 14px; border-radius: 999px; overflow: visible; margin-bottom: 24px; }
+  .sub-scale .fill { display: flex; width: 100%; height: 100%; border-radius: 999px; overflow: hidden; }
+  .sub-scale .fill div { border-right: 1px solid rgba(255,255,255,0.4); }
+  .sub-scale .fill div:last-child { border-right: none; }
+  .ss-a { background: var(--slate); opacity: 0.45; }
+  .ss-b { background: var(--slate); opacity: 0.70; }
+  .ss-c { background: var(--slate); opacity: 1.00; }
+
+  .event { position: absolute; top: 7px; transform: translateX(-50%); }
+  .event .diamond {
+    width: 9px; height: 9px; background: var(--cat-color, var(--ink));
+    border: 1.5px solid var(--paper); transform: rotate(45deg);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15); margin: 0 auto;
+  }
+  .event .leader { position: absolute; bottom: 8px; left: 50%; width: 1px; background: var(--ink-soft); transform: translateX(-50%); }
+  .event .label {
+    position: absolute; left: 50%; transform: translateX(-50%);
+    font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 10.5px;
+    white-space: nowrap; color: var(--ink); background: var(--paper);
+    padding: 2px 6px; border-radius: 4px; border: 1px solid var(--rule);
+  }
+
+  /* Subgrid Era Cards */
+  .subgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 16px; }
+  .subcard { border: 1px solid var(--rule); border-radius: 6px; padding: 14px 16px; background: var(--paper-card); }
+  .subcard h4 { font-family: 'Source Serif 4', serif; font-size: 17px; font-weight: 600; margin: 0 0 2px; }
+  .subcard .range { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--ink-soft); display: block; margin-bottom: 8px; }
+  .subcard p { font-size: 13px; margin: 0 0 8px; line-height: 1.4; color: var(--ink); }
+  .subcard ul { font-size: 12px; color: var(--ink-soft); margin: 0; padding-left: 14px; }
+  .subcard li { margin-bottom: 2px; }
+
+  /* ============ EDITORIAL FOOTER ============ */
+  footer.site-footer {
+    position: relative; height: 200px; overflow: hidden; background: var(--olive);
+    border-top: 1px solid var(--ink);
+  }
+  footer.site-footer svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .footer-content {
+    position: relative; z-index: 2; max-width: 1040px; margin: 0 auto; height: 100%;
+    padding: 0 28px; display: flex; align-items: center; justify-content: space-between;
+    font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; color: var(--ink);
+  }
+
+  @media(max-width: 820px){
+    .layout-grid { grid-template-columns: 1fr; }
+    .rail { position: static; margin-bottom: 24px; }
+    .rail-track { height: 36px; flex-direction: row; }
+    .rail-seg span { display: none; }
+    .subgrid { grid-template-columns: 1fr; }
+    .site-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Masthead Banner -->
+<header class="masthead-graphic">
+  <svg viewBox="0 0 1400 900" preserveAspectRatio="xMidYMax slice">
+    <rect width="1400" height="900" fill="#4E85B2"/>
+    <path d="M100,220 C150,175 260,175 295,225 C365,195 430,250 390,295 C450,305 435,355 365,355 L120,355 C45,355 35,300 90,285 C35,270 55,220 100,220 Z" fill="#FBF9F3"/>
+    <path d="M950,140 C1015,100 1130,105 1165,160 C1250,140 1310,195 1265,245 C1335,255 1315,310 1240,310 L975,310 C895,310 880,240 945,225 C880,210 895,150 950,140 Z" fill="#FBF9F3"/>
+    <path d="M0,600 C260,555 460,610 700,570 C940,530 1120,585 1400,545 L1400,900 L0,900 Z" fill="#93A45C"/>
+    <path d="M0,700 C280,665 540,715 800,675 C1040,635 1220,685 1400,660 L1400,900 L0,900 Z" fill="#D97848"/>
+    <path d="M0,800 C300,775 620,810 920,790 C1120,775 1270,790 1400,780 L1400,900 L0,900 Z" fill="#6B7A46"/>
+  </svg>
+  <div class="grain"></div>
+
+  <nav class="site-nav">
+    <div class="brand">
+      <div class="brand-mark">Ht</div>
+      <div class="brand-text">History Timelines</div>
+    </div>
+    <div class="site-links">
+      <a href="#">Timelines</a>
+      <a href="#">About</a>
+      <a href="#">GitHub</a>
+    </div>
+  </nav>
+</header>
+
+<div class="masthead-editorial">
+  <div class="kicker">
+    <span>History · Paleontology</span>
+    <span>Vol. I, No. 1</span>
+  </div>
+  <h1>A Field Guide to Geological Time</h1>
+  <p class="dek">4,567 million years, condensed into four eons — and the last, thin sliver where anything visible happened at all.</p>
+  <div class="byline">By History Timelines · Published 2026</div>
+</div>
+
+<div class="wrap">
+  <div class="layout-grid">
+
+    <!-- Proportional Rail Tracker (Sticky) -->
+    <aside class="rail">
+      <div class="rail-track">
+        <div class="rail-seg" style="background:var(--lava); flex-grow:11.7"><span>HADEAN</span></div>
+        <div class="rail-seg" style="background:var(--amber); flex-grow:33.5"><span>ARCHEAN</span></div>
+        <div class="rail-seg" style="background:var(--olive); flex-grow:43.0"><span>PROTEROZOIC</span></div>
+        <div class="rail-seg" style="background:var(--sky); flex-grow:11.8"><span>PHANEROZOIC</span></div>
+      </div>
+      <p class="rail-caption">4567 Ma ↓ Today</p>
+    </aside>
+
+    <!-- Main Editorial Text Column -->
+    <main class="article">
+
+      <!-- Margin Axis (Scaled via percentages) -->
+      <div class="axis">
+        <div class="tick" style="top:0%"><span>4567 Ma</span></div>
+        <div class="tick" style="top:12%"><span>4031 Ma</span></div>
+        <div class="tick" style="top:45%"><span>2500 Ma</span></div>
+        <div class="tick" style="top:88%"><span>538 Ma</span></div>
+        <div class="tick" style="top:100%"><span>Today</span></div>
+      </div>
+
+      <!-- § 01 HADEAN -->
+      <section class="entry" style="--accent: var(--lava);">
+        <div class="entry-num">§ 01</div>
+        <div class="entry-head">
+          <h2>Hadean</h2>
+          <span class="entry-range">4567 – 4031 Ma</span>
+        </div>
+        <p class="entry-etym">from Greek <em>Hádēs</em>, the underworld</p>
+        <p class="dropcap">Earth had just formed, and its surface bore little resemblance to the one we know. It was unstable, resurfaced continually as the mantle forced molten rock upward. This eon ends the moment solid rock first appears in the record — everything before it is inferred, not observed.</p>
+        <figure class="figure">
+          <div class="frame-img">FIG. 1 — Reconstruction of the Hadean surface</div>
+          <figcaption>FIG. 1 — Volcanic mantle activity and crustal formation</figcaption>
+        </figure>
+      </section>
+
+      <!-- § 02 ARCHEAN -->
+      <section class="entry" style="--accent: var(--amber);">
+        <div class="entry-num">§ 02</div>
+        <div class="entry-head">
+          <h2>Archean</h2>
+          <span class="entry-range">4031 – 2500 Ma</span>
+        </div>
+        <p class="entry-etym">from Greek <em>arkhḗ</em>, origin</p>
+        <p>The atmosphere was mostly methane and ammonia — unbreathable by nearly everything alive today. Rock and the first continents began forming at the start of this eon, and a primitive atmosphere and early oceans took shape.</p>
+        <div class="pull">Then, for the first time: life. The first single-celled bacteria appeared.</div>
+        <figure class="figure">
+          <div class="frame-img">FIG. 2 — Stromatolite formations, Archean seas</div>
+          <figcaption>FIG. 2 — Early biological structures in shallow marine environments</figcaption>
+        </figure>
+      </section>
+
+      <!-- § 03 PROTEROZOIC -->
+      <section class="entry" style="--accent: var(--olive);">
+        <div class="entry-num">§ 03</div>
+        <div class="entry-head">
+          <h2>Proterozoic</h2>
+          <span class="entry-range">2500 – 538 Ma</span>
+        </div>
+        <p class="entry-etym">from Greek <em>próteros</em> ('former') + <em>zōḗ</em> ('life')</p>
+        <ul>
+          <li>Continents stabilized and grew, though unrecognizable against today's map</li>
+          <li>Bacteria, fungi, simple plants, and the first complex animals evolved</li>
+          <li>Oxygen accumulated in the atmosphere for the first time</li>
+        </ul>
+        <figure class="figure">
+          <div class="frame-img">FIG. 3 — Ediacaran-type fossil fauna</div>
+          <figcaption>FIG. 3 — Soft-bodied organisms from the late Proterozoic</figcaption>
+        </figure>
+      </section>
+
+      <!-- § 04 PHANEROZOIC -->
+      <section class="entry" style="--accent: var(--sky);">
+        <div class="entry-num">§ 04</div>
+        <div class="entry-head">
+          <h2>Phanerozoic</h2>
+          <span class="entry-range">538 – 0 Ma</span>
+        </div>
+        <p class="entry-etym">from Greek <em>phanerós</em> ('visible') + <em>zōḗ</em> ('life') — named before the Precambrian fossil record was understood</p>
+        <p class="dropcap">Photosynthetic plants appeared, releasing free oxygen at scale for the first time, and setting up nearly everything that follows. Just 538 million of the eon's 4,567 million years — under twelve percent of the whole record — but every visible organism in the fossil record belongs to this era.</p>
+
+        <!-- Interactive Era Scale with Pinned Event Markers -->
+        <div class="sub-block">
+          <div class="sub-block-label">Three eras with key evolutionary events</div>
+
+          <div class="sub-scale">
+            <div class="fill">
+              <div class="ss-a" style="flex-grow:53.1"></div>
+              <div class="ss-b" style="flex-grow:34.6"></div>
+              <div class="ss-c" style="flex-grow:12.3"></div>
+            </div>
+
+            <div class="event" style="left:15%; --cat-color:var(--olive)">
+              <div class="label" style="bottom:22px">Cambrian Explosion, 541 Ma</div>
+              <div class="leader" style="height:14px;"></div>
+              <div class="diamond"></div>
+            </div>
+            <div class="event" style="left:87.6%; --cat-color:var(--lava)">
+              <div class="label" style="bottom:46px">K-Pg Asteroid Impact, 66 Ma</div>
+              <div class="leader" style="height:38px;"></div>
+              <div class="diamond"></div>
+            </div>
+            <div class="event" style="left:99%; --cat-color:var(--slate)">
+              <div class="label" style="bottom:22px">First Humans</div>
+              <div class="leader" style="height:14px;"></div>
+              <div class="diamond"></div>
+            </div>
+          </div>
+
+          <!-- Era Breakdown Cards Grid -->
+          <div class="subgrid">
+            <div class="subcard">
+              <h4>Paleozoic</h4>
+              <span class="range">538 – 252 Ma</span>
+              <p>Continents drifted and collided into one supercontinent, Pangaea.</p>
+              <ul><li>Cambrian</li><li>Ordovician</li><li>Silurian</li><li>Devonian</li><li>Carboniferous</li><li>Permian</li></ul>
+            </div>
+            <div class="subcard">
+              <h4>Mesozoic</h4>
+              <span class="range">252 – 66 Ma</span>
+              <p>The age of reptiles until an asteroid impact ended the era.</p>
+              <ul><li>Triassic</li><li>Jurassic</li><li>Cretaceous</li></ul>
+            </div>
+            <div class="subcard">
+              <h4>Cenozoic</h4>
+              <span class="range">66 – 0 Ma</span>
+              <p>The age of mammals — and, at the very end, us.</p>
+              <ul><li>Paleogene</li><li>Neogene</li><li>Quaternary</li></ul>
+            </div>
+          </div>
+        </div>
+
+      </section>
+    </main>
+
+  </div>
+</div>
+
+<!-- Editorial Footer -->
+<footer class="site-footer">
+  <svg viewBox="0 0 1400 260" preserveAspectRatio="xMidYMax slice">
+    <rect width="1400" height="260" fill="#93A45C"/>
+    <path d="M0,90 C260,60 540,105 800,75 C1040,48 1220,90 1400,70 L1400,260 L0,260 Z" fill="#D97848"/>
+    <path d="M0,150 C300,125 620,165 920,140 C1120,122 1270,140 1400,128 L1400,260 L0,260 Z" fill="#6B7A46"/>
+  </svg>
+  <div class="grain"></div>
+  <div class="footer-content">
+    <span>History Timelines · 2026</span>
+    <span>Margin axis drawn to proportional scale, top to bottom</span>
+  </div>
+</footer>
+
+</body>
+</html>
