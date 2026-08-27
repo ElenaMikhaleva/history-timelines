@@ -5,13 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1be67b9a-5fc8-4d97-bbd8-6590e66db18f" name="Changes" comment="experimenting">
-      <change afterPath="$PROJECT_DIR$/templates/geological-time-riso-header.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/greek-history-riso.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/index-riso.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/test.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/test2.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/test3.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/hadean-eon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/styles/styles.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/about.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/paleozoic.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/phanerozoic-eon.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/footer.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/footer.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/geological-time-editorial.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/geological-time-editorial.html" afterDir="false" />
@@ -91,11 +91,11 @@
       <recent name="C:\Users\elena\Study\Apps\timelines\timeLines\src\templates" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\elena\Study\Apps\timelines\timeLines\templates" />
       <recent name="C:\Users\elena\Study\Apps\timelines\timeLines" />
+      <recent name="C:\Users\elena\Study\Apps\timelines\timeLines\src" />
+      <recent name="C:\Users\elena\Study\Apps\timelines\timeLines\templates" />
       <recent name="C:\Users\elena\Study\Apps\timelines\timeLines\src\styles" />
       <recent name="C:\Users\elena\Study\Apps\timelines\timeLines\src\scripts" />
-      <recent name="C:\Users\elena\Study\Apps\timelines\timeLines\src" />
     </key>
   </component>
   <component name="RunManager">
@@ -330,7 +330,15 @@
       <option name="project" value="LOCAL" />
       <updated>1787828341951</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="experimenting">
+      <option name="closed" value="true" />
+      <created>1787833248098</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1787833248098</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
