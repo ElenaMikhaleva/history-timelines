@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1be67b9a-5fc8-4d97-bbd8-6590e66db18f" name="Changes" comment="debugging">
-      <change afterPath="$PROJECT_DIR$/styles/tree.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/phylogeny.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/phylogeny.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/geological-time.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/geological-time.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -362,7 +359,15 @@
       <option name="project" value="LOCAL" />
       <updated>1787948969476</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="debugging">
+      <option name="closed" value="true" />
+      <created>1787949502861</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1787949502861</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
