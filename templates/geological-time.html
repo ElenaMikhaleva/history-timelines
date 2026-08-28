@@ -11,58 +11,47 @@
     <script src="../scripts/main.js" defer></script>
 </head>
 <body data-page="geological-time">
-  <header class="masthead" style="background:var(--sky)">
-      <svg viewBox="0 0 1400  900" preserveAspectRatio="xMidYMax slice">
-        <rect width="1400" height="900" fill="#4E85B2"/>
-        <path d="M100,220 C150,175 260,175 295,225 C365,195 430,250 390,295 C450,305 435,355 365,355 L120,355 C45,355 35,300 90,285 C35,270 55,220 100,220 Z" fill="#F3ECDD"/>
-        <path d="M950,140 C1015,100 1130,105 1165,160 C1250,140 1310,195 1265,245 C1335,255 1315,310 1240,310 L975,310 C895,310 880,240 945,225 C880,210 895,150 950,140 Z" fill="#F3ECDD"/>
-        <path d="M0,600 C260,555 460,610 700,570 C940,530 1120,585 1400,545 L1400,900 L0,900 Z" fill="#93A45C"/>
-        <path d="M0,700 C280,665 540,715 800,675 C1040,635 1220,685 1400,660 L1400,900 L0,900 Z" fill="#D97848"/>
-        <g>
-          <ellipse cx="270" cy="700" rx="95" ry="58" fill="#4E85B2"/>
-          <rect x="255" y="742" width="14" height="92" fill="#4E85B2"/>
-        </g>
-        <path d="M0,800 C300,775 620,810 920,790 C1120,775 1270,790 1400,780 L1400,900 L0,900 Z" fill="#6B7A46"/>
-      </svg>
-      <div class="grain"></div>
-
-      <nav class="site-nav">
-        <div class="brand">
-          <div class="brand-mark">DF</div>
-          <div class="brand-text">Digital Forest</div>
+    <header class="masthead">
+        <div class="illustration-slot" data-src="../src/geol-time-header.svg"></div>
+        <div class="grain"></div>
+        <nav class="site-nav">
+            <div class="brand">
+                <div class="brand-mark">DF</div>
+                <div class="brand-text">Digital Forest</div>
+            </div>
+            <div class="site-links">
+                <a href="about.html">About</a>
+            </div>
+        </nav>
+        <div class="masthead-content" style="color: var(--first); position: relative; top: -10px; left: 0px; font-size: 52px;">
+            <h1>Geological<br><span style="display: inline-block; margin-left: 2em;"></span>Time Scale</h1>
         </div>
-        <div class="site-links">
-          <a href="#">About</a>
-        </div>
-      </nav>
-
-      <div class="masthead-content">
-          <div class="kicker">
-              <span>History · Paleontology</span>
-          </div>
-            <h1>Geological Time Scale</h1>
-          <p>
-              The geological time scale describes how geologic time is divided into standardised intervals. It has been developed through the study of rock layers and the observation of their relationships and identifying features such as lithologies, paleomagnetic properties, and fossils.
-          </p>
-      </div>
     </header>
 
   <main>
       <div class="frame">
+          <div class="intro-content">
+          <div class="kicker">
+              <span>History · Paleontology</span>
+          </div>
+          <p>
+              The geological time scale describes how geologic time is divided into standardised intervals. It has been developed through the study of rock layers and the observation of their relationships and identifying features such as lithologies, paleomagnetic properties, and fossils.
+          </p>
+      </div>
           <div class="layout">
               <aside class="spine">
                   <div class="spine-track">
                     <div class="segment" style="--seg-color: var(--first); flex-grow: 11.74;">
-                        <span class="tag">H</span>
+                        <span class="tag">HAD</span>
                     </div>
                     <div class="segment" style="--seg-color: var(--second); flex-grow: 33.53;">
-                        <span class="tag">A</span>
+                        <span class="tag">ARCH</span>
                     </div>
                     <div class="segment" style="--seg-color: var(--third); flex-grow: 42.96;">
-                        <span class="tag">P</span>
+                        <span class="tag">PROT</span>
                     </div>
                     <div class="segment" style="--seg-color: var(--fourth); flex-grow: 11.78;">
-                        <span class="tag">P</span>
+                        <span class="tag">PHAN</span>
                     </div>
                   </div>
               </aside>
@@ -110,7 +99,9 @@
                                   <li>The first living organisms — bacteria — appeared.</li>
                               </ul>
                           </div>
-                          <div class="img-slot"></div>
+                          <div class="img-slot">
+                              <img src="../src/archean-eon.png" alt="Archean Eon">
+                          </div>
                       </div>
                   </section>
                   <section class="period-card" data-accent="third">
@@ -132,7 +123,9 @@
                                   <li>Bacteria, fungi, simple plants, and the first animals evolved.</li>
                               </ul>
                           </div>
-                          <div class="img-slot"></div>
+                          <div class="img-slot">
+                              <img src="../src/proterozoic-eon.png" alt="Proterozoic Eon">
+                          </div>
                       </div>
                   </section>
                   <section class="period-card" id="paleozoic" data-accent="fourth">
@@ -142,7 +135,7 @@
                           </h2>
                           <span class="period-range">538 Mya – today</span>
                       </div>
-                      <div class="period-body">
+                      <div class="period-body no-img">
                           <div class="period-text">
                               <p class="period-etym">from Greek <em>phanerós</em> (visible) + <em>zōḗ</em> (life)</p>
                               <p>
@@ -152,9 +145,9 @@
                       </div>
                       <div class="subperiod-body">
                           <div class="subperiod-scale">
-                              <div class="es-paleozoic"></div>
-                              <div class="es-mesozoic"></div>
-                              <div class="es-cenozoic"></div>
+                              <div style="flex-grow: 53.15;"></div>
+                              <div style="flex-grow: 34.57;"></div>
+                              <div style="flex-grow: 12.26;"></div>
                           </div>
                               <div class="subperiod-grid">
                                   <a href="paleozoic.html" class="period-link">
