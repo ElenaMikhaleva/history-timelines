@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" name="viewport">
     <title>DF — Paleozoic Era</title>
     <link rel="stylesheet" href="../styles/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
     <script src="../scripts/main.js" defer></script>
 </head>
-<body>
+<body data-page="paleozoic">
   <header class="masthead" style="background:var(--sky)">
+      <div class="illustration-slot" data-src="assets/illustrations/paleozoic-header.svg"></div>
       <svg viewBox="0 0 1400  900" preserveAspectRatio="xMidYMax slice">
         <rect width="1400" height="900" fill="#4E85B2"/>
         <path d="M100,220 C150,175 260,175 295,225 C365,195 430,250 390,295 C450,305 435,355 365,355 L120,355 C45,355 35,300 90,285 C35,270 55,220 100,220 Z" fill="#F3ECDD"/>
@@ -50,33 +50,33 @@
           <div class="layout">
               <aside class="spine">
                   <div class="spine-track">
-                    <div class="segment seg-hadean">
+                    <div class="segment" style="--seg-color: var(--first); flex-grow: 18.53;">
                         <span class="tag">C</span>
                     </div>
-                    <div class="segment seg-archean">
+                    <div class="segment" style="--seg-color: var(--second); flex-grow: 14.33;">
                         <span class="tag">O</span>
                     </div>
-                    <div class="segment seg-proterozoic">
+                    <div class="segment" style="--seg-color: var(--third); flex-grow: 8.74;">
                         <span class="tag">S</span>
                     </div>
-                      <div class="segment seg-proterozoic">
-                        <span class="tag">D</span>
+                    <div class="segment" style="--seg-color: var(--fourth); flex-grow: 20.97;">
+                      <span class="tag">D</span>
                     </div>
-                      <div class="segment seg-proterozoic">
-                        <span class="tag">C</span>
+                    <div class="segment" style="--seg-color: var(--fifth); flex-grow: 20.97;">
+                      <span class="tag">C</span>
                     </div>
-                      <div class="segment seg-proterozoic">
-                        <span class="tag">P</span>
+                    <div class="segment" style="--seg-color: var(--sixth); flex-grow: 16.78;">
+                      <span class="tag">P</span>
                     </div>
                   </div>
               </aside>
               <div class="content">
-                  <section class="period-card" data-accent="lava">
+                  <section class="period-card" data-accent="first">
                       <div class="period-head">
                           <h3 class="period-name">Cambrian Period
                               <span class="period-native">Кембрий</span>
                           </h3>
-                          <span class="period-range">538 – 485 Ma</span>
+                          <span class="period-range">538 – 485 Mya</span>
                       </div>
                       <div class="period-body">
                           <div class="period-text">
@@ -93,12 +93,12 @@
                           </div>
                       </div>
                   </section>
-                  <section class="period-card" data-accent="sky">
+                  <section class="period-card" data-accent="second">
                       <div class="period-head">
                           <h3 class="period-name">Ordovician Period
                               <span class="period-native">Ордовик</span>
                           </h3>
-                          <span class="period-range">485 – 444 Ma</span>
+                          <span class="period-range">485 – 444 Mya</span>
                       </div>
                       <div class="period-body">
                           <div class="period-text">
@@ -111,31 +111,31 @@
                           <div class="img-slot"></div>
                       </div>
                   </section>
-                  <section class="period-card" data-accent="olive">
+                  <section class="period-card" data-accent="third">
                       <div class="period-head">
                           <h3 class="period-name">Silurian Period
                               <span class="period-native">Силур</span>
                           </h3>
-                          <span class="period-range">444 – 419 Ma</span>
+                          <span class="period-range">444 – 419 Mya</span>
                       </div>
                       <div class="period-body">
                           <div class="period-text">
                               <ul>
                                   <li>A mass extinction took place, wiping out nearly half of marine invertebrate species.</li>
                                   <li>Jawless fish became more numerous, and early jawed fish and freshwater species appeared.</li>
-                                  <li>Fully terrestrial life established itself on land, including early fungi, arachnids, hexapods and myriapods.<li>
+                                  <li>Fully terrestrial life established itself on land, including early fungi, arachnids, hexapods and myriapods.</li>
                                   <li>Plants (spore-producing ferns) evolve vascularity, the ability to transport water and nutrients through their tissues.</li>
                               </ul>
                           </div>
                           <div class="img-slot"></div>
                       </div>
                   </section>
-                  <section class="period-card" data-accent="olive">
+                  <section class="period-card" data-accent="fourth">
                       <div class="period-head">
                           <h3 class="period-name">Devonian Period
                               <span class="period-native">Девон</span>
                           </h3>
-                          <span class="period-range">419 – 359 Ma</span>
+                          <span class="period-range">419 – 359 Mya</span>
                       </div>
                       <div class="period-body">
                           <div class="period-text">
@@ -151,12 +151,12 @@
                           <div class="img-slot"></div>
                       </div>
                   </section>
-                  <section class="period-card" data-accent="olive">
+                  <section class="period-card" data-accent="fifth">
                       <div class="period-head">
                           <h3 class="period-name">Carboniferous Period
                               <span class="period-native">Карбон</span>
                           </h3>
-                          <span class="period-range">359 – 299 Ma</span>
+                          <span class="period-range">359 – 299 Mya</span>
                       </div>
                       <div class="period-body">
                           <div class="period-text">
@@ -170,12 +170,12 @@
                           <div class="img-slot"></div>
                       </div>
                   </section>
-                  <section class="period-card" data-accent="olive">
+                  <section class="period-card" data-accent="sixth">
                       <div class="period-head">
                           <h3 class="period-name">Permian Period
                               <span class="period-native">Пермь</span>
                           </h3>
-                          <span class="period-range">299 – 251 Ma</span>
+                          <span class="period-range">299 – 251 Mya</span>
                       </div>
                       <div class="period-body">
                           <div class="period-text">
@@ -183,7 +183,7 @@
                                   <li>Landmasses merged and formed the supercontinent Pangea. </li>
                                   <li>Extreme conditions such as polar ice caps and deserts limited the extent of plant life, but amphibious tetrapods and reptiles diversified where plants grew.</li>
                                   <li>Oceans teemed with fish and invertebrate life.</li>
-                                  <li>Mass extinction (The Great Dying), caused by large floods of lava. This extinction was the largest in Earth's history and led to the loss of 95% of all species of life.</li>
+                                  <li>Mass extinction (Great Dying), caused by large floods of lava. This extinction was the largest in Earth's history and led to the loss of 95% of all species of life.</li>
                               </ul>
                           </div>
                           <div class="img-slot"></div>

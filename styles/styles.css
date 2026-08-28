@@ -1,20 +1,20 @@
 :root {
-    --cream:#F3ECDD;
+    --cream:#F5F0E6;
     --ink:#1C1A15;
     --ink-soft:#5B564A;
-    --sky:#4E85B2;
+    --sky:#3E6E8E;
     --rust:#C1502E;
-    --olive:#93A45C;
-    --lava:#C4472A;
+    --olive:#7C8F4B;
+    --lava:#B8462A;
     --amber:#C68A3E;
     --moss:#5B7553;
     --ochre:#C99A2E;
     --slate:#3D5A73;
-    --forest: #6B7A46;
+    --forest: #C9963A;
 
     --paper:#F1ECDE;
     --paper-2:#E9E2CE;
-    --border:1.5px;
+    --border:1.9px;
     --radius:7px;
     }
 * {
@@ -31,6 +31,25 @@ body {
     font-family:'Work Sans',sans-serif;
     line-height:1.6;
     }
+body[data-page="geological-time"] {
+  --first: #B8462A;
+  --second: #3E6E8E;
+  --third: #7C8F4B;
+  --fourth: #C9963A;
+}
+body[data-page="paleozoic"] {
+  --first: #C4472A;
+  --second: #C97C3A;
+  --third: #C9963A;
+  --fourth: #A98A3E;
+  --fifth: #8C7A3A;
+  --sixth: #7A3524;
+}
+body[data-page="mesozoic"] {
+  --first: #B08D52;
+  --second: #4F7A4A;
+  --third: #C9836E;
+}
 
 svg {
     display:block;
@@ -159,14 +178,14 @@ a {
     box-shadow:0 10px 24px rgba(28,26,21,0.10);
     background:var(--paper-2);
   }
-  .segment{
-    position:relative;
-    border-bottom:var(--border) solid var(--ink);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    overflow:hidden;
-  }
+.segment {
+  position: relative;
+  background: var(--seg-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
   .segment:last-child{border-bottom:none;}
   .segment .tag{
     writing-mode:vertical-rl;
@@ -177,10 +196,6 @@ a {
     color:var(--paper);
     white-space:nowrap;
   }
-  .seg-hadean{background:var(--lava); flex-grow:11.74;}
-  .seg-archean{background:var(--sky); flex-grow:33.53;}
-  .seg-proterozoic{background:var(--olive); flex-grow:42.96;}
-  .seg-phanerozoic{background:var(--forest); flex-grow:11.78; min-height:34px;}
   .spine-caption{
     font-family:'JetBrains Mono',monospace;
     font-size:10.5px;
@@ -192,23 +207,31 @@ a {
 
 .content{display:flex; flex-direction:column; gap:40px;}
 
-.period-card[data-accent="lava"] { --accent-color: var(--lava); }
-.period-card[data-accent="sky"] { --accent-color: var(--sky); }
-.period-card[data-accent="forest"] { --accent-color: var(--forest); }
-.period-card[data-accent="olive"] { --accent-color: var(--olive); }
+.period-card[data-accent="first"] { --accent-color: var(--first); }
+.period-card[data-accent="second"] { --accent-color: var(--second); }
+.period-card[data-accent="third"] { --accent-color: var(--third); }
+.period-card[data-accent="fourth"] { --accent-color: var(--fourth); }
+.period-card[data-accent="fifth"] { --accent-color: var(--fifth); }
+.period-card[data-accent="sixth"] { --accent-color: var(--sixth); }
 
 .period-card::before {
     content:"";
-    position:absolute; left:0; top:0; bottom:0; width:11px; background:var(--accent-color); border-radius:6px 0 0 6px;}
+    position:absolute;
+    left:0;
+    top:0;
+    bottom:0;
+    width:11px;
+    border-radius:6px 0 0 6px;
+    }
 
-  .period-card{
-    background:var(--paper);
-    border:var(--border) solid var(--ink-soft);
-    border-radius:var(--radius);
-    box-shadow:0 12px 28px rgba(28,26,21,0.07);
-    padding:32px 32px 34px;
-    position: relative;
-  }
+.period-card {
+  position: relative;
+  background: var(--paper, #fff);
+  border: var(--border, 2px) solid var(--ink-soft);
+  border-radius: var(--radius, 8px);
+  box-shadow: 7px 7px 0 var(--accent-color, var(--ink));
+  padding: 32px;
+}
 
 .period-link {
 display: block;
@@ -325,8 +348,15 @@ li::before {
     overflow:hidden;
     margin-bottom:16px;
   }
-  .subperiod-scale div{border-right:1px solid rgba(241,236,222,0.4);}
-  .subperiod-scale div:last-child{border-right:none;}
+.subperiod-scale > div {
+  background: var(--accent-color, var(--ink));
+}
+.subperiod-scale > div:nth-child(1) { opacity: 0.55; }
+.subperiod-scale > div:nth-child(2) { opacity: 0.75; }
+.subperiod-scale > div:nth-child(3) { opacity: 0.90; }
+.subperiod-scale > div:nth-child(4) { opacity: 1.00; }
+
+
   .es-paleozoic{background:var(--forest); opacity:0.55; flex-grow:53.16;}
   .es-mesozoic{background:var(--forest); opacity:0.78; flex-grow:34.57;}
   .es-cenozoic{background:var(--forest); flex-grow:12.27;}

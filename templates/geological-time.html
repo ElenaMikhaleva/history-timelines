@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     <script src="../scripts/main.js" defer></script>
 </head>
-<body>
+<body data-page="geological-time">
   <header class="masthead" style="background:var(--sky)">
       <svg viewBox="0 0 1400  900" preserveAspectRatio="xMidYMax slice">
         <rect width="1400" height="900" fill="#4E85B2"/>
@@ -52,27 +52,27 @@
           <div class="layout">
               <aside class="spine">
                   <div class="spine-track">
-                    <div class="segment seg-hadean">
+                    <div class="segment" style="--seg-color: var(--first); flex-grow: 11.74;">
                         <span class="tag">H</span>
                     </div>
-                    <div class="segment seg-archean">
+                    <div class="segment" style="--seg-color: var(--second); flex-grow: 33.53;">
                         <span class="tag">A</span>
                     </div>
-                    <div class="segment seg-proterozoic">
+                    <div class="segment" style="--seg-color: var(--third); flex-grow: 42.96;">
                         <span class="tag">P</span>
                     </div>
-                    <div class="segment seg-phanerozoic">
+                    <div class="segment" style="--seg-color: var(--fourth); flex-grow: 11.78;">
                         <span class="tag">P</span>
                     </div>
                   </div>
               </aside>
               <div class="content">
-                  <section class="period-card" data-accent="lava">
+                  <section class="period-card" data-accent="first">
                       <div class="period-head">
                           <h2 class="period-name">Hadean Eon
                               <span class="period-native">Катархей</span>
                           </h2>
-                          <span class="period-range">4567 – 4031 Ma</span>
+                          <span class="period-range">4567 – 4031 Mya</span>
                       </div>
                       <div class="period-body">
                           <div class="period-text">
@@ -91,12 +91,12 @@
                           </div>
                       </div>
                   </section>
-                  <section class="period-card" data-accent="sky">
+                  <section class="period-card" data-accent="second">
                       <div class="period-head">
                           <h2 class="period-name">Archean Eon
                               <span class="period-native">Архей</span>
                           </h2>
-                          <span class="period-range">4031 – 2500 Ma</span>
+                          <span class="period-range">4031 – 2500 Mya</span>
                       </div>
                       <div class="period-body">
                           <div class="period-text">
@@ -113,12 +113,12 @@
                           <div class="img-slot"></div>
                       </div>
                   </section>
-                  <section class="period-card" data-accent="olive">
+                  <section class="period-card" data-accent="third">
                       <div class="period-head">
                           <h2 class="period-name">Proterozoic Eon
                               <span class="period-native">Протерозой</span>
                           </h2>
-                          <span class="period-range">2500 – 538 Ma</span>
+                          <span class="period-range">2500 – 538 Mya</span>
                       </div>
                       <div class="period-body">
                           <div class="period-text">
@@ -135,12 +135,12 @@
                           <div class="img-slot"></div>
                       </div>
                   </section>
-                  <section class="period-card" id="paleozoic" data-accent="forest">
+                  <section class="period-card" id="paleozoic" data-accent="fourth">
                       <div class="period-head">
                           <h2 class="period-name">Phanerozoic Eon
                               <span class="period-native">Фанерозой</span>
                           </h2>
-                          <span class="period-range">538 Ma – today</span>
+                          <span class="period-range">538 Mya – today</span>
                       </div>
                       <div class="period-body">
                           <div class="period-text">
@@ -160,7 +160,7 @@
                                   <a href="paleozoic.html" class="period-link">
                                       <div class="subperiod-card">
                                           <u><h3>Paleozoic Era</h3></u>
-                                          <span class="range">538 – 252 Ma</span>
+                                          <span class="range">538 – 252 Mya</span>
                                           <p>Continents drifted and eventually collided into one supercontinent, Pangaea.</p>
                                           <ul>
                                               <li>Cambrian</li>
@@ -172,20 +172,22 @@
                                           </ul>
                                       </div>
                                   </a>
-                                  <div class="subperiod-card">
-                                      <h3>Mesozoic Era</h3>
-                                      <span class="range">252 – 66 Ma</span>
-                                      <p>The Age of Reptiles.</p>
-                                      <p>Dinosaurs rose to dominate land, sea, and air.</p>
-                                      <ul>
-                                          <li>Triassic</li>
-                                          <li>Jurassic</li>
-                                          <li>Cretaceous</li>
-                                      </ul>
-                                  </div>
+                                  <a href="mesozoic.html" class="period-link">
+                                      <div class="subperiod-card">
+                                          <u><h3>Mesozoic Era</h3></u>
+                                          <span class="range">252 – 66 Mya</span>
+                                          <p>The Age of Reptiles.</p>
+                                          <p>Dinosaurs rose to dominate land, sea, and air.</p>
+                                          <ul>
+                                              <li>Triassic</li>
+                                              <li>Jurassic</li>
+                                              <li>Cretaceous</li>
+                                          </ul>
+                                      </div>
+                                  </a>
                                   <div class="subperiod-card">
                                       <h3>Cenozoic Era</h3>
-                                      <span class="range">66 Ma – today</span>
+                                      <span class="range">66 Mya – today</span>
                                       <p>The Age of Mammals.</p>
                                       <ul>
                                           <li>Paleogene</li>
