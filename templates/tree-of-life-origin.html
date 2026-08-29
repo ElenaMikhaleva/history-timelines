@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DF — Tree of Life: How It Connects</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream:#F3ECDD; --ink:#1C1A15; --ink-soft:#5B564A;
+  --paper:#F1ECDE; --paper-2:#E9E2CE; --border:1.5px; --radius:7px;
+  --archean:#3E6E8E; --proterozoic:#7C8F4B; --merge:#C1502E;
+}
+* { box-sizing:border-box; }
+body { margin:0; background:var(--cream); color:var(--ink); font-family:'Work Sans',sans-serif; line-height:1.6; }
+.frame { max-width:640px; margin:0 auto; padding:56px 24px 100px; }
+.kicker { font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:14px; }
+h1 { font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:clamp(28px,6vw,38px); margin:0 0 12px; }
+.dek { font-size:15px; color:var(--ink-soft); max-width:32em; margin:0 0 12px; }
+.legend { display:flex; gap:18px; flex-wrap:wrap; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--ink-soft); margin-bottom:32px; }
+.legend span { display:inline-flex; align-items:center; gap:6px; }
+.legend i { width:14px; height:3px; border-radius:2px; display:inline-block; }
+
+.diagram-wrap { position: relative; max-width:400px; margin:0 auto; }
+svg.tree { width:100%; height:auto; display:block; }
+
+.node rect {
+  fill: var(--paper);
+  stroke: var(--node-color, var(--ink-soft));
+  stroke-width: 1.5;
+  transition: fill 0.15s ease, stroke-width 0.15s ease;
+}
+.node text {
+  font-family:'Fraunces', serif;
+  font-weight:600;
+  font-size: 11.5px;
+  fill: var(--ink);
+  text-anchor: middle;
+  dominant-baseline: middle;
+  pointer-events:none;
+}
+.node { cursor:pointer; outline:none; }
+.node:focus { outline:none; }
+.node:hover rect { stroke-width:2.2; }
+.node.is-active rect { fill: var(--node-color, var(--ink-soft)); stroke-width:2.2; }
+.node.is-active text { fill: var(--cream); }
+
+.link { fill:none; stroke-width:1.5; }
+.link-label {
+  font-family:'JetBrains Mono', monospace;
+  font-size: 8.5px;
+  fill: var(--merge);
+  text-anchor: middle;
+}
+
+.detail {
+  position: absolute;
+  z-index: 20;
+  background: var(--paper);
+  border: var(--border) solid var(--ink-soft);
+  border-radius: var(--radius);
+  box-shadow: 6px 6px 0 var(--detail-color, var(--ink-soft));
+  padding: 16px 18px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+}
+.detail.is-visible { opacity: 1; pointer-events: auto; }
+.detail-close {
+  position: absolute;
+  top: 8px; right: 8px;
+  width: 20px; height: 20px;
+  border: none;
+  background: none;
+  appearance: none;
+  -webkit-appearance: none;
+  color: var(--ink-soft);
+  cursor: pointer;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 15px;
+  line-height: 1;
+  padding: 0;
+}
+.detail-close:hover { color: var(--merge); }
+.detail-name { font-family:'Fraunces',serif; font-weight:600; font-size:17px; margin:0 8px 8px 0; }
+.detail-text { font-size:13px; margin:0; }
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="kicker">Biology · Deep Time</div>
+  <h1>How It Connects</h1>
+  <p class="dek">Tap any name in the diagram. The dashed lines mark the two moments one lineage merged permanently into another — the reason you have mitochondria, and the reason plants are green.</p>
+  <div class="legend">
+    <span><i style="background:var(--archean)"></i> Archean</span>
+    <span><i style="background:var(--proterozoic)"></i> Proterozoic</span>
+    <span><i style="background:var(--merge); opacity:0.6;"></i> endosymbiosis (merger)</span>
+  </div>
+
+  <div class="diagram-wrap">
+    <svg class="tree" viewBox="0 0 360 580" xmlns="http://www.w3.org/2000/svg">
+
+      <!-- ordinary lineage lines -->
+      <path class="link" d="M180,57 L100,113" stroke="var(--archean)"/>
+      <path class="link" d="M180,57 L260,113" stroke="var(--archean)"/>
+      <path class="link" d="M100,147 L100,203" stroke="var(--archean)"/>
+      <path class="link" d="M190,347 L270,413" stroke="var(--proterozoic)"/>
+      <path class="link" d="M270,447 L270,503" stroke="var(--proterozoic)"/>
+
+      <!-- endosymbiosis (merge) lines -->
+      <path class="link" d="M100,147 L190,313" stroke="var(--merge)" stroke-dasharray="4 4"/>
+      <path class="link" d="M260,147 L190,313" stroke="var(--merge)" stroke-dasharray="4 4"/>
+      <path class="link" d="M100,237 L100,413" stroke="var(--merge)" stroke-dasharray="4 4"/>
+      <path class="link" d="M190,347 L100,413" stroke="var(--merge)" stroke-dasharray="4 4"/>
+      <text class="link-label" x="150" y="288">1st merger</text>
+      <text class="link-label" x="112" y="330">2nd merger</text>
+
+      <!-- nodes -->
+      <g class="node" data-id="prokaryotes" data-color="var(--archean)" tabindex="0">
+        <rect x="121" y="23" width="118" height="34" rx="7" style="--node-color:var(--archean)"/>
+        <text x="180" y="41">Prokaryotes</text>
+      </g>
+
+      <g class="node" data-id="bacteria" data-color="var(--archean)" tabindex="0">
+        <rect x="58" y="113" width="84" height="34" rx="7" style="--node-color:var(--archean)"/>
+        <text x="100" y="131">Bacteria</text>
+      </g>
+
+      <g class="node" data-id="archaea" data-color="var(--archean)" tabindex="0">
+        <rect x="218" y="113" width="84" height="34" rx="7" style="--node-color:var(--archean)"/>
+        <text x="260" y="131">Archaea</text>
+      </g>
+
+      <g class="node" data-id="cyanobacteria" data-color="var(--archean)" tabindex="0">
+        <rect x="44" y="203" width="112" height="34" rx="7" style="--node-color:var(--archean)"/>
+        <text x="100" y="221">Cyanobacteria</text>
+      </g>
+
+      <g class="node" data-id="eukaryotes" data-color="var(--proterozoic)" tabindex="0">
+        <rect x="140" y="313" width="100" height="34" rx="7" style="--node-color:var(--proterozoic)"/>
+        <text x="190" y="331">Eukaryotes</text>
+      </g>
+
+      <g class="node" data-id="algae" data-color="var(--proterozoic)" tabindex="0">
+        <rect x="41" y="413" width="118" height="34" rx="7" style="--node-color:var(--proterozoic)"/>
+        <text x="100" y="431">Algae &amp; plants</text>
+      </g>
+
+      <g class="node" data-id="animalline" data-color="var(--proterozoic)" tabindex="0">
+        <rect x="222" y="413" width="96" height="34" rx="7" style="--node-color:var(--proterozoic)"/>
+        <text x="270" y="431">Animal line</text>
+      </g>
+
+      <g class="node" data-id="ediacaran" data-color="var(--proterozoic)" tabindex="0">
+        <rect x="206" y="503" width="128" height="34" rx="7" style="--node-color:var(--proterozoic)"/>
+        <text x="270" y="521">Ediacaran biota</text>
+      </g>
+
+    </svg>
+
+    <div class="detail" id="detail">
+      <button class="detail-close" id="detailClose" aria-label="Close">×</button>
+      <div id="detailBody"></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const DETAILS = {
+  prokaryotes: {
+    name: "Prokaryotes",
+    color: "var(--archean)",
+    text: "The first cellular life, with no nucleus or internal compartments — just a membrane, DNA, and cytoplasm. Every later branch of life, all the way to you, descends from this starting point."
+  },
+  bacteria: {
+    name: "Bacteria",
+    color: "var(--archean)",
+    text: "One of the two primary prokaryote lineages. Includes cyanobacteria — and, separately, the bacterium that would later merge permanently with an archaeon to form the first eukaryotic cell."
+  },
+  archaea: {
+    name: "Archaea",
+    color: "var(--archean)",
+    text: "The other primary prokaryote lineage, genetically distinct from bacteria despite looking similar. Archaea are actually more closely related to eukaryotes — including every plant, animal, and fungus — than bacteria are."
+  },
+  cyanobacteria: {
+    name: "Cyanobacteria",
+    color: "var(--archean)",
+    text: "The first organisms to photosynthesize using water, releasing oxygen as a byproduct and triggering the Great Oxidation Event. Over a billion years later, one cyanobacterium was engulfed by a eukaryote and became the chloroplast — the reason plants are green."
+  },
+  eukaryotes: {
+    name: "Eukaryotes",
+    color: "var(--proterozoic)",
+    text: "Formed when an archaeon engulfed a bacterium and, instead of digesting it, kept it as a permanent internal partner — the 1st merger shown here. That bacterium became the mitochondrion. This one event is the root of every plant, animal, fungus, and protist alive today, including you."
+  },
+  algae: {
+    name: "Algae & plants",
+    color: "var(--proterozoic)",
+    text: "A second, separate merger: one eukaryotic lineage engulfed a cyanobacterium, which became the chloroplast. This lineage is the ancestor of every alga and land plant alive."
+  },
+  animalline: {
+    name: "Animal line",
+    color: "var(--proterozoic)",
+    text: "The eukaryote lineage that never acquired a chloroplast, staying dependent on consuming other organisms for energy. This is the branch that eventually leads to animals — including every species in the Carnivora tree."
+  },
+  ediacaran: {
+    name: "Ediacaran biota",
+    color: "var(--proterozoic)",
+    text: "Strange, soft-bodied, often frond-shaped organisms from the very end of the Proterozoic — among the first large, complex multicellular life. Whether they were true early animals is still debated, but they sit right before the Cambrian explosion, where the animal kingdom bursts into the diversity you see in Carnivora and beyond."
+  }
+};
+
+const detailEl = document.getElementById('detail');
+const detailBody = document.getElementById('detailBody');
+const diagramWrap = document.querySelector('.diagram-wrap');
+
+function positionCard(nodeEl) {
+  const wrapRect = diagramWrap.getBoundingClientRect();
+  const nodeRect = nodeEl.getBoundingClientRect();
+  const relTop = nodeRect.top - wrapRect.top;
+  const relBottom = nodeRect.bottom - wrapRect.top;
+  const relCenterX = nodeRect.left - wrapRect.left + nodeRect.width / 2;
+
+  const cardWidth = Math.min(220, wrapRect.width - 16);
+  let left = relCenterX - cardWidth / 2;
+  left = Math.max(8, Math.min(left, wrapRect.width - cardWidth - 8));
+
+  const placeAbove = relTop > wrapRect.height * 0.55;
+  detailEl.style.width = cardWidth + 'px';
+  detailEl.style.left = left + 'px';
+  if (placeAbove) {
+    detailEl.style.top = (relTop - 10) + 'px';
+    detailEl.style.transform = 'translateY(-100%)';
+  } else {
+    detailEl.style.top = (relBottom + 10) + 'px';
+    detailEl.style.transform = 'none';
+  }
+}
+
+function closeCard() {
+  detailEl.classList.remove('is-visible');
+  document.querySelectorAll('.node').forEach(n => n.classList.remove('is-active'));
+}
+
+document.querySelectorAll('.node').forEach(node => {
+  node.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const alreadyActive = node.classList.contains('is-active');
+    document.querySelectorAll('.node').forEach(n => n.classList.remove('is-active'));
+
+    if (alreadyActive) { closeCard(); return; }
+
+    node.classList.add('is-active');
+    const d = DETAILS[node.dataset.id];
+    detailEl.style.setProperty('--detail-color', d.color);
+    detailBody.innerHTML = `<h3 class="detail-name">${d.name}</h3><p class="detail-text">${d.text}</p>`;
+    positionCard(node);
+    detailEl.classList.add('is-visible');
+  });
+  node.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); node.click(); }
+  });
+});
+
+document.getElementById('detailClose').addEventListener('click', closeCard);
+document.addEventListener('click', (e) => {
+  if (!diagramWrap.contains(e.target)) closeCard();
+});
+window.addEventListener('resize', () => {
+  const active = document.querySelector('.node.is-active');
+  if (active) positionCard(active);
+});
+</script>
+</body>
+</html>
