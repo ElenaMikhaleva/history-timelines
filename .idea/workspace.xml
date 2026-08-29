@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1be67b9a-5fc8-4d97-bbd8-6590e66db18f" name="Changes" comment="debugging">
+    <list default="true" id="1be67b9a-5fc8-4d97-bbd8-6590e66db18f" name="Changes" comment="adding content">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/cenozoic.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/cenozoic.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles/tree.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/phylogeny.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/phylogeny.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -384,7 +386,23 @@
       <option name="project" value="LOCAL" />
       <updated>1787949852847</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="adding content">
+      <option name="closed" value="true" />
+      <created>1787952196779</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1787952196779</updated>
+    </task>
+    <task id="LOCAL-00034" summary="adding content">
+      <option name="closed" value="true" />
+      <created>1787952398059</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1787952398059</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -401,6 +419,7 @@
     <MESSAGE value="added greek-history.html" />
     <MESSAGE value="experimenting" />
     <MESSAGE value="debugging" />
-    <option name="LAST_COMMIT_MESSAGE" value="debugging" />
+    <MESSAGE value="adding content" />
+    <option name="LAST_COMMIT_MESSAGE" value="adding content" />
   </component>
 </project>
