@@ -4,20 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1be67b9a-5fc8-4d97-bbd8-6590e66db18f" name="Changes" comment="debugging">
-      <change afterPath="$PROJECT_DIR$/src/ediacaran-ill.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/proterozoic-ill.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/tree-of-life-origin.html" afterDir="false" />
+    <list default="true" id="1be67b9a-5fc8-4d97-bbd8-6590e66db18f" name="Changes" comment="editing">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/proterozoic-eon.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/styles/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/about.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/about.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/cenozoic.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/cenozoic.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/geological-time.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/geological-time.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/mesozoic.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/mesozoic.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/paleozoic.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/paleozoic.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/phylogeny.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/phylogeny-test.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/tree-of-life-origin.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/tree-of-life-origin.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -427,7 +418,15 @@
       <option name="project" value="LOCAL" />
       <updated>1787995400258</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="editing">
+      <option name="closed" value="true" />
+      <created>1788011422772</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1788011422772</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -445,6 +444,7 @@
     <MESSAGE value="experimenting" />
     <MESSAGE value="adding content" />
     <MESSAGE value="debugging" />
-    <option name="LAST_COMMIT_MESSAGE" value="debugging" />
+    <MESSAGE value="editing" />
+    <option name="LAST_COMMIT_MESSAGE" value="editing" />
   </component>
 </project>
