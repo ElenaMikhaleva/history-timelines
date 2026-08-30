@@ -6,9 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="1be67b9a-5fc8-4d97-bbd8-6590e66db18f" name="Changes" comment="editing">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/geol-time-header.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/geol-time-header.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/styles/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles/styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/geological-time.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/geological-time.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/tree-of-life-origin.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/tree-of-life-origin.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/paleozoic.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/paleozoic.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -426,7 +427,15 @@
       <option name="project" value="LOCAL" />
       <updated>1788011422772</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="editing">
+      <option name="closed" value="true" />
+      <created>1788101683228</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1788101683228</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

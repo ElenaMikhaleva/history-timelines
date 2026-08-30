@@ -51,7 +51,7 @@ body[data-page="geological-time"] {
   --first: #B8462A;
   --second: #3E6E8E;
   --third: #7C8F4B;
-  --fourth: #C9963A;
+      --fourth: #C9963A;
 }
 body[data-page="paleozoic"] {
   --first: #C4472A;
