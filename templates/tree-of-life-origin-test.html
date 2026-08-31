@@ -13,7 +13,7 @@
 }
 * { box-sizing:border-box; }
 body { margin:0; background:var(--cream); color:var(--ink); font-family:'Work Sans',sans-serif; line-height:1.6; }
-.frame { max-width:720px; margin:0 auto; padding:56px 20px 100px; }
+.frame { max-width:960px; margin:0 auto; padding:56px 20px 100px; }
 .kicker { font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:14px; }
 h1 { font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:clamp(28px,6vw,38px); margin:0 0 12px; }
 .dek { font-size:15px; color:var(--ink-soft); max-width:34em; margin:0 0 12px; }
@@ -25,8 +25,27 @@ h1 { font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:clamp(28
 .legend .lg-event i { width:8px; height:8px; border-radius:50%; background:var(--merge); }
 
 /* ---- Flow container: nodes are real HTML in normal document flow ---- */
-.tree-flow { position:relative; }
-.tree-links { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; z-index:2; overflow:visible; }
+.layout-split { display:flex; gap:28px; align-items:flex-start; }
+.tree-flow { position:relative; flex:1 1 auto; min-width:0; }
+.detail-side {
+  flex: 0 0 380px;
+  position: sticky;
+  top: 20px;
+}
+.detail-side .period-body { grid-template-columns: 1fr; }
+.detail-placeholder {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--ink-soft);
+  padding: 16px;
+  border: 1.5px dashed var(--ink-soft);
+  border-radius: var(--radius);
+}
+@media (max-width: 760px) {
+  .layout-split { flex-direction: column; }
+  .detail-side { position: static; flex: 1 1 auto; width: 100%; max-height: none; }
+}
+.tree-links { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; z-index:0; overflow:visible; }
 .tree-row { position:relative; z-index:1; display:flex; flex-wrap:wrap; justify-content:center; align-items:flex-start; gap:12px; margin-bottom:14px; }
 .tree-col { display:flex; flex-direction:column; align-items:center; flex:1 1 0; min-width:0; max-width:220px; }
 
@@ -41,6 +60,9 @@ h1 { font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:clamp(28
   min-height: 42px;
   min-width: 0;
   width: 100%;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
   transition: background 0.15s ease, color 0.15s ease;
 }
 .node-btn.kind-lineage { border-style: dashed; }
@@ -94,9 +116,11 @@ h1 { font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:clamp(28
 .group-chip:focus { outline: none; }
 
 /* ---- Event row (a merger/split event, clickable, sits between two node rows) ---- */
-.event-row { position:relative; z-index:1; display:flex; justify-content:center; margin: -2px 0 16px; }
+.event-row { position:relative; z-index:1; min-height:26px; margin: 28px 0 8px; }
 .event-chip-btn {
   appearance:none; -webkit-appearance:none;
+  position: absolute;
+  top: 0;
   width: 26px; height: 26px;
   border-radius: 50%;
   background: var(--cream);
@@ -192,15 +216,20 @@ h1 { font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:clamp(28
 <div class="frame">
   <div class="kicker">Biology · Deep Time</div>
   <h1>Tree of Life: Origins</h1>
-  <p class="dek">Tap any name to read its card right below it, or a dashed pill on a connector to read about that event.</p>
+  <p class="dek">Tap any name for its card, or a dashed pill on a connector to read about that event.</p>
   <div class="legend">
     <span class="lg-rank"><i></i> formal rank</span>
     <span class="lg-lineage"><i></i> informal lineage</span>
     <span class="lg-event"><i></i> event</span>
   </div>
 
-  <div class="tree-flow" id="treeFlow">
-    <svg class="tree-links" id="treeLinks"></svg>
+  <div class="layout-split">
+    <div class="tree-flow" id="treeFlow">
+      <svg class="tree-links" id="treeLinks"></svg>
+    </div>
+    <aside class="detail-side" id="detailSide">
+      <p class="detail-placeholder">Tap a name to see its card here.</p>
+    </aside>
   </div>
 </div>
 
@@ -244,11 +273,20 @@ const TREE_DATA = {
   nodes: [
     { id:'bacteria', name:'Bacteria', native:'Бактерии', kind:'rank', rankLabel:'domain', color:'archean',
       html:`<p>One of the two primary <span class="term" data-def="A group of related organisms sharing a common ancestor.">lineages</span> that split from early prokaryotic cells. Includes cyanobacteria — and, separately, the bacterium that would later merge permanently with an archaeon.</p>`,
-      today:`Bacteria are found in essentially every environment on Earth, including inside you.` },
+      today:`Bacteria are found in essentially every environment on Earth, including inside you.`,
+      images:[
+        {caption:'Streptococcus — chain-forming bacteria; includes both harmless species and the one behind strep throat.'},
+        {caption:'Staphylococcus — cluster-forming bacteria common on human skin; includes S. aureus, a frequent cause of infections.'},
+        {caption:'Bacillus — rod-shaped bacteria able to form tough, dormant spores; includes both soil-dwelling and pathogenic species like anthrax.'}
+      ] },
 
     { id:'archaea', name:'Archaea', native:'Археи', kind:'rank', rankLabel:'domain', color:'archean',
       html:`<p>The other primary prokaryote domain, genetically distinct from bacteria despite looking similar. Archaea are actually <span class="highlight">more closely related to eukaryotes</span> than bacteria are.</p>`,
-      today:`Found almost everywhere, including the human gut — many are extremophiles, thriving in hot springs and salt lakes.` },
+      today:`Found almost everywhere, including the human gut — many are extremophiles, thriving in hot springs and salt lakes.`,
+      images:[
+        {caption:'Thermococcus — a genus of heat-loving archaea living around deep-sea hydrothermal vents, some thriving near or above 100°C.'},
+        {caption:'Methanosarcina — methane-producing archaea found in swamps and animal guts, and used industrially to generate biogas.'}
+      ] },
 
     { id:'cyanobacteria', name:'Cyanobacteria', native:'Цианобактерии', kind:'rank', rankLabel:'phylum', color:'archean',
       html:`<p>The first organisms to <span class="term" data-def="Using light energy to build sugars from CO₂ and water.">photosynthesize</span> using water, releasing oxygen as a byproduct and triggering the Great Oxidation Event.</p>`,
@@ -384,35 +422,28 @@ function cardHtml(item, badge) {
     </div>`;
 }
 
-const globalExpand = document.createElement('div');
-globalExpand.className = 'expand-wrap';
-globalExpand.innerHTML = '<div class="expand-inner"></div>';
+const detailSide = document.getElementById('detailSide');
 let activeId = null;
 
-function toggleExpand(id, btn, item, badge, anchorEl) {
-  const inner = globalExpand.querySelector('.expand-inner');
-  const wasOpenForThis = globalExpand.classList.contains('is-open') && activeId === id;
-
+function toggleExpand(id, btn, item, badge) {
+  const wasOpenForThis = activeId === id;
   document.querySelectorAll('.node-btn.is-active, .group-chip.is-active, .event-chip-btn.is-active').forEach(b => b.classList.remove('is-active'));
 
   if (wasOpenForThis) {
-    globalExpand.classList.remove('is-open');
+    detailSide.innerHTML = '<p class="detail-placeholder">Tap a name to see its card here.</p>';
     activeId = null;
-    globalExpand.addEventListener('transitionend', () => { inner.innerHTML = ''; redrawLinks(); }, { once:true });
   } else {
-    inner.innerHTML = cardHtml(item, badge);
-    wireCarousel(inner);
-    anchorEl.insertAdjacentElement('afterend', globalExpand);
-    requestAnimationFrame(() => globalExpand.classList.add('is-open'));
+    detailSide.innerHTML = cardHtml(item, badge);
+    wireCarousel(detailSide);
     btn.classList.add('is-active');
     activeId = id;
-    globalExpand.addEventListener('transitionend', redrawLinks, { once:true });
+    if (window.innerWidth <= 760) {
+      setTimeout(() => detailSide.scrollIntoView({ behavior:'smooth', block:'start' }), 60);
+    }
   }
-  redrawLinks();
-  setTimeout(redrawLinks, 320);
 }
 
-function buildNodeCol(item, anchorRow) {
+function buildNodeCol(item) {
   const n = nodesById[item.id];
   const col = document.createElement('div');
   col.className = 'tree-col';
@@ -422,7 +453,7 @@ function buildNodeCol(item, anchorRow) {
   btn.style.setProperty('--accent-color', `var(--${n.color})`);
   btn.dataset.id = n.id;
   btn.textContent = n.name;
-  btn.addEventListener('click', () => toggleExpand(n.id, btn, n, n.rankLabel || null, anchorRow));
+  btn.addEventListener('click', () => toggleExpand(n.id, btn, n, n.rankLabel || null));
   col.appendChild(btn);
   if (item.from) simpleLinks.push({ fromId:item.from, toId:n.id });
 
@@ -436,7 +467,7 @@ function buildNodeCol(item, anchorRow) {
       subBtn.style.setProperty('--accent-color', `var(--${subN.color})`);
       subBtn.dataset.id = subN.id;
       subBtn.textContent = subN.name;
-      subBtn.addEventListener('click', () => toggleExpand(subN.id, subBtn, subN, subN.rankLabel || null, anchorRow));
+      subBtn.addEventListener('click', () => toggleExpand(subN.id, subBtn, subN, subN.rankLabel || null));
       subWrap.appendChild(subBtn);
       simpleLinks.push({ fromId:item.id, toId:subN.id });
     });
@@ -459,12 +490,12 @@ TREE_DATA.layout.forEach(entry => {
       chip.className = 'group-chip';
       chip.textContent = g.label;
       chip.dataset.id = g.id;
-      chip.addEventListener('click', () => toggleExpand(g.id, chip, g, 'informal group', rowEl));
+      chip.addEventListener('click', () => toggleExpand(g.id, chip, g, 'informal group'));
       wrap.appendChild(chip);
-      entry.items.forEach(item => wrap.appendChild(buildNodeCol(item, rowEl)));
+      entry.items.forEach(item => wrap.appendChild(buildNodeCol(item)));
       rowEl.appendChild(wrap);
     } else {
-      entry.items.forEach(item => rowEl.appendChild(buildNodeCol(item, rowEl)));
+      entry.items.forEach(item => rowEl.appendChild(buildNodeCol(item)));
     }
     flow.appendChild(rowEl);
   }
@@ -479,7 +510,7 @@ TREE_DATA.layout.forEach(entry => {
     chip.title = ev.label;
     chip.setAttribute('aria-label', ev.label);
     chip.dataset.id = ev.id;
-    chip.addEventListener('click', () => toggleExpand(ev.id, chip, ev, 'event', evRow));
+    chip.addEventListener('click', () => toggleExpand(ev.id, chip, ev, 'event'));
     evRow.appendChild(chip);
     flow.appendChild(evRow);
   }
@@ -487,6 +518,19 @@ TREE_DATA.layout.forEach(entry => {
 
 /* ---- Connector lines: computed from real DOM positions, redrawn on any layout change ---- */
 function redrawLinks() {
+  // Position each event chip horizontally above its actual child node,
+  // instead of just centering it in the diagram.
+  (TREE_DATA.events||[]).forEach(ev => {
+    const chip = document.querySelector(`.event-chip-btn[data-id="${ev.id}"]`);
+    const toEl = document.querySelector(`.node-btn[data-id="${ev.to}"]`);
+    if (!chip || !toEl) return;
+    const rowRect = chip.parentElement.getBoundingClientRect();
+    const toRect = toEl.getBoundingClientRect();
+    let left = (toRect.left + toRect.width/2) - rowRect.left - 13; // 13 = half chip width
+    left = Math.max(4, Math.min(left, rowRect.width - 30));
+    chip.style.left = `${left}px`;
+  });
+
   const flowRect = flow.getBoundingClientRect();
   linksSvg.innerHTML = '';
   linksSvg.setAttribute('width', flowRect.width);
@@ -524,16 +568,17 @@ function redrawLinks() {
 }
 
 redrawLinks();
+if (document.fonts && document.fonts.ready) {
+  document.fonts.ready.then(redrawLinks);
+}
+setTimeout(redrawLinks, 300);
+setTimeout(redrawLinks, 1000);
 window.addEventListener('resize', redrawLinks);
 document.addEventListener('click', (e) => {
-  if (!e.target.closest('.node-btn, .group-chip, .event-chip-btn, .expand-wrap')) {
-    if (globalExpand.classList.contains('is-open')) {
-      globalExpand.classList.remove('is-open');
-      activeId = null;
-      globalExpand.addEventListener('transitionend', () => { globalExpand.querySelector('.expand-inner').innerHTML = ''; redrawLinks(); }, { once:true });
-    }
+  if (!e.target.closest('.node-btn, .group-chip, .event-chip-btn, .detail-side')) {
+    detailSide.innerHTML = '<p class="detail-placeholder">Tap a name to see its card here.</p>';
+    activeId = null;
     document.querySelectorAll('.is-active').forEach(b => b.classList.remove('is-active'));
-    setTimeout(redrawLinks, 320);
   }
 });
 </script>
