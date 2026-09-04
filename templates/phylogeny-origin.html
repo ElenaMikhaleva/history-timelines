@@ -290,8 +290,26 @@ function wireCarousel(root) {
   });
 }
 
+function buildMedia(images) {
+  if (!images || !images.length) return '';
+
+  // If only 1 image, render a simple image container (no arrows/dots)
+  if (images.length === 1) {
+    const img = images[0];
+    return `
+      <figure class="single-img-slot">
+        <div class="img-slot">
+          ${img.src ? `<img src="${img.src}" alt="${(img.caption||'').replace(/"/g,'&quot;')}">` : 'image'}
+        </div>
+        ${img.caption ? `<figcaption class="carousel-caption">${img.caption}</figcaption>` : ''}
+      </figure>`;
+  }
+  return buildCarousel(images);
+}
 function cardHtml(item, badge) {
   const hasImages = item.images && item.images.length;
+  const imagePos = item.imagePos || 'bottom';
+  const layoutClass = imagePos === 'right' ? 'img-right' : 'img-bottom';
   return `
     <div class="expand-pad">
       <section class="card-card" style="--accent-color:var(--${item.color})">
@@ -348,6 +366,10 @@ function buildNodeCol(item) {
   if (item.sub && item.sub.length) {
     const subWrap = document.createElement('div');
     subWrap.className = 'sub-branch';
+    subWrap.style.display = 'flex';
+    subWrap.style.flexDirection = 'row';
+    subWrap.style.gap = '8px';
+
     item.sub.forEach(subItem => {
       const subN = nodesById[subItem.id];
       const subBtn = document.createElement('button');

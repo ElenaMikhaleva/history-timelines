@@ -375,6 +375,53 @@ h2 {
   max-width: 260px;
   margin: 0 0 14px 22px;
 }
+.card-body.img-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.single-img-slot {
+  margin: 0;
+  width: 100%;
+}
+.img-slot {
+  border: 1.5px solid var(--ink-soft);
+  border-radius: var(--radius);
+  aspect-ratio: 4/3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: repeating-linear-gradient(135deg, var(--paper-2), var(--paper-2) 8px, transparent 8px, transparent 16px);
+}
+.img-slot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.carousel { position: relative; width: 100%; }
+.carousel-viewport { position: relative; overflow: hidden; aspect-ratio: 4/3; border-radius: var(--radius); }
+.carousel-track { display: flex; height: 100%; transition: transform 0.3s ease; }
+.carousel-slide { flex: 0 0 100%; height: 100%; margin: 0; }
+.carousel-slide .img-slot { width: 100%; height: 100%; border: none; }
+.carousel-arrow {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 26px; height: 26px; border-radius: 50%; border: none;
+  background: var(--cream); opacity: 0.85; color: var(--ink);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: opacity 0.15s ease;
+}
+.carousel-arrow svg { width: 11px; height: 11px; display: block; }
+.carousel-arrow:hover { opacity: 1; color: var(--accent-color); }
+.carousel-prev { left: 8px; }
+.carousel-next { right: 8px; }
+
+.carousel-foot { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; margin-top: 8px; }
+.carousel-dots { display: flex; gap: 5px; flex-shrink: 0; margin-top: 3px; }
+.carousel-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--ink-soft); opacity: 0.35; border: none; padding: 0; cursor: pointer; }
+.carousel-dot.is-active { background: var(--accent-color, var(--ink)); opacity: 1; }
+.carousel-caption { font-size: 11.5px; color: var(--ink-soft); line-height: 1.4; text-align: left; margin-top: 6px; }
 .card-text p{
     margin:0 0 12px;
     }
@@ -649,10 +696,11 @@ li::before {
 .node-btn:focus { outline: none; }
 .node-btn:focus-visible { outline: 2px solid var(--accent-color, var(--ink-soft)); outline-offset: 2px; }
 .sub-branch {
-  margin-top: 22px;
+  margin-top: 12px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
+  gap: 8px;
+  justify-content: center;
   width: 100%;
 }
 .node-btn--small {
