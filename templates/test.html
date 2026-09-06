@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marginalia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500&family=Archivo:wght@400;500;600;700;800&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#F3EEE3;
+    --cream-2:#ECE5D5;
+    --ink:#211D1A;
+    --ink-soft:#5B564C;
+    --line:#DDD3BE;
+    --red:#C4272C;
+    --red-tint:#F3DAD4;
+    --red-ink:#7A1518;
+    --blue:#4A6FA5;
+    --blue-tint:#DDE5EE;
+    --blue-ink:#2C4568;
+    --green:#5C9A6B;
+    --green-tint:#DFEEE2;
+    --green-ink:#2E5E3B;
+    --purple:#8B6BB8;
+    --purple-tint:#E9E0F3;
+    --purple-ink:#54397E;
+    --yellow:#D9A62E;
+    --yellow-tint:#F5E7C4;
+    --yellow-ink:#7A5B0A;
+
+    --eon-had:#B5482E;
+    --eon-arch:#3C6D93;
+    --eon-prot:#7C8A3E;
+    --eon-phan:#D6A63C;
+    --khaki:#E3D8AC;
+    --khaki-ink:#4A4326;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Archivo',sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit;}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 32px;}
+
+  nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:28px 32px;max-width:1040px;margin:0 auto;
+  }
+  .brand{font-family:'Fraunces',serif;font-weight:600;font-size:22px;}
+  .navlinks{display:flex;gap:6px;}
+  .navlinks button{
+    font-family:'Archivo',sans-serif;font-size:14px;font-weight:500;
+    background:none;border:none;color:var(--ink-soft);
+    padding:8px 14px;border-radius:20px;cursor:pointer;
+  }
+  .navlinks button.active{background:var(--ink);color:var(--cream);}
+  .navlinks button:not(.active):hover{background:var(--cream-2);color:var(--ink);}
+
+  section.page{display:none;padding-bottom:110px;}
+  section.page.active{display:block;}
+
+  .hero{padding:60px 0 40px;position:relative;}
+  .hero h1{font-size:52px;line-height:1.08;max-width:620px;}
+  .hero p{font-size:17px;color:var(--ink-soft);max-width:440px;margin-top:20px;line-height:1.6;}
+  .blob{position:absolute;right:10px;top:10px;width:150px;opacity:0.95;}
+
+  .bleedband{width:100vw;position:relative;left:50%;transform:translateX(-50%);overflow:hidden;margin-bottom:52px;}
+  .bleedband .bandinner{max-width:1040px;margin:0 auto;padding:64px 32px;position:relative;}
+  .bleedband .bandinner h2{font-size:50px;line-height:1.05;max-width:620px;position:relative;z-index:1;}
+  .bleedband .bandinner p{margin-top:16px;font-size:16px;max-width:440px;line-height:1.6;position:relative;z-index:1;}
+  .bandgraphic{position:absolute;inset:0;overflow:hidden;pointer-events:none;}
+
+  .cardgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:50px;}
+  .entrycard{
+    border:1px solid var(--line);border-radius:16px;padding:26px 22px;
+    background:var(--cream);cursor:pointer;transition:transform .15s,border-color .15s;
+  }
+  .entrycard:hover{border-color:var(--ink);transform:translateY(-3px);}
+  .iconwrap{width:56px;height:56px;position:relative;margin-bottom:18px;}
+  .iconwrap svg.blobshape{position:absolute;inset:0;width:100%;height:100%;}
+  .iconwrap svg.icon{position:relative;width:26px;height:26px;margin:15px;color:var(--ink);}
+  .entrycard h3{font-size:20px;margin-bottom:8px;}
+  .entrycard p{font-size:14px;color:var(--ink-soft);line-height:1.5;margin:0;}
+
+  /* BOOKS & FILMS — bookplate for books, ticket stub for films */
+  .medialist{display:flex;flex-direction:column;gap:26px;}
+  .bookplate{
+    border:2px solid var(--ink);padding:28px 30px;position:relative;background:#FBF7ED;
+  }
+  .bookplate::before{
+    content:'';position:absolute;top:9px;left:9px;right:9px;bottom:9px;
+    border:1px solid var(--ink);pointer-events:none;
+  }
+  .bookplate .plate-label{
+    font-family:'Fraunces',serif;font-style:italic;font-size:12px;text-align:center;
+    color:var(--ink-soft);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:12px;
+  }
+  .bookplate h3{text-align:center;font-size:24px;}
+  .bookplate .meta{text-align:center;font-size:13px;color:var(--ink-soft);margin:6px 0 16px;}
+  .bookplate .note{font-size:14px;text-align:center;color:var(--ink);line-height:1.6;}
+  .stampmark{
+    position:absolute;top:16px;right:16px;width:56px;height:56px;border:2px solid var(--red);
+    border-radius:50%;display:flex;align-items:center;justify-content:center;transform:rotate(-11deg);
+    font-family:'Archivo',sans-serif;font-weight:800;font-size:9.5px;color:var(--red-ink);
+    text-transform:uppercase;letter-spacing:0.04em;text-align:center;line-height:1.25;opacity:0.9;
+  }
+  .marginnote{max-width:400px;margin:16px 0 0;text-align:left;padding:4px 0 4px 16px;border-left:3px solid var(--red);}
+  .bookplate .marginnote{margin:16px auto 0;}
+  .marginnote blockquote{margin:0;font-family:'Fraunces',serif;font-style:italic;font-size:16px;color:var(--red-ink);line-height:1.5;}
+  .marginnote .marktag{display:block;font-family:'Archivo',sans-serif;font-style:normal;font-size:11.5px;color:var(--ink-soft);margin-top:6px;}
+
+  .ticket{display:flex;background:#FBF7ED;border:2px solid var(--ink);position:relative;}
+  .ticket::before,.ticket::after{
+    content:'';position:absolute;width:16px;height:16px;background:var(--cream);
+    border-radius:50%;right:88px;
+  }
+  .ticket::before{top:-9px;}
+  .ticket::after{bottom:-9px;}
+  .ticket .tmain{flex:1;padding:24px 26px;}
+  .ticket .tmain .kicker{font-family:'Archivo',sans-serif;font-weight:700;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue-ink);margin-bottom:6px;}
+  .ticket .tmain h3{font-size:22px;}
+  .ticket .tmain .meta{font-size:13px;color:var(--ink-soft);margin:4px 0 10px;}
+  .ticket .tmain .note{font-size:14px;color:var(--ink);line-height:1.55;}
+  .ticket .tstub{
+    width:88px;flex-shrink:0;border-left:2px dashed var(--ink);
+    display:flex;align-items:center;justify-content:center;padding:16px 4px;
+  }
+  .ticket .tstub span{
+    font-family:'Archivo',sans-serif;font-weight:800;font-size:12px;letter-spacing:0.1em;
+    writing-mode:vertical-rl;text-transform:uppercase;color:var(--blue-ink);
+  }
+
+  /* Reusable tab bar (Study notes + Timeline both use this) */
+  .tabbar{display:flex;gap:2px;border-bottom:2px solid var(--ink);margin-bottom:0;flex-wrap:wrap;}
+  .tabbtn{
+    font-family:'Archivo',sans-serif;font-weight:600;font-size:13.5px;
+    padding:10px 20px 9px;border:1.5px solid var(--ink);border-bottom:none;
+    border-radius:8px 8px 0 0;position:relative;top:2px;background:var(--cream-2);cursor:pointer;
+    display:flex;align-items:center;gap:8px;
+  }
+  .tabbtn .dot{width:8px;height:8px;border-radius:50%;background:var(--ink-soft);flex-shrink:0;}
+  .tabbtn.current{background:var(--ink);color:var(--cream);}
+  .tabbtn.current .dot{background:currentColor;}
+
+  /* STUDY NOTES — notebook: ruled paper, binder tabs, highlighter */
+  .studybody{display:grid;grid-template-columns:1fr 260px;gap:48px;margin-top:36px;}
+  .noteflow h2{font-size:32px;margin-bottom:8px;max-width:520px;}
+  .noteflow .datestamp{font-size:14px;color:var(--ink-soft);margin-bottom:26px;}
+  .noteflow h4{font-family:'Fraunces',serif;font-weight:600;font-style:italic;font-size:18px;color:var(--ink);margin:28px 0 10px;}
+  .noteflow p{font-size:15.5px;line-height:1.75;color:var(--ink);margin:0 0 14px;max-width:540px;}
+  .noteflow ul{margin:0 0 14px;padding-left:20px;font-size:15.5px;line-height:1.75;max-width:540px;list-style:none;}
+  .noteflow li{position:relative;padding-left:4px;margin-bottom:6px;}
+  .noteflow li::before{content:'—';position:absolute;left:-18px;color:var(--ink-soft);}
+  .hl{background:linear-gradient(120deg,#F3D874 0%,#EAC24B 100%);padding:1px 5px;border-radius:2px;font-weight:600;}
+  .marginrail{padding-left:22px;border-left:3px solid var(--rail-color, var(--red));}
+  .rail-note{margin-bottom:34px;display:flex;gap:8px;}
+  .rail-note:first-child{margin-top:6px;}
+  .rail-note .doodle{flex-shrink:0;width:16px;height:16px;margin-top:3px;color:var(--rail-color, var(--red));}
+  .rail-note blockquote{margin:0;font-family:'Fraunces',serif;font-style:italic;font-size:15.5px;color:var(--rail-ink, var(--red-ink));line-height:1.5;}
+  .rail-note .marktag{display:block;font-family:'Archivo',sans-serif;font-style:normal;font-size:11.5px;color:var(--ink-soft);margin-top:6px;}
+  .rail-note.plain{font-size:13.5px;color:var(--ink-soft);line-height:1.5;font-style:italic;}
+
+  /* TIMELINE — strata sidebar + offset-shadow eon card, matching the reference design */
+  .eonlayout{display:flex;gap:36px;align-items:flex-start;margin-top:8px;}
+  .eonrail{width:100px;flex-shrink:0;border-radius:10px;overflow:hidden;border:1.5px solid var(--ink);}
+  .railblock{
+    display:flex;align-items:center;justify-content:center;cursor:pointer;
+    color:#FBF7ED;font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:12.5px;
+    letter-spacing:0.14em;padding:16px 0;position:relative;transition:filter .15s;
+  }
+  .railblock:not(:last-child){border-bottom:1.5px solid rgba(0,0,0,0.25);}
+  .railblock:hover{filter:brightness(1.08);}
+  .railblock span{writing-mode:vertical-rl;transform:rotate(180deg);}
+  .railblock.current::before{
+    content:'';position:absolute;left:0;top:0;bottom:0;width:5px;background:#FBF7ED;
+  }
+
+  .eoncard{
+    flex:1;background:#FDF9EF;border:1.5px solid var(--ink);border-radius:14px;
+    padding:34px 38px;box-shadow:8px 8px 0 var(--accent, var(--eon-prot));
+  }
+  .eoncard-head{display:flex;align-items:baseline;justify-content:space-between;gap:20px;flex-wrap:wrap;padding-bottom:18px;border-bottom:1.5px dashed var(--accent, var(--eon-prot));}
+  .eoncard-head .titles{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;}
+  .eoncard-head h2{font-size:28px;}
+  .eoncard-head .native{font-family:'IBM Plex Mono',monospace;font-size:15px;color:var(--ink-soft);}
+  .eoncard-head .range{font-family:'IBM Plex Mono',monospace;font-size:15px;color:var(--accent, var(--eon-prot));white-space:nowrap;}
+
+  .eoncard-body{display:grid;grid-template-columns:1fr 280px;gap:32px;margin-top:22px;}
+  .eoncard-body.no-media{grid-template-columns:1fr;}
+  .eontext .etym{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--ink-soft);margin-bottom:12px;}
+  .eontext .etym em{font-style:italic;}
+  .eontext .supereon{font-size:15px;color:var(--ink-soft);margin:0 0 12px;}
+  .eontext .lede{font-size:15.5px;line-height:1.65;margin:0 0 16px;}
+  .eontext ul{list-style:none;margin:0;padding:0;}
+  .eontext li{position:relative;padding-left:20px;margin-bottom:10px;font-size:14.5px;line-height:1.6;}
+  .eontext li::before{content:'—';position:absolute;left:0;color:var(--accent, var(--eon-prot));}
+  .eontext li.extinct::before{content:'†';}
+  .xlink{font-weight:600;text-decoration:underline;text-decoration-color:var(--accent, var(--eon-prot));text-underline-offset:2px;cursor:pointer;}
+  .pill{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:12.5px;background:var(--khaki);color:var(--khaki-ink);padding:1px 7px;border-radius:4px;}
+
+  .eonmedia{position:relative;}
+  .eonmedia .frame{border:1.5px solid var(--ink);border-radius:10px;overflow:hidden;aspect-ratio:4/3;background:var(--cream-2);position:relative;}
+  .eonmedia .frame img{width:100%;height:100%;object-fit:cover;display:block;}
+  .eonmedia .arrow{
+    position:absolute;top:50%;transform:translateY(-50%);width:26px;height:26px;border-radius:50%;
+    background:rgba(253,249,239,0.9);border:1px solid var(--ink);display:flex;align-items:center;justify-content:center;
+    cursor:pointer;font-family:'Archivo',sans-serif;font-size:13px;
+  }
+  .eonmedia .arrow.prev{left:8px;}
+  .eonmedia .arrow.next{right:8px;}
+  .eonmedia .cap{font-size:12px;font-style:italic;color:var(--ink-soft);margin-top:8px;}
+  .eonmedia .dots{display:flex;gap:4px;justify-content:flex-end;margin-top:4px;}
+  .eonmedia .dots span{width:5px;height:5px;border-radius:50%;background:var(--line);}
+  .eonmedia .dots span.on{background:var(--accent, var(--eon-prot));}
+
+  .eonruler{margin-top:26px;padding-top:14px;}
+  .eonruler .labels{position:relative;height:34px;}
+  .eonruler .labels .lbl{
+    position:absolute;transform:translateX(-50%);font-family:'IBM Plex Mono',monospace;font-size:11.5px;
+    background:var(--khaki);color:var(--khaki-ink);padding:2px 7px;border-radius:4px;white-space:nowrap;
+  }
+  .eonruler .track{position:relative;height:6px;border-radius:3px;background:var(--accent, var(--eon-prot));opacity:0.9;}
+  .eonruler .tick{position:absolute;top:-5px;width:2px;height:16px;background:var(--accent, var(--eon-prot));transform:translateX(-50%);}
+
+  .erasplit{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:26px;padding-top:22px;border-top:1px solid var(--line);}
+  .eracard{border:1px solid var(--line);border-radius:12px;padding:16px 18px;background:var(--cream-2);}
+  .eracard .eratag{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;padding:2px 8px;border-radius:20px;margin-bottom:8px;}
+  .eracard h4{font-family:'Fraunces',serif;font-size:17px;margin-bottom:3px;}
+  .eracard .span{font-size:12px;color:var(--ink-soft);margin-bottom:8px;font-family:'IBM Plex Mono',monospace;}
+  .eracard p{font-size:13px;color:var(--ink-soft);line-height:1.5;margin:0 0 8px;}
+  .eracard ul{margin:0;padding-left:16px;font-size:12.5px;color:var(--ink);line-height:1.6;}
+
+  @media(max-width:720px){
+    .cardgrid{grid-template-columns:1fr;}
+    .hero h1{font-size:36px;}
+    .bleedband .bandinner h2{font-size:32px;}
+    .blob,.headblob{display:none;}
+    .ticket{flex-direction:column;}
+    .ticket .tstub{width:100%;border-left:none;border-top:2px dashed var(--ink);writing-mode:horizontal-tb;}
+    .ticket .tstub span{writing-mode:horizontal-tb;}
+    .ticket::before,.ticket::after{display:none;}
+    .studybody{grid-template-columns:1fr;}
+    .marginrail{border-left:none;border-top:3px solid var(--rail-color, var(--red));padding-left:0;padding-top:22px;margin-top:10px;}
+    .eonlayout{flex-direction:column;}
+    .eonrail{width:100%;display:flex;border-radius:10px;}
+    .railblock{flex:1;padding:10px 4px;}
+    .railblock span{writing-mode:horizontal-tb;transform:none;font-size:11px;}
+    .railblock.current::before{left:0;right:0;top:0;bottom:auto;width:auto;height:4px;}
+    .eoncard{padding:22px 20px;}
+    .eoncard-body{grid-template-columns:1fr;}
+    .erasplit{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand">Marginalia</div>
+  <div class="navlinks">
+    <button class="active" data-page="home">Home</button>
+    <button data-page="media">Books &amp; films</button>
+    <button data-page="study">Study notes</button>
+    <button data-page="timeline">Timeline</button>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <section class="page active" id="home">
+    <div class="hero">
+      <svg class="blob" viewBox="0 0 200 200"><path fill="#C4272C" d="M60 40C90 20 140 30 155 65C170 100 155 140 120 160C85 180 40 170 25 135C10 100 25 62 60 40Z"/></svg>
+      <h1>A place for what you're taking in, and making sense of.</h1>
+      <p>Books and films you're working through, notes from what you're studying, and the timelines that tie it together — kept in one spot.</p>
+    </div>
+
+    <div class="cardgrid">
+      <div class="entrycard" onclick="go('media')">
+        <div class="iconwrap">
+          <svg class="blobshape" viewBox="0 0 56 56"><path fill="var(--red)" d="M12 20C18 8 40 6 48 18C56 30 50 46 36 50C22 54 6 46 5 34C4 26 7 27 12 20Z"/></svg>
+          <svg class="icon" viewBox="0 0 40 40" fill="none"><path d="M8 8C8 8 16 5 20 9C24 5 32 8 32 8V32C32 32 24 29 20 33C16 29 8 32 8 32V8Z" stroke="var(--cream)" stroke-width="2.5" stroke-linejoin="round"/><path d="M20 9V33" stroke="var(--cream)" stroke-width="2.5"/></svg>
+        </div>
+        <h3>Books &amp; films</h3>
+        <p>What you're reading and watching, with notes as you go.</p>
+      </div>
+      <div class="entrycard" onclick="go('study')">
+        <div class="iconwrap">
+          <svg class="blobshape" viewBox="0 0 56 56"><path fill="var(--green)" d="M10 14C20 4 44 8 50 22C56 36 46 52 30 52C14 52 2 42 3 28C3.5 21 5 19 10 14Z"/></svg>
+          <svg class="icon" viewBox="0 0 40 40" fill="none"><rect x="9" y="6" width="22" height="28" rx="2" stroke="var(--cream)" stroke-width="2.5"/><path d="M14 14H26M14 20H26M14 26H21" stroke="var(--cream)" stroke-width="2.5" stroke-linecap="round"/></svg>
+        </div>
+        <h3>Study notes</h3>
+        <p>Конспекты and reading notes, organised by subject.</p>
+      </div>
+      <div class="entrycard" onclick="go('timeline')">
+        <div class="iconwrap">
+          <svg class="blobshape" viewBox="0 0 56 56"><path fill="var(--blue)" d="M14 10C26 2 48 10 50 24C52 40 38 54 22 50C8 46 0 32 4 22C6 17 9 13 14 10Z"/></svg>
+          <svg class="icon" viewBox="0 0 40 40" fill="none"><path d="M8 20H32M14 12L8 20L14 28M26 12L32 20L26 28" stroke="var(--cream)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3>Timeline</h3>
+        <p>How things unfolded, laid out in order.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="media">
+    <div class="bleedband" style="background:#D9662E;">
+      <div class="bandgraphic">
+        <svg viewBox="0 0 1040 320" preserveAspectRatio="xMaxYMid slice" style="position:absolute;right:-60px;top:-20px;height:100%;opacity:0.9;">
+          <path d="M700 340 V140 C700 90 740 60 790 60 C840 60 880 90 880 140 V340" fill="none" stroke="#F3EEE3" stroke-width="14" opacity="0.55"/>
+          <path d="M840 340 V150 C840 100 880 70 930 70 C980 70 1020 100 1020 150 V340" fill="none" stroke="#F3EEE3" stroke-width="14" opacity="0.35"/>
+        </svg>
+      </div>
+      <div class="bandinner" style="color:#FBEEE3;">
+        <h2>What you're taking in.</h2>
+        <p style="color:#F6D9C4;">Books and films, and what stuck with you.</p>
+        <div style="display:flex;gap:8px;margin-top:26px;position:relative;z-index:1;">
+          <span style="width:26px;height:34px;background:#F3EEE3;display:inline-block;"></span>
+          <span style="width:26px;height:34px;background:#4A6FA5;display:inline-block;"></span>
+          <span style="width:26px;height:34px;background:#C4272C;display:inline-block;"></span>
+          <span style="width:26px;height:34px;border:1.5px solid #F3EEE3;display:inline-block;"></span>
+        </div>
+      </div>
+    </div>
+    <div class="medialist">
+      <div class="bookplate">
+        <div class="stampmark">Now<br>Reading</div>
+        <div class="plate-label">From the shelf of your notes</div>
+        <h3>The Master and Margarita</h3>
+        <div class="meta">Mikhail Bulgakov · novel</div>
+        <p class="note">Chapter 9 — the Griboyedov scenes are funnier than I expected.</p>
+        <div class="marginnote">
+          <blockquote>"Manuscripts don't burn."</blockquote>
+          <span class="marktag">ch. 24 — keep for the epigraph idea</span>
+        </div>
+      </div>
+      <div class="ticket">
+        <div class="tmain">
+          <div class="kicker">Admit one</div>
+          <h3>Perfect Days</h3>
+          <div class="meta">Wim Wenders · 2023</div>
+          <p class="note">The routine as the whole point, not the obstacle to it.</p>
+          <div class="marginnote">
+            <blockquote>Now is now, next time is next time.</blockquote>
+            <span class="marktag">the line that's stuck with me since</span>
+          </div>
+        </div>
+        <div class="tstub"><span>Finished</span></div>
+      </div>
+      <div class="bookplate">
+        <div class="plate-label">From the shelf of your notes</div>
+        <h3>Klara and the Sun</h3>
+        <div class="meta">Kazuo Ishiguro · novel</div>
+        <p class="note">Picked up after a recommendation — haven't started.</p>
+        <div class="marginnote">
+          <blockquote>"Apparently the ending wrecks you."</blockquote>
+          <span class="marktag">— what S. said, no spoilers please</span>
+        </div>
+      </div>
+      <div class="ticket">
+        <div class="tmain">
+          <div class="kicker">Admit one</div>
+          <h3>Paris, Texas</h3>
+          <div class="meta">Wim Wenders · 1984</div>
+          <p class="note">That opening drive across the desert, no dialogue for ten minutes.</p>
+          <div class="marginnote">
+            <blockquote>The gas-station monologue near the end.</blockquote>
+            <span class="marktag">worth rewatching for that scene alone</span>
+          </div>
+        </div>
+        <div class="tstub"><span>Finished</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="study">
+    <div class="bleedband" style="background:#1F4A34;">
+      <div class="bandgraphic">
+        <svg viewBox="0 0 1040 320" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%;">
+          <path d="M0 320 L0 220 C150 180 300 250 460 210 C620 170 760 230 1040 190 L1040 320 Z" fill="#2F6B4B" opacity="0.9"/>
+          <path d="M0 320 L0 260 C180 230 340 290 520 250 C700 210 860 270 1040 240 L1040 320 Z" fill="#4A8A63" opacity="0.85"/>
+          <path d="M0 320 L0 290 C220 275 400 310 620 285 C800 265 920 300 1040 285 L1040 320 Z" fill="#7BB98C" opacity="0.8"/>
+        </svg>
+      </div>
+      <div class="bandinner" style="color:#F1F6EE;">
+        <h2>What you're studying.</h2>
+        <p style="color:#CFE3D3;">Конспекты and reading notes, organised by subject.</p>
+      </div>
+    </div>
+    <div class="tabbar">
+      <div class="tabbtn current" data-group="study">Linguistics</div>
+      <div class="tabbtn" data-group="study">Statistics</div>
+      <div class="tabbtn" data-group="study">Art history</div>
+      <div class="tabbtn" data-group="study">Hebrew</div>
+    </div>
+    <div class="studybody">
+      <div class="noteflow">
+        <h2>Sociolinguistics — variation</h2>
+        <div class="datestamp">Sept 3 · Linguistics</div>
+        <p>Labov's core finding: linguistic variation isn't random noise, it's socially structured. The same speaker shifts forms depending on formality, audience, and self-monitoring.</p>
+        <h4>Key terms</h4>
+        <ul>
+          <li><span class="hl">Sociolect</span> — variation tied to a social group rather than a region.</li>
+          <li><span class="hl">Prestige form</span> — the variant associated with higher social status.</li>
+          <li><span class="hl">Covert prestige</span> — a non-standard form valued within a group precisely because it isn't standard.</li>
+        </ul>
+        <h4>Question to revisit</h4>
+        <p>How much of "code-switching" is conscious versus automatic? Look at Bell's audience design model next.</p>
+      </div>
+      <div class="marginrail">
+        <div class="rail-note">
+          <svg class="doodle" viewBox="0 0 20 20" fill="none"><path d="M2 14C6 6 12 4 17 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M12 6L17 8L14 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div>
+            <blockquote>"The vernacular is the most systematic form of speech."</blockquote>
+            <span class="marktag">— Labov, quote directly later</span>
+          </div>
+        </div>
+        <div class="rail-note">
+          <svg class="doodle" viewBox="0 0 20 20" fill="none"><path d="M10 2L12 8L18 8L13 12L15 18L10 14L5 18L7 12L2 8L8 8Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+          <div class="plain">Re-read Bell 1984 before next week's seminar.</div>
+        </div>
+        <div class="rail-note">
+          <svg class="doodle" viewBox="0 0 20 20" fill="none"><path d="M3 5H17M3 10H17M3 15H12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          <div>
+            <blockquote>Compare to code-switching in Modern Hebrew diglossia.</blockquote>
+            <span class="marktag">cross-reference</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="timeline">
+    <div class="bleedband" style="background:#2C4568;">
+      <div class="bandgraphic">
+        <svg viewBox="0 0 1040 320" preserveAspectRatio="xMaxYMid slice" style="position:absolute;right:-40px;top:-40px;height:120%;opacity:0.9;">
+          <circle cx="900" cy="140" r="90" fill="#D9A62E" opacity="0.85"/>
+          <g stroke="#F3EEE3" stroke-width="4" fill="none" opacity="0.5">
+            <circle cx="900" cy="140" r="120"/>
+            <circle cx="900" cy="140" r="150"/>
+            <circle cx="900" cy="140" r="180"/>
+          </g>
+        </svg>
+      </div>
+      <div class="bandinner" style="color:#EDF1F7;">
+        <h2>How it unfolded.</h2>
+        <p style="color:#C8D3E4;">Earth's history, eon by eon, from formation to today.</p>
+      </div>
+    </div>
+
+    <div class="eonlayout">
+      <div class="eonrail" id="eonrail">
+        <div class="railblock current" data-eon="hadean" style="background:var(--eon-had);flex:1;"><span>HAD</span></div>
+        <div class="railblock" data-eon="archean" style="background:var(--eon-arch);flex:2.8;"><span>ARCH</span></div>
+        <div class="railblock" data-eon="proterozoic" style="background:var(--eon-prot);flex:3.6;"><span>PROT</span></div>
+        <div class="railblock" data-eon="phanerozoic" style="background:var(--eon-phan);flex:1;"><span>PHAN</span></div>
+      </div>
+
+      <div class="eoncard" id="eoncard" style="--accent:var(--eon-had);"></div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  function go(page){
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    document.getElementById(page).classList.add('active');
+    document.querySelectorAll('.navlinks button').forEach(b=>b.classList.toggle('active', b.dataset.page===page));
+    window.scrollTo(0,0);
+  }
+  document.querySelectorAll('.navlinks button').forEach(b=>{
+    b.addEventListener('click', ()=>go(b.dataset.page));
+  });
+  document.querySelectorAll('#study .tabbtn').forEach(c=>{
+    c.addEventListener('click', ()=>{
+      document.querySelectorAll('#study .tabbtn').forEach(x=>x.classList.remove('current'));
+      c.classList.add('current');
+    });
+  });
+
+  // Eon data for the Timeline page. Each event's "at" is in Mya (millions of years ago),
+  // used only to place it proportionally along that eon's ruler.
+  const S = 'https://elenamikhaleva.github.io/history-timelines/src/';
+  const eons = {
+    hadean: {
+      accent:'var(--eon-had)', title:'Hadean Eon', native:'Катархей', range:'4567 – 4031 Mya',
+      supereon:'Precambrian Supereon.', etym:'from Greek <em>Hádēs</em>, underworld',
+      lede:"Earth forms and gradually cools. Intense volcanic activity and frequent large asteroid impacts keep the surface highly unstable, with widespread volcanism and crustal recycling.",
+      points:[
+        {t:'Earth forms and gradually cools.'},
+        {t:'Intense volcanic activity and frequent large asteroid impacts.'},
+        {t:'The <span class="pill">Moon</span> forms, most likely via a giant impact.'},
+        {t:'The eon ends with the beginning of the Archean, when solid rocks first form.'}
+      ],
+      images:[{src:S+'hadean-eon.png', cap:'Hadean Eon, illustration.'}],
+      range_span:[4567,4031], events:[]
+    },
+    archean: {
+      accent:'var(--eon-arch)', title:'Archean Eon', native:'Архей', range:'4031 – 2500 Mya',
+      supereon:'Precambrian Supereon.', etym:'from Greek <em>arkhḗ</em>, beginning',
+      lede:'Stabilization of early crust and onset of primitive life.',
+      points:[
+        {t:'Atmosphere: methane, carbon dioxide, and nitrogen — no free molecular oxygen, unbreathable by nearly everything alive today; methane\'s greenhouse effect may have helped keep surface water liquid.'},
+        {t:'Continental crust and protocontinents form.'},
+        {t:'<span class="xlink">Stromatolites</span> appear — layered structures built by colonial <span class="xlink">cyanobacteria</span>.'},
+        {t:'First life appears (<span class="xlink">prokaryotes</span>).'}
+      ],
+      images:[
+        {src:S+'archean-eon.png', cap:'Archean Eon, illustration.'},
+        {src:'https://www.crystalworld.com.au/wp-content/uploads/2024/07/acasta-gneiss-1.jpg', cap:'Acasta Gneiss, among Earth\'s oldest known rocks.'},
+        {src:'https://upload.wikimedia.org/wikipedia/commons/8/8a/Stromatolithe_Pal%C3%A9oarch%C3%A9en_-_MNHT.PAL.2009.10.1.jpg', cap:'Paleoarchean stromatolite fossil.'}
+      ],
+      range_span:[4031,2500],
+      events:[{n:'Archaea',at:3500,label:'3.4 Bya'},{n:'Bacteria',at:3500,label:'3.5 Bya'},{n:'cyanobacteria',at:2950,label:'3.2–2.7 Bya'}]
+    },
+    proterozoic: {
+      accent:'var(--eon-prot)', title:'Proterozoic Eon', native:'Протерозой', range:'2500 – 538 Mya',
+      supereon:'Precambrian Supereon.', etym:'from Greek <em>próteros</em> (earlier) + <em>zōḗ</em> (life)',
+      lede:'Atmospheric oxidation and evolution of complex cells.',
+      points:[
+        {t:'Continents stabilize and grow (Kenorland, Columbia, Rodinia, then Pannotia);'},
+        {t:'Atmosphere: The <span class="xlink">Great Oxidation Event</span> (GOE), <span class="pill">oxygen</span> accumulates for the first time, mainly because of photosynthesis by <span class="xlink">cyanobacteria</span>;'},
+        {t:'Climate: <span class="pill">oxygen</span> reacted with <span class="pill">methane</span> that was a powerful greenhouse gas, stripping Earth\'s insulation and plunging the planet into global <span class="xlink">Ice Ages</span> (Snowball Earth);'},
+        {t:'Species: oxygen was toxic to most existing <span class="pill">anaerobic</span> microbes, causing their extinction;', extinct:true},
+        {t:'Species: <span class="xlink">eukaryotes</span> appear;'},
+        {t:'<span class="xlink">Multi-cellular organisms</span> appear (<span class="xlink">algae</span>, <span class="xlink">Ediacaran fauna</span>);'},
+        {t:'Eon ends with the beginning of the Phanerozoic, when abundant animal fossils appear.'}
+      ],
+      images:[
+        {src:S+'proterozoic-ill.png', cap:'Proterozoic Eon, illustration.'},
+        {src:S+'ediacaran-ill.png', cap:'Ediacaran biota reconstruction.'}
+      ],
+      range_span:[2500,538],
+      events:[{n:'GOE',at:2400,label:'2.4 Bya'},{n:'eukaryotes',at:1700,label:'1.7 Bya'},{n:'multi-cellular organisms',at:1600,label:'1.6 Bya'},{n:'Ediacaran biota',at:586,label:'635–538 Mya'}]
+    },
+    phanerozoic: {
+      accent:'var(--eon-phan)', title:'Phanerozoic Eon', native:'Фанерозой', range:'538 Mya – today',
+      supereon:'Current supereon.', etym:'from Greek <em>phanerós</em> (visible) + <em>zōḗ</em> (life)',
+      lede:'Abundant complex life and hard shell/bone fossil record.',
+      points:[
+        {t:'Named for its visible, abundant fossil record — a sharp contrast with the Precambrian.'},
+        {t:'Divided into three eras, browsable below: the Paleozoic, Mesozoic, and Cenozoic.'}
+      ],
+      images:[],
+      range_span:[538,0],
+      events:[{n:'Cambrian Explosion',at:538,label:'538 Mya'},{n:'land plants',at:470,label:'470 Mya'},{n:'amphibians',at:330,label:'330 Mya'},{n:'mammals',at:225,label:'225 Mya'},{n:'Homo',at:2,label:'2 Mya'}],
+      eras:[
+        {tag:'Paleozoic', tagBg:'var(--red-tint)', tagInk:'var(--red-ink)', range:'538 – 252 Mya', span:'Early life diversification to the formation of Pangaea.', list:'Cambrian · Ordovician · Silurian · Devonian · Carboniferous · Permian.'},
+        {tag:'Mesozoic', tagBg:'var(--purple-tint)', tagInk:'var(--purple-ink)', range:'252 – 66 Mya', span:'The age of reptiles and the breakup of Pangaea.', list:'Triassic · Jurassic · Cretaceous.'},
+        {tag:'Cenozoic', tagBg:'var(--green-tint)', tagInk:'var(--green-ink)', range:'66 Mya – today', span:'The age of mammals and the recent ice ages.', list:'Paleogene · Neogene · Quaternary (humans).'}
+      ]
+    }
+  };
+
+  let mediaIndex = 0;
+
+  function renderMedia(e){
+    if(!e.images.length) return '';
+    const img = e.images[mediaIndex];
+    const arrows = e.images.length > 1 ? `
+      <div class="arrow prev" onclick="shiftMedia(-1)">‹</div>
+      <div class="arrow next" onclick="shiftMedia(1)">›</div>` : '';
+    const dots = e.images.length > 1 ? `
+      <div class="dots">${e.images.map((_,i)=>`<span class="${i===mediaIndex?'on':''}"></span>`).join('')}</div>` : '';
+    return `
+      <div class="eonmedia">
+        <div class="frame"><img src="${img.src}" alt="${img.cap}">${arrows}</div>
+        <div class="cap">${img.cap}</div>
+        ${dots}
+      </div>`;
+  }
+
+  function renderRuler(e){
+    if(!e.events.length) return '';
+    const [start,end] = e.range_span;
+    const span = start - end;
+    const pos = at => ((start - at) / span * 100).toFixed(1);
+    // stagger labels vertically when they'd sit close together
+    const sorted = e.events.map(ev=>({...ev, pct:parseFloat(pos(ev.at))})).sort((a,b)=>a.pct-b.pct);
+    let lastPct = -100, row = 0;
+    sorted.forEach(ev=>{ row = (ev.pct - lastPct < 16) ? row + 1 : 0; ev.row = row % 2; lastPct = ev.pct; });
+    return `
+      <div class="eonruler">
+        <div class="labels">
+          ${sorted.map(ev=>`<div class="lbl" style="left:${ev.pct}%;${ev.row ? 'top:0;' : 'bottom:0;'}">${ev.n}, ${ev.label}</div>`).join('')}
+        </div>
+        <div class="track">
+          ${sorted.map(ev=>`<div class="tick" style="left:${ev.pct}%;"></div>`).join('')}
+        </div>
+      </div>`;
+  }
+
+  function renderEras(e){
+    if(!e.eras) return '';
+    return `
+      <div class="erasplit">
+        ${e.eras.map(era=>`
+          <div class="eracard">
+            <span class="eratag" style="background:${era.tagBg};color:${era.tagInk};">${era.tag}</span>
+            <h4>${era.range}</h4>
+            <div class="span">${era.span}</div>
+            <p>${era.list}</p>
+          </div>`).join('')}
+      </div>`;
+  }
+
+  function renderEon(key){
+    const e = eons[key];
+    mediaIndex = 0;
+    document.querySelectorAll('#eonrail .railblock').forEach(b=>b.classList.toggle('current', b.dataset.eon===key));
+
+    const card = document.getElementById('eoncard');
+    card.style.setProperty('--accent', e.accent);
+    card.innerHTML = `
+      <div class="eoncard-head">
+        <div class="titles">
+          <h2>${e.title}</h2>
+          <span class="native">${e.native}</span>
+        </div>
+        <span class="range">${e.range}</span>
+      </div>
+      <div class="eoncard-body ${e.images.length ? '' : 'no-media'}">
+        <div class="eontext">
+          <div class="etym">${e.etym}</div>
+          <p class="supereon">${e.supereon}</p>
+          <p class="lede">${e.lede}</p>
+          <ul>${e.points.map(p=>`<li${p.extinct?' class="extinct"':''}>${p.t}</li>`).join('')}</ul>
+        </div>
+        ${e.images.length ? `<div id="eonmediaslot">${renderMedia(e)}</div>` : ''}
+      </div>
+      ${renderRuler(e)}
+      ${renderEras(e)}
+    `;
+  }
+
+  function shiftMedia(dir){
+    const key = document.querySelector('#eonrail .railblock.current').dataset.eon;
+    const e = eons[key];
+    mediaIndex = (mediaIndex + dir + e.images.length) % e.images.length;
+    document.getElementById('eonmediaslot').innerHTML = renderMedia(e);
+  }
+
+  document.querySelectorAll('#eonrail .railblock').forEach(b=>{
+    b.addEventListener('click', ()=>renderEon(b.dataset.eon));
+  });
+
+  renderEon('hadean');
+</script>
+
+</body>
+</html>
